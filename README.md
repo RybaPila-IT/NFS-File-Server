@@ -1,2 +1,2 @@
-# FTP-File-Server
-Implementation of FTP-like file server
+# NFS-Server
+Implementation of NFS-like file server with lib and testing program
