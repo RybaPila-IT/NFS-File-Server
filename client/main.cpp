@@ -2,43 +2,55 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#include <cstdio>
-#include <cstdlib>
 #include <cstring>
 #include <unistd.h>
 
+#include <iostream>
+#include <string>
 
 #define DATA "Half a league, half a league . . ."
-int main(int argc, char *argv[])
-{
-    int sock;
-    struct sockaddr_in server;
-    struct hostent *hp;
 
-    /* Create socket. */
-    sock = socket( AF_INET, SOCK_STREAM, 0 );
+int establish_connection(const std::string& server_ip_address, const int server_port_number) {
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock == -1) {
-        perror("opening stream socket");
+        std::cerr << "Error when opening stream socket" << std::endl;
         exit(1);
     }
-    /* uzyskajmy adres IP z nazwy … */
+    /* Get IP from args */
+    struct sockaddr_in server;
     server.sin_family = AF_INET;
-    hp = gethostbyname(argv[1] ); /* powinnismy sprawdzic argc! */
-    /* hostbyname zwraca strukture zawierajaca adres danego hosta */
-    if (hp == (struct hostent *) 0) {
-        fprintf(stderr, "%s: unknown host\n", argv[1]);
+    struct hostent *hp = gethostbyname(server_ip_address.c_str());
+    /* hostbyname returns struct with address of host */
+    if (hp == nullptr) {
+        std::cerr << "Error by hostbyname: " + server_ip_address + " is unknown" << std::endl;
         exit(2);
     }
-    memcpy((char *) &server.sin_addr, (char *) hp->h_addr,
-           hp->h_length);
-    server.sin_port = htons(atoi( argv[2]));
-    if (connect(sock, (struct sockaddr *) &server, sizeof server)
-        == -1) {
-        perror("connecting stream socket");
+    std::memcpy((char *) &server.sin_addr, (char *) hp->h_addr,hp->h_length);
+    server.sin_port = htons(server_port_number);
+
+    if (connect(sock, (struct sockaddr *) &server, sizeof server)== -1) {
+        std::cerr << "Error when connecting stream socket" << std::endl;
         exit(1);
     }
-    if (write( sock, DATA, sizeof DATA ) == -1)
-        perror("writing on stream socket");
+    return sock;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        std::cerr << "Wrong number of input parameters" << std::endl;
+        exit(1);
+    }
+    std::string server_ip_address = argv[1];
+    //TODO check server_ip_address
+    char *dummy;
+    int server_port_number = (int) std::strtol(argv[2], &dummy, 10);
+
+    int sock = establish_connection(server_ip_address, server_port_number);
+
+    if (write(sock, DATA, sizeof DATA) == -1)
+        std::cerr << "Error when writing on stream socket" << std::endl;
+
     close(sock);
-    exit(0);}
+    exit(0);
+}
 
