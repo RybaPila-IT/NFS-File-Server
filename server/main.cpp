@@ -7,7 +7,7 @@
 #include <cstring>
 #include <unistd.h>
 
-int main(void) {
+int main() {
 
     int sock, length;
     struct sockaddr_in server;
