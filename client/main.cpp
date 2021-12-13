@@ -4,11 +4,12 @@
 #include <netdb.h>
 #include <cstring>
 #include <unistd.h>
-
 #include <iostream>
 #include <string>
 
 #define DATA "Half a league, half a league . . ."
+#define LOOP_BACK "127.0.0.1"
+#define DEFAULT_PORT htons(6941)
 
 int establish_connection(const std::string& server_ip_address, const int server_port_number) {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -17,7 +18,7 @@ int establish_connection(const std::string& server_ip_address, const int server_
         exit(1);
     }
     /* Get IP from args */
-    struct sockaddr_in server;
+    struct sockaddr_in server {};
     server.sin_family = AF_INET;
     struct hostent *hp = gethostbyname(server_ip_address.c_str());
     /* hostbyname returns struct with address of host */
@@ -36,14 +37,14 @@ int establish_connection(const std::string& server_ip_address, const int server_
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
+    if (argc != 3 && argc != 2) {
         std::cerr << "Wrong number of input parameters" << std::endl;
         exit(1);
     }
-    std::string server_ip_address = argv[1];
+    std::string server_ip_address = argc == 2 ? LOOP_BACK : argv[1];
     //TODO check server_ip_address
     char *dummy;
-    int server_port_number = (int) std::strtol(argv[2], &dummy, 10);
+    int server_port_number = (int) std::strtol(argc == 2 ? argv[1] : argv[2], &dummy, 10);
 
     int sock = establish_connection(server_ip_address, server_port_number);
 

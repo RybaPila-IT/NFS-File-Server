@@ -1,3 +1,0 @@
-/home/ig/Pulpit/NFS-File-Server/client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ig/Pulpit/NFS-File-Server/client/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ig/Pulpit/NFS-File-Server/client/cmake-build-debug/CMakeFiles/client.dir
