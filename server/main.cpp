@@ -1,13 +1,15 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netdb.h>
+#include <unistd.h>
 #include <cstring>
 #include <stdexcept>
-#include <unistd.h>
 #include <iostream>
 
-#define DEFAULT_PORT htons(6941)
-#define ERRNO std::string(strerror(errno))
+#define DEFAULT_PORT 6941
+#define LOOP_BACK    "127.0.0.1"
+#define ERRNO        std::string(strerror(errno))
 
 const int ERROR_CODE = -1;
 const int BACKLOG_QUEUE = 30;
@@ -20,12 +22,17 @@ int init_socket() {
     return socket_desc;
 }
 
-struct sockaddr_in init_socket_address() {
-    struct sockaddr_in sock_address {};
-    sock_address.sin_family = AF_INET;
-    sock_address.sin_addr.s_addr = INADDR_ANY;
-    sock_address.sin_port = DEFAULT_PORT;
-    return sock_address;
+struct sockaddr_in init_server_address(const std::string& server_ip_address, const int server_port) {
+    struct sockaddr_in server_address {};
+    struct hostent* hp;
+    server_address.sin_family = AF_INET;
+    server_address.sin_port = htons(server_port);
+    hp = gethostbyname(server_ip_address.c_str());
+    if (!hp) {
+        throw std::runtime_error("init_server_address: gethostbyname error; errno value: " + ERRNO);
+    }
+    std::memcpy((char *) &server_address.sin_addr, (char *) hp->h_addr,hp->h_length);
+    return server_address;
 }
 
 void bind_socket_to_address(int sock_fd, struct sockaddr_in& socket_address) {
@@ -38,12 +45,12 @@ void switch_socket_to_listen_mode(int sock_fd) {
     listen(sock_fd, BACKLOG_QUEUE);
 }
 
-int init_tcp_server_socket() {
+int init_tcp_server_socket(const std::string& server_ip_address, const int server_port) {
     int sock_fd;
     struct sockaddr_in sock_address {};
     try {
         sock_fd = init_socket();
-        sock_address = init_socket_address();
+        sock_address = init_server_address(server_ip_address, server_port);
         bind_socket_to_address(sock_fd, sock_address);
         switch_socket_to_listen_mode(sock_fd);
     } catch (std::runtime_error& err) {
@@ -78,11 +85,12 @@ void handle_incoming_connections(int sock_fd) {
 int main() {
     int sock_fd;
     try {
-        sock_fd = init_tcp_server_socket();
+        sock_fd = init_tcp_server_socket(LOOP_BACK, DEFAULT_PORT);
     } catch (std::runtime_error& err) {
         std::cerr << "main: " << err.what() << "\n";
         return -1;
     }
+    std::cout << "Address: " << LOOP_BACK << "; Port: " << DEFAULT_PORT << ";\n";
     std::cout << "Server begins listening...\n";
     try {
         handle_incoming_connections(sock_fd);
