@@ -89,7 +89,7 @@ TcpSocket TcpSocket::accept_connection() {
     return new_socket;
 }
 
-bool TcpSocket::read_data(char *buffer, int buffer_size) {
+bool TcpSocket::read_data(char *buffer, unsigned long buffer_size) {
     memset(buffer, 0, buffer_size * sizeof (char));
     auto r_val = read(sock_fd ,buffer, buffer_size);
     if (r_val == -1)
@@ -97,7 +97,7 @@ bool TcpSocket::read_data(char *buffer, int buffer_size) {
     return r_val == 0;
 }
 
-void TcpSocket::write_data(const char *buffer, int buffer_size) {
+void TcpSocket::write_data(const char *buffer, unsigned long buffer_size) {
     if (write(sock_fd, buffer, buffer_size * sizeof(char) ) == ERROR_CODE)
         throw std::runtime_error("write_data: write error; errno value: " + ERRNO);
 }

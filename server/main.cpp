@@ -1,5 +1,3 @@
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <stdexcept>
 #include <iostream>
 #include "socket.h"
@@ -8,29 +6,39 @@
 #define BACKLOG_QUEUE 30
 #define LOOP_BACK     "127.0.0.1"
 
-const int BUFFER_SIZE = 1024;
+void handle_session(TcpSocket& session_socket) {
+    int buffer_size = 1024;
+    char buffer[buffer_size];
+    std::string ack_token = "ACK";
+    bool finished;
+    std::cout << "Staring new session...\n";
+    do {
+        try {
+            finished = session_socket.read_data(buffer, buffer_size);
+        } catch (std::runtime_error &err) {
+            throw std::runtime_error("handle_session: reading from socket " + std::string(err.what()));
+        }
+        if (!finished) {
+            std::cout << "Received: " << buffer << "\n";
+            try {
+                session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
+            } catch (std::runtime_error &err) {
+                throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
+            }
+        }
+    } while (!finished);
+    std::cout << "Ending session...\n";
+}
 
 void handle_incoming_connections(TcpSocket& socket) {
-    char buffer[BUFFER_SIZE];
     do {
         TcpSocket new_socket;
         try {
             new_socket = socket.accept_connection();
+            handle_session(new_socket);
         } catch (std::runtime_error& err) {
-            throw std::runtime_error("handle_incoming_connections: accepting connection " + std::string(err.what()));
+            throw std::runtime_error("handle_incoming_connections: session management " + std::string(err.what()));
         }
-        bool finished;
-        do {
-            try {
-                finished = new_socket.read_data(buffer, BUFFER_SIZE);
-            } catch (std::runtime_error& err) {
-                throw std::runtime_error("handle_incoming_connection: reading from socket " + std::string(err.what()));
-            }
-            if (finished)
-                std::cout << "Ending connection...\n";
-            else
-                std::cout << "Received: " << buffer << "\n";
-            } while (!finished);
     } while(true);
 }
 
