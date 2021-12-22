@@ -3,8 +3,8 @@ project(client)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_library(SOCKET_LIB libsocket.so)
-message(STATUS ${SOCKET_LIB})
+find_library(socket_lib libsocket.so)
+message(STATUS ${socket_lib})
 
 add_executable(client main.cpp)
-target_link_libraries(client PRIVATE ${SOCKET_LIB})
+target_link_libraries(client PRIVATE ${socket_lib})
