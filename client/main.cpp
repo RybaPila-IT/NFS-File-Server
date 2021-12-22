@@ -1,56 +1,38 @@
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <cstring>
-#include <unistd.h>
-
 #include <iostream>
 #include <string>
+#include "socket.h"
 
-#define DATA "Half a league, half a league . . ."
+#define LOOP_BACK    "127.0.0.1"
+#define DEFAULT_PORT 6941
 
-int establish_connection(const std::string& server_ip_address, const int server_port_number) {
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock == -1) {
-        std::cerr << "Error when opening stream socket" << std::endl;
-        exit(1);
-    }
-    /* Get IP from args */
-    struct sockaddr_in server;
-    server.sin_family = AF_INET;
-    struct hostent *hp = gethostbyname(server_ip_address.c_str());
-    /* hostbyname returns struct with address of host */
-    if (hp == nullptr) {
-        std::cerr << "Error by hostbyname: " + server_ip_address + " is unknown" << std::endl;
-        exit(2);
-    }
-    std::memcpy((char *) &server.sin_addr, (char *) hp->h_addr,hp->h_length);
-    server.sin_port = htons(server_port_number);
 
-    if (connect(sock, (struct sockaddr *) &server, sizeof server)== -1) {
-        std::cerr << "Error when connecting stream socket" << std::endl;
-        exit(1);
-    }
-    return sock;
+void handle_session(TcpSocket& socket) {
+    int buffer_size = 1024;
+    char buffer[buffer_size];
+    std::string end_token = "END", command;
+    do {
+        std::cout << "What do you want to send to server?\n";
+        std::cin >> command;
+        try {
+            socket.write_data(command.c_str(), command.length() * sizeof (char));
+            socket.read_data(buffer, buffer_size);
+            std::cout << "Server responded: " << buffer << "\n";
+        } catch (std::runtime_error& err) {
+            throw std::runtime_error("handle_session: " + std::string(err.what()));
+        }
+    } while (command != end_token);
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        std::cerr << "Wrong number of input parameters" << std::endl;
-        exit(1);
+int main() {
+    std::string data = "Half a league, half a league . . .";
+    TcpSocket socket;
+    try {
+        socket.connect_to(LOOP_BACK, DEFAULT_PORT);
+        handle_session(socket);
+    } catch (std::runtime_error& err) {
+        std::cerr << "main: " << err.what() << "\n";
+        return -1;
     }
-    std::string server_ip_address = argv[1];
-    //TODO check server_ip_address
-    char *dummy;
-    int server_port_number = (int) std::strtol(argv[2], &dummy, 10);
-
-    int sock = establish_connection(server_ip_address, server_port_number);
-
-    if (write(sock, DATA, sizeof DATA) == -1)
-        std::cerr << "Error when writing on stream socket" << std::endl;
-
-    close(sock);
-    exit(0);
+    return 0;
 }
 

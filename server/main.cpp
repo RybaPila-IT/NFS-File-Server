@@ -1,65 +1,63 @@
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <stdio.h>
-#include <cstdlib>
-#include <cstring>
-#include <unistd.h>
+#include <stdexcept>
+#include <iostream>
+#include "socket.h"
+
+#define DEFAULT_PORT  6941
+#define BACKLOG_QUEUE 30
+#define LOOP_BACK     "127.0.0.1"
+
+void handle_session(TcpSocket& session_socket) {
+    int buffer_size = 1024;
+    char buffer[buffer_size];
+    std::string ack_token = "ACK";
+    bool finished;
+    std::cout << "Staring new session...\n";
+    do {
+        try {
+            finished = session_socket.read_data(buffer, buffer_size);
+        } catch (std::runtime_error &err) {
+            throw std::runtime_error("handle_session: reading from socket " + std::string(err.what()));
+        }
+        if (!finished) {
+            std::cout << "Received: " << buffer << "\n";
+            try {
+                session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
+            } catch (std::runtime_error &err) {
+                throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
+            }
+        }
+    } while (!finished);
+    std::cout << "Ending session...\n";
+}
+
+void handle_incoming_connections(TcpSocket& socket) {
+    do {
+        TcpSocket new_socket;
+        try {
+            new_socket = socket.accept_connection();
+            handle_session(new_socket);
+        } catch (std::runtime_error& err) {
+            throw std::runtime_error("handle_incoming_connections: session management " + std::string(err.what()));
+        }
+    } while(true);
+}
 
 int main() {
-
-    int sock, length;
-    struct sockaddr_in server;
-    int msgsock;
-    char buf[1024];
-    int rval;
-
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock == -1) {
-        perror("opening stream socket");
-        exit(1);
+    TcpSocket tcp_socket;
+    try {
+        tcp_socket = TcpSocket(LOOP_BACK, DEFAULT_PORT);
+        tcp_socket.switch_to_listen_mode(BACKLOG_QUEUE);
+    } catch (std::runtime_error& err) {
+        std::cerr << "main: " << err.what() << "\n";
+        return -1;
     }
-    /* dowiaz adres do gniazda */
-    /* “prawdziwy” serwer pobrał by port poprzez getservbyname() */
-    server.sin_family = AF_INET;
-    server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = 0;
-    if (bind(sock, (struct sockaddr *) &server, sizeof server) == -1) {
-        perror("binding stream socket");
-        exit(1);
+    std::cout << "Address: " << LOOP_BACK << "; Port: " << DEFAULT_PORT << ";\n";
+    std::cout << "Server begins listening...\n";
+    try {
+        handle_incoming_connections(tcp_socket);
+    } catch (std::runtime_error& err) {
+        std::cerr << "main: " << err.what() << "\n";
+        return -1;
     }
-    /* wydrukuj na konsoli przydzielony port */
-    length = sizeof server;
-    if (getsockname(sock, (struct sockaddr *) &server, reinterpret_cast<socklen_t *>(&length)) == -1) {
-        perror("getting socket name");
-        exit(2);
-    }
-    printf("Socket port #%d\n", ntohs(server.sin_port));
-    /* zacznij przyjmować polaczenia... */
-    listen(sock, 5);
-    do{
-        msgsock = accept(sock, (struct sockaddr *) 0, reinterpret_cast<socklen_t *>((int *) 0));
-        if (msgsock == -1 ) {
-            perror("accept");
-            exit(3);
-        }
-        else do {
-            memset(buf, 0, sizeof buf);
-            if ((rval = read(msgsock,buf, 1024)) == -1) {
-                perror("reading stream message");
-                exit(4);
-            }
-            if (rval == 0)
-                printf("Ending connection\n");
-            else
-                printf("-->%s\n", buf);
-        } while (rval > 0);
-        close(msgsock);
-    } while(true);
-/*
-* gniazdo sock nie zostanie nigdy zamkniete jawnie,
-* jednak wszystkie deskryptory zostana zamkniete gdy proces
-* zostanie zakonczony (np w wyniku wystapienia sygnalu)
-*/
+    return 0;
 }
