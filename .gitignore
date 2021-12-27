@@ -1,3 +1,9 @@
+.idea
+client/cmake-build-debug
+server/cmake-build-debug
+client/build
+server/build
+socket/build
 # Prerequisites
 *.d
 
