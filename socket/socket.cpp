@@ -41,8 +41,8 @@ TcpSocket::TcpSocket(): sock_fd(0), socket_address({}) {}
 TcpSocket::TcpSocket(const TcpSocket& socket): sock_fd(socket.sock_fd), socket_address(socket.socket_address) {}
 
 TcpSocket::~TcpSocket() {
-    if (sock_fd > 0)
-        close(sock_fd);
+    //if (sock_fd > 0)
+        //close(sock_fd);
 }
 
 TcpSocket &TcpSocket::operator=(const TcpSocket &socket)  {
