@@ -36,8 +36,7 @@ void handle_session(int socket_fd) {
 void handle_incoming_connections(TcpSocket& socket) {
     do {
         try {
-            int soc_fd = socket.accept_connection();
-            std::thread t1(handle_session, soc_fd);
+            std::thread t1(handle_session, socket.accept_connection());
             t1.detach();
         } catch (std::runtime_error& err) {
             throw std::runtime_error("handle_incoming_connections: session management " + std::string(err.what()));

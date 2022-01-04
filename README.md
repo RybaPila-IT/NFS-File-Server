@@ -8,5 +8,4 @@ Aby zbudować projekt w całości można wykorzystać skrypt build_all.sh (możl
 Skrypt kompiluje również biblioteki dynamiczne. W trakcie wykonania może poprosić o hasło użytkownika sudo - potrzebne do umieszczenia plików w folderze /usr/lib.
 
 
-Aby uruchomić serwer należy wejść w folder server i stamtąd uruchomić ./run.sh
-Dla klienta analogicznie.
+Aby uruchomić serwer lub clienta należy wykonać ./run_server lub ./run_client w głównym folderze projektu.
