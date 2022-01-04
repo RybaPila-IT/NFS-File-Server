@@ -23,15 +23,16 @@ private:
 public:
     TcpSocket();
     TcpSocket(const TcpSocket& socket);
+    TcpSocket(int soc_fd);
     TcpSocket(const std::string& socket_ip_address, int port_number);
     ~TcpSocket();
 
     TcpSocket& operator=(TcpSocket&& socket) noexcept;
-    TcpSocket& operator=(const TcpSocket& socket);
+    TcpSocket& operator=(const TcpSocket& socket) = delete;
 
     address get_address() const;
 
-    TcpSocket accept_connection();
+    int accept_connection();
     void switch_to_listen_mode(int backlog);
     void connect_to(const std::string& socket_ip_address, int port_number);
 

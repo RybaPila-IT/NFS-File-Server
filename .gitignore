@@ -1,6 +1,7 @@
 .idea
 client/cmake-build-debug
 server/cmake-build-debug
+socket/cmake-build-debug
 client/build
 server/build
 socket/build
