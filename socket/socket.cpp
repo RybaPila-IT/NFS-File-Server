@@ -37,16 +37,12 @@ TcpSocket::TcpSocket(const std::string& socket_ip_address, int port_number): soc
 }
 
 TcpSocket::TcpSocket(): sock_fd(0), socket_address({}) {}
-
+TcpSocket::TcpSocket(int soc_fd): sock_fd(soc_fd), socket_address({}) {}
 TcpSocket::TcpSocket(const TcpSocket& socket): sock_fd(socket.sock_fd), socket_address(socket.socket_address) {}
 
 TcpSocket::~TcpSocket() {
     if (sock_fd > 0)
         close(sock_fd);
-}
-
-TcpSocket &TcpSocket::operator=(const TcpSocket &socket)  {
-    throw std::runtime_error("TcpSocket: assignment operator is banned!");
 }
 
 TcpSocket &TcpSocket::operator=(TcpSocket &&socket) noexcept {
@@ -81,12 +77,11 @@ void TcpSocket::connect_to(const std::string& socket_ip_address, int port_number
         throw std::runtime_error("connect_to: connect error; errno value: " + ERRNO);
 }
 
-TcpSocket TcpSocket::accept_connection() {
-    auto new_socket = TcpSocket();
-    new_socket.sock_fd = accept(sock_fd, (struct sockaddr*) nullptr, (socklen_t*) nullptr);
-    if (new_socket.sock_fd == ERROR_CODE)
+int TcpSocket::accept_connection() {
+    int new_sock_fd = accept(sock_fd, (struct sockaddr*) nullptr, (socklen_t*) nullptr);
+    if (new_sock_fd == ERROR_CODE)
         throw std::runtime_error("accept_connection: accept error; errno value: " + ERRNO);
-    return new_socket;
+    return new_sock_fd;
 }
 
 bool TcpSocket::read_data(char *buffer, unsigned long buffer_size) {

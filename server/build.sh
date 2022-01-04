@@ -1,7 +1,9 @@
 #! /bin/bash
 
-rm -fr build
-mkdir build
+if [ ! -d "build" ]; then
+    mkdir build
+fi
 cd build
 cmake ..
 make
+exit $?

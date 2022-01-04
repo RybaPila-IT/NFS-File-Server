@@ -1,12 +1,15 @@
 #include <stdexcept>
 #include <iostream>
+#include <thread>
 #include "socket.h"
+
 
 #define DEFAULT_PORT  6941
 #define BACKLOG_QUEUE 30
 #define LOOP_BACK     "127.0.0.1"
 
-void handle_session(TcpSocket& session_socket) {
+void handle_session(int socket_fd) {
+    TcpSocket session_socket(socket_fd);
     int buffer_size = 1024;
     char buffer[buffer_size];
     std::string ack_token = "ACK";
@@ -32,10 +35,9 @@ void handle_session(TcpSocket& session_socket) {
 
 void handle_incoming_connections(TcpSocket& socket) {
     do {
-        TcpSocket new_socket;
         try {
-            new_socket = socket.accept_connection();
-            handle_session(new_socket);
+            std::thread t1(handle_session, socket.accept_connection());
+            t1.detach();
         } catch (std::runtime_error& err) {
             throw std::runtime_error("handle_incoming_connections: session management " + std::string(err.what()));
         }
@@ -53,6 +55,7 @@ int main() {
     }
     std::cout << "Address: " << LOOP_BACK << "; Port: " << DEFAULT_PORT << ";\n";
     std::cout << "Server begins listening...\n";
+
     try {
         handle_incoming_connections(tcp_socket);
     } catch (std::runtime_error& err) {
