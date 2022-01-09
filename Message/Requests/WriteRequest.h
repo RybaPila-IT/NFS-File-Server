@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_WRITEREQUEST_H
 #define NFS_FILE_SERVER_WRITEREQUEST_H
-#include "Message.h"
+#include "../Message.h"
 
 class WriteRequest : public Message{
 

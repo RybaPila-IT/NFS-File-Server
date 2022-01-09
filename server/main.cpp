@@ -2,7 +2,7 @@
 #include <iostream>
 #include <thread>
 #include "socket.h"
-#include "RequestSorter"
+#include "../Message/test.h"
 
 #define DEFAULT_PORT  6941
 #define BACKLOG_QUEUE 30
@@ -14,7 +14,7 @@ void handle_session(int socket_fd) {
     char buffer[buffer_size];
     std::string ack_token = "ACK";
     bool finished;
-    ReadReply rRep = ReadReply("Ala ma Kota");
+    ReadReply rRep = ReadReply("AlaMaKota");
     ReadRequest rReq = ReadRequest(0);
 
     std::cout << "Staring new session...\n";

@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_CONNECTREQUEST_H
 #define NFS_FILE_SERVER_CONNECTREQUEST_H
-#include "Message.h"
+#include "../Message.h"
 
 class ConnectRequest : public Message{
 

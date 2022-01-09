@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "socket.h"
-#include "ReplySorter.h"
+#include "../Message/test.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
@@ -17,6 +17,7 @@ void handle_session(TcpSocket& socket) {
         //std::cout << "What do you want to send to server?\n";
         //std::cin >> command;
         std::cout << "Sending Read Req\n";
+        command = rReq.Serialize();
         try {
             socket.write_data(command.c_str(), command.length() * sizeof (char));
             socket.read_data(buffer, buffer_size);

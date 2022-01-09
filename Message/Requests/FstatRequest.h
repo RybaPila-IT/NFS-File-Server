@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_FSTATREQUEST_H
 #define NFS_FILE_SERVER_FSTATREQUEST_H
-#include "Message.h"
+#include "../Message.h"
 
 class FstatRequest : public Message{
 

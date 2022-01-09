@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_CONNECTREPLY_H
 #define NFS_FILE_SERVER_CONNECTREPLY_H
-#include "Message.h"
+#include "../Message.h"
 
 class ConnectReply : public Message{
 

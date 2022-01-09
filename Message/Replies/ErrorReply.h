@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_ERRORREPLY_H
 #define NFS_FILE_SERVER_ERRORREPLY_H
-#include "Message.h"
+#include "../Message.h"
 
 class ErrorReply : public Message{
 

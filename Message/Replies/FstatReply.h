@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_FSTATREPLY_H
 #define NFS_FILE_SERVER_FSTATREPLY_H
-#include "Message.h"
+#include "../Message.h"
 
 class FstatReply : public Message{
 
