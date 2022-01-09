@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_CLOSEREPLY_H
 #define NFS_FILE_SERVER_CLOSEREPLY_H
-#include "../Message.h"
+#include "Message.h"
 
 class CloseReply : public Message{
 

@@ -62,7 +62,30 @@ file(INSTALL DESTINATION "/usr/lib" TYPE SHARED_LIBRARY FILES "/home/ig/Pulpit/N
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/ig/Pulpit/NFS-File-Server/message/MessageTypes.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
+    "/home/ig/Pulpit/NFS-File-Server/message/MessageTypes.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/CloseRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/ConnectRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/FstatRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/LseekRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/OpenRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/ReadRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/UnlinkRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Requests/WriteRequest.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/CloseReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ConnectReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ErrorReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/FstatReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/LseekReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/OpenReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ReadReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/UnlinkReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Replies/WriteReply.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/BytesConverter.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/Message.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/ReplyInfo.h"
+    "/home/ig/Pulpit/NFS-File-Server/message/RequestInfo.h"
+    )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

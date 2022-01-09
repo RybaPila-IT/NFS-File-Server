@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_UNLINKREQUEST_H
 #define NFS_FILE_SERVER_UNLINKREQUEST_H
-#include "../Message.h"
+#include "Message.h"
 
 class UnlinkRequest : public Message{
 

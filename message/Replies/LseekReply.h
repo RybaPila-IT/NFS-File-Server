@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_LSEEKREPLY_H
 #define NFS_FILE_SERVER_LSEEKREPLY_H
-#include "../Message.h"
+#include "Message.h"
 
 class LseekReply : public Message{
 

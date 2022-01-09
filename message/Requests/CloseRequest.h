@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_CLOSEREQUEST_H
 #define NFS_FILE_SERVER_CLOSEREQUEST_H
-#include "../Message.h"
+#include "Message.h"
 
 class CloseRequest : public Message{
 

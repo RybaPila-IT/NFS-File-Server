@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/message.dir/BytesConverter.cpp.o"
-  "CMakeFiles/message.dir/Message.cpp.o"
   "CMakeFiles/message.dir/Requests/CloseRequest.cpp.o"
   "CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o"
   "CMakeFiles/message.dir/Requests/FstatRequest.cpp.o"
@@ -18,6 +16,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/message.dir/Replies/ReadReply.cpp.o"
   "CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o"
   "CMakeFiles/message.dir/Replies/WriteReply.cpp.o"
+  "CMakeFiles/message.dir/BytesConverter.cpp.o"
+  "CMakeFiles/message.dir/Message.cpp.o"
   "libmessage.pdb"
   "libmessage.so"
 )

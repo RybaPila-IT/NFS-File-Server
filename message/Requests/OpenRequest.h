@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_OPENREQUEST_H
 #define NFS_FILE_SERVER_OPENREQUEST_H
-#include "../Message.h"
+#include "Message.h"
 
 
 class OpenRequest : public Message{

@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_OPENREPLY_H
 #define NFS_FILE_SERVER_OPENREPLY_H
-#include "../Message.h"
+#include "Message.h"
 
 class OpenReply : public Message{
 
