@@ -3,6 +3,8 @@
 #include "MessageTypes.h"
 
 class RequestHandler {
+
+public:
     void HandleClose(std::string);
     void HandleConnect(std::string);
     void HandleFstat(std::string);

@@ -6,8 +6,8 @@
 
 class Message {
 public:
-    virtual std::string Serialize();
-    virtual void Deserialize(std::string);
+    virtual std::string Serialize()=0;
+    virtual void Deserialize(std::string)=0;
 
 };
 

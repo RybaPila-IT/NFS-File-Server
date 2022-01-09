@@ -1,8 +1,10 @@
 #ifndef NFS_FILE_SERVER_REPLYHANDLER_H
 #define NFS_FILE_SERVER_REPLYHANDLER_H
-#include "../Message/MessageTypes.h"
+#include "MessageTypes.h"
 
 class ReplyHandler {
+
+public:
     void HandleClose(std::string);
     void HandleConnect(std::string);
     void HandleError(std::string);

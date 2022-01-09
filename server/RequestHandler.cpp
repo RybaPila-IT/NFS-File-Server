@@ -4,7 +4,7 @@
 void RequestHandler::HandleClose(std::string message) {
     CloseRequest qReq = CloseRequest(0);
     qReq.Deserialize(message);
-    std::cout << "DE: "<< qReq.info.requestType << "|" << qRep.info.dataSize << std::endl<<std::endl;
+    std::cout << "DE: "<< qReq.info.requestType << "|" << qReq.info.dataSize << std::endl<<std::endl;
 }
 
 void RequestHandler::HandleConnect(std::string message) {
