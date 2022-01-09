@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "socket.h"
+#include "ReplySorter.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
@@ -10,13 +11,18 @@ void handle_session(TcpSocket& socket) {
     int buffer_size = 1024;
     char buffer[buffer_size];
     std::string end_token = "END", command;
+    ReadReply rRep = ReadReply("");
+    ReadRequest rReq = ReadRequest(1234);
     do {
-        std::cout << "What do you want to send to server?\n";
-        std::cin >> command;
+        //std::cout << "What do you want to send to server?\n";
+        //std::cin >> command;
+        std::cout << "Sending Read Req\n";
         try {
             socket.write_data(command.c_str(), command.length() * sizeof (char));
             socket.read_data(buffer, buffer_size);
             std::cout << "Server responded: " << buffer << "\n";
+            rRep.Deserialize(buffer);
+            std::cout << "REC RP: " << rRep.info.replyType << "|REC RP SIZE: "<<rRep.info.dataSize <<"|REC RP FC: "<<rRep.fileContent <<"\n";
         } catch (std::runtime_error& err) {
             throw std::runtime_error("handle_session: " + std::string(err.what()));
         }
