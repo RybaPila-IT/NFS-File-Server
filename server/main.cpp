@@ -2,7 +2,7 @@
 #include <iostream>
 #include <thread>
 #include "socket.h"
-#include "../Message/test.h"
+#include "RequestSorter.h"
 
 #define DEFAULT_PORT  6941
 #define BACKLOG_QUEUE 30
@@ -10,12 +10,12 @@
 
 void handle_session(int socket_fd) {
     TcpSocket session_socket(socket_fd);
+    RequestSorter requestSorter;
     int buffer_size = 1024;
     char buffer[buffer_size];
     std::string ack_token = "ACK";
     bool finished;
     ReadReply rRep = ReadReply("AlaMaKota");
-    ReadRequest rReq = ReadRequest(0);
 
     std::cout << "Staring new session...\n";
     do {
@@ -29,7 +29,7 @@ void handle_session(int socket_fd) {
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
             try {
-                rReq.Deserialize(buffer);
+                requestSorter(buffer);
                 std::cout << "REC RQ: " << rReq.info.requestType << "|REC RQ SIZE: "<<rReq.info.dataSize <<"|REC RQ FD: "<<rReq.fileDescriptor <<"\n";
                 //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
                 std::string reply = rRep.Serialize();
