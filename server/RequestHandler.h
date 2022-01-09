@@ -1,6 +1,6 @@
 #ifndef NFS_FILE_SERVER_REQUESTHANDLER_H
 #define NFS_FILE_SERVER_REQUESTHANDLER_H
-#include "../Message/MessageTypes.h"
+#include "MessageTypes.h"
 
 class RequestHandler {
     void HandleClose(std::string);
