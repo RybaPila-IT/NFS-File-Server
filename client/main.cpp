@@ -12,13 +12,17 @@ void handle_session(TcpSocket& socket) {
     int buffer_size = 1024;
     char buffer[buffer_size];
     std::string end_token = "END", command;
-
+    Message* outgoing_request;
+    //Linijka poniżej to przykładowy wysyłany request, aby wysłać inny: zadeklarować -> ustawić wskaźnik outgoing_request;
     ReadRequest rReq = ReadRequest(1234);
+    outgoing_request = &rReq;
+
+
     do {
         //std::cout << "What do you want to send to server?\n";
         //std::cin >> command;
         std::cout << "Sending Read Req\n";
-        command = rReq.Serialize();
+        command = outgoing_request->Serialize();
         try {
             socket.write_data(command.c_str(), command.length() * sizeof (char));
             socket.read_data(buffer, buffer_size);

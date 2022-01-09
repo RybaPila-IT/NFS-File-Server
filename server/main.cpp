@@ -15,7 +15,11 @@ void handle_session(int socket_fd) {
     char buffer[buffer_size];
     std::string ack_token = "ACK";
     bool finished;
+    Message* outgoing_reply;
+    //Linijka poniżej to przykładowy wysyłany reply, aby wysłać inny: zadeklarować -> ustawić wskaźnik outgoing_reply;
     ReadReply rRep = ReadReply("AlaMaKota");
+    outgoing_reply = &rRep;
+
 
     std::cout << "Staring new session...\n";
     do {
@@ -32,7 +36,7 @@ void handle_session(int socket_fd) {
                 requestSorter(buffer);
                 std::cout << "REC RQ: " << rReq.info.requestType << "|REC RQ SIZE: "<<rReq.info.dataSize <<"|REC RQ FD: "<<rReq.fileDescriptor <<"\n";
                 //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
-                std::string reply = rRep.Serialize();
+                std::string reply = outgoing_reply->Serialize();
                 session_socket.write_data(reply.c_str(), reply.length() * sizeof (char));
             } catch (std::runtime_error &err) {
                 throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
