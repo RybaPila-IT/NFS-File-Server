@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ig/Pulpit/NFS-File-Server/message
+CMAKE_SOURCE_DIR = /home/jan/CLionProjects/NFS-File-Server/message
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ig/Pulpit/NFS-File-Server/message/build
+CMAKE_BINARY_DIR = /home/jan/CLionProjects/NFS-File-Server/message/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/message.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/message.dir/flags.make
 
 CMakeFiles/message.dir/Requests/CloseRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/CloseRequest.cpp.o: ../Requests/CloseRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/message.dir/Requests/CloseRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/CloseRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/CloseRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/message.dir/Requests/CloseRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/CloseRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/CloseRequest.cpp
 
 CMakeFiles/message.dir/Requests/CloseRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/CloseRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/CloseRequest.cpp > CMakeFiles/message.dir/Requests/CloseRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/CloseRequest.cpp > CMakeFiles/message.dir/Requests/CloseRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/CloseRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/CloseRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/CloseRequest.cpp -o CMakeFiles/message.dir/Requests/CloseRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/CloseRequest.cpp -o CMakeFiles/message.dir/Requests/CloseRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/CloseRequest.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/message.dir/Requests/CloseRequest.cpp.o.provides.build: CMakeFiles/me
 
 CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o: ../Requests/ConnectRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/ConnectRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/ConnectRequest.cpp
 
 CMakeFiles/message.dir/Requests/ConnectRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/ConnectRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/ConnectRequest.cpp > CMakeFiles/message.dir/Requests/ConnectRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/ConnectRequest.cpp > CMakeFiles/message.dir/Requests/ConnectRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/ConnectRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/ConnectRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/ConnectRequest.cpp -o CMakeFiles/message.dir/Requests/ConnectRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/ConnectRequest.cpp -o CMakeFiles/message.dir/Requests/ConnectRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/message.dir/Requests/ConnectRequest.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/message.dir/Requests/FstatRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/FstatRequest.cpp.o: ../Requests/FstatRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/message.dir/Requests/FstatRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/FstatRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/FstatRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/message.dir/Requests/FstatRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/FstatRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/FstatRequest.cpp
 
 CMakeFiles/message.dir/Requests/FstatRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/FstatRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/FstatRequest.cpp > CMakeFiles/message.dir/Requests/FstatRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/FstatRequest.cpp > CMakeFiles/message.dir/Requests/FstatRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/FstatRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/FstatRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/FstatRequest.cpp -o CMakeFiles/message.dir/Requests/FstatRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/FstatRequest.cpp -o CMakeFiles/message.dir/Requests/FstatRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/FstatRequest.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/message.dir/Requests/FstatRequest.cpp.o.provides.build: CMakeFiles/me
 
 CMakeFiles/message.dir/Requests/LseekRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/LseekRequest.cpp.o: ../Requests/LseekRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/message.dir/Requests/LseekRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/LseekRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/LseekRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/message.dir/Requests/LseekRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/LseekRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/LseekRequest.cpp
 
 CMakeFiles/message.dir/Requests/LseekRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/LseekRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/LseekRequest.cpp > CMakeFiles/message.dir/Requests/LseekRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/LseekRequest.cpp > CMakeFiles/message.dir/Requests/LseekRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/LseekRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/LseekRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/LseekRequest.cpp -o CMakeFiles/message.dir/Requests/LseekRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/LseekRequest.cpp -o CMakeFiles/message.dir/Requests/LseekRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/LseekRequest.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/message.dir/Requests/LseekRequest.cpp.o.provides.build: CMakeFiles/me
 
 CMakeFiles/message.dir/Requests/OpenRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/OpenRequest.cpp.o: ../Requests/OpenRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/message.dir/Requests/OpenRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/OpenRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/OpenRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/message.dir/Requests/OpenRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/OpenRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/OpenRequest.cpp
 
 CMakeFiles/message.dir/Requests/OpenRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/OpenRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/OpenRequest.cpp > CMakeFiles/message.dir/Requests/OpenRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/OpenRequest.cpp > CMakeFiles/message.dir/Requests/OpenRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/OpenRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/OpenRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/OpenRequest.cpp -o CMakeFiles/message.dir/Requests/OpenRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/OpenRequest.cpp -o CMakeFiles/message.dir/Requests/OpenRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/OpenRequest.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/message.dir/Requests/OpenRequest.cpp.o.provides.build: CMakeFiles/mes
 
 CMakeFiles/message.dir/Requests/ReadRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/ReadRequest.cpp.o: ../Requests/ReadRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/message.dir/Requests/ReadRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/ReadRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/ReadRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/message.dir/Requests/ReadRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/ReadRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/ReadRequest.cpp
 
 CMakeFiles/message.dir/Requests/ReadRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/ReadRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/ReadRequest.cpp > CMakeFiles/message.dir/Requests/ReadRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/ReadRequest.cpp > CMakeFiles/message.dir/Requests/ReadRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/ReadRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/ReadRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/ReadRequest.cpp -o CMakeFiles/message.dir/Requests/ReadRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/ReadRequest.cpp -o CMakeFiles/message.dir/Requests/ReadRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/ReadRequest.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/message.dir/Requests/ReadRequest.cpp.o.provides.build: CMakeFiles/mes
 
 CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o: ../Requests/UnlinkRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/UnlinkRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/UnlinkRequest.cpp
 
 CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/UnlinkRequest.cpp > CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/UnlinkRequest.cpp > CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/UnlinkRequest.cpp -o CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/UnlinkRequest.cpp -o CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/message.dir/Requests/UnlinkRequest.cpp.o.provides.build: CMakeFiles/m
 
 CMakeFiles/message.dir/Requests/WriteRequest.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Requests/WriteRequest.cpp.o: ../Requests/WriteRequest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/message.dir/Requests/WriteRequest.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/WriteRequest.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Requests/WriteRequest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/message.dir/Requests/WriteRequest.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Requests/WriteRequest.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Requests/WriteRequest.cpp
 
 CMakeFiles/message.dir/Requests/WriteRequest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Requests/WriteRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Requests/WriteRequest.cpp > CMakeFiles/message.dir/Requests/WriteRequest.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Requests/WriteRequest.cpp > CMakeFiles/message.dir/Requests/WriteRequest.cpp.i
 
 CMakeFiles/message.dir/Requests/WriteRequest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Requests/WriteRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Requests/WriteRequest.cpp -o CMakeFiles/message.dir/Requests/WriteRequest.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Requests/WriteRequest.cpp -o CMakeFiles/message.dir/Requests/WriteRequest.cpp.s
 
 CMakeFiles/message.dir/Requests/WriteRequest.cpp.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/message.dir/Requests/WriteRequest.cpp.o.provides.build: CMakeFiles/me
 
 CMakeFiles/message.dir/Replies/CloseReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/CloseReply.cpp.o: ../Replies/CloseReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/message.dir/Replies/CloseReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/CloseReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/CloseReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/message.dir/Replies/CloseReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/CloseReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/CloseReply.cpp
 
 CMakeFiles/message.dir/Replies/CloseReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/CloseReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/CloseReply.cpp > CMakeFiles/message.dir/Replies/CloseReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/CloseReply.cpp > CMakeFiles/message.dir/Replies/CloseReply.cpp.i
 
 CMakeFiles/message.dir/Replies/CloseReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/CloseReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/CloseReply.cpp -o CMakeFiles/message.dir/Replies/CloseReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/CloseReply.cpp -o CMakeFiles/message.dir/Replies/CloseReply.cpp.s
 
 CMakeFiles/message.dir/Replies/CloseReply.cpp.o.requires:
 
@@ -275,16 +275,16 @@ CMakeFiles/message.dir/Replies/CloseReply.cpp.o.provides.build: CMakeFiles/messa
 
 CMakeFiles/message.dir/Replies/ConnectReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/ConnectReply.cpp.o: ../Replies/ConnectReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/message.dir/Replies/ConnectReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ConnectReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/ConnectReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/message.dir/Replies/ConnectReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ConnectReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/ConnectReply.cpp
 
 CMakeFiles/message.dir/Replies/ConnectReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/ConnectReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/ConnectReply.cpp > CMakeFiles/message.dir/Replies/ConnectReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/ConnectReply.cpp > CMakeFiles/message.dir/Replies/ConnectReply.cpp.i
 
 CMakeFiles/message.dir/Replies/ConnectReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/ConnectReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/ConnectReply.cpp -o CMakeFiles/message.dir/Replies/ConnectReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/ConnectReply.cpp -o CMakeFiles/message.dir/Replies/ConnectReply.cpp.s
 
 CMakeFiles/message.dir/Replies/ConnectReply.cpp.o.requires:
 
@@ -299,16 +299,16 @@ CMakeFiles/message.dir/Replies/ConnectReply.cpp.o.provides.build: CMakeFiles/mes
 
 CMakeFiles/message.dir/Replies/ErrorReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/ErrorReply.cpp.o: ../Replies/ErrorReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/message.dir/Replies/ErrorReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ErrorReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/ErrorReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/message.dir/Replies/ErrorReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ErrorReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/ErrorReply.cpp
 
 CMakeFiles/message.dir/Replies/ErrorReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/ErrorReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/ErrorReply.cpp > CMakeFiles/message.dir/Replies/ErrorReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/ErrorReply.cpp > CMakeFiles/message.dir/Replies/ErrorReply.cpp.i
 
 CMakeFiles/message.dir/Replies/ErrorReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/ErrorReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/ErrorReply.cpp -o CMakeFiles/message.dir/Replies/ErrorReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/ErrorReply.cpp -o CMakeFiles/message.dir/Replies/ErrorReply.cpp.s
 
 CMakeFiles/message.dir/Replies/ErrorReply.cpp.o.requires:
 
@@ -323,16 +323,16 @@ CMakeFiles/message.dir/Replies/ErrorReply.cpp.o.provides.build: CMakeFiles/messa
 
 CMakeFiles/message.dir/Replies/FstatReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/FstatReply.cpp.o: ../Replies/FstatReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/message.dir/Replies/FstatReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/FstatReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/FstatReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/message.dir/Replies/FstatReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/FstatReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/FstatReply.cpp
 
 CMakeFiles/message.dir/Replies/FstatReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/FstatReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/FstatReply.cpp > CMakeFiles/message.dir/Replies/FstatReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/FstatReply.cpp > CMakeFiles/message.dir/Replies/FstatReply.cpp.i
 
 CMakeFiles/message.dir/Replies/FstatReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/FstatReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/FstatReply.cpp -o CMakeFiles/message.dir/Replies/FstatReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/FstatReply.cpp -o CMakeFiles/message.dir/Replies/FstatReply.cpp.s
 
 CMakeFiles/message.dir/Replies/FstatReply.cpp.o.requires:
 
@@ -347,16 +347,16 @@ CMakeFiles/message.dir/Replies/FstatReply.cpp.o.provides.build: CMakeFiles/messa
 
 CMakeFiles/message.dir/Replies/LseekReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/LseekReply.cpp.o: ../Replies/LseekReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/message.dir/Replies/LseekReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/LseekReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/LseekReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/message.dir/Replies/LseekReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/LseekReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/LseekReply.cpp
 
 CMakeFiles/message.dir/Replies/LseekReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/LseekReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/LseekReply.cpp > CMakeFiles/message.dir/Replies/LseekReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/LseekReply.cpp > CMakeFiles/message.dir/Replies/LseekReply.cpp.i
 
 CMakeFiles/message.dir/Replies/LseekReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/LseekReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/LseekReply.cpp -o CMakeFiles/message.dir/Replies/LseekReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/LseekReply.cpp -o CMakeFiles/message.dir/Replies/LseekReply.cpp.s
 
 CMakeFiles/message.dir/Replies/LseekReply.cpp.o.requires:
 
@@ -371,16 +371,16 @@ CMakeFiles/message.dir/Replies/LseekReply.cpp.o.provides.build: CMakeFiles/messa
 
 CMakeFiles/message.dir/Replies/OpenReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/OpenReply.cpp.o: ../Replies/OpenReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/message.dir/Replies/OpenReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/OpenReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/OpenReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/message.dir/Replies/OpenReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/OpenReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/OpenReply.cpp
 
 CMakeFiles/message.dir/Replies/OpenReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/OpenReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/OpenReply.cpp > CMakeFiles/message.dir/Replies/OpenReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/OpenReply.cpp > CMakeFiles/message.dir/Replies/OpenReply.cpp.i
 
 CMakeFiles/message.dir/Replies/OpenReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/OpenReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/OpenReply.cpp -o CMakeFiles/message.dir/Replies/OpenReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/OpenReply.cpp -o CMakeFiles/message.dir/Replies/OpenReply.cpp.s
 
 CMakeFiles/message.dir/Replies/OpenReply.cpp.o.requires:
 
@@ -395,16 +395,16 @@ CMakeFiles/message.dir/Replies/OpenReply.cpp.o.provides.build: CMakeFiles/messag
 
 CMakeFiles/message.dir/Replies/ReadReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/ReadReply.cpp.o: ../Replies/ReadReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/message.dir/Replies/ReadReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ReadReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/ReadReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/message.dir/Replies/ReadReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/ReadReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/ReadReply.cpp
 
 CMakeFiles/message.dir/Replies/ReadReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/ReadReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/ReadReply.cpp > CMakeFiles/message.dir/Replies/ReadReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/ReadReply.cpp > CMakeFiles/message.dir/Replies/ReadReply.cpp.i
 
 CMakeFiles/message.dir/Replies/ReadReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/ReadReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/ReadReply.cpp -o CMakeFiles/message.dir/Replies/ReadReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/ReadReply.cpp -o CMakeFiles/message.dir/Replies/ReadReply.cpp.s
 
 CMakeFiles/message.dir/Replies/ReadReply.cpp.o.requires:
 
@@ -419,16 +419,16 @@ CMakeFiles/message.dir/Replies/ReadReply.cpp.o.provides.build: CMakeFiles/messag
 
 CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o: ../Replies/UnlinkReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/UnlinkReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/UnlinkReply.cpp
 
 CMakeFiles/message.dir/Replies/UnlinkReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/UnlinkReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/UnlinkReply.cpp > CMakeFiles/message.dir/Replies/UnlinkReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/UnlinkReply.cpp > CMakeFiles/message.dir/Replies/UnlinkReply.cpp.i
 
 CMakeFiles/message.dir/Replies/UnlinkReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/UnlinkReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/UnlinkReply.cpp -o CMakeFiles/message.dir/Replies/UnlinkReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/UnlinkReply.cpp -o CMakeFiles/message.dir/Replies/UnlinkReply.cpp.s
 
 CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o.requires:
 
@@ -443,16 +443,16 @@ CMakeFiles/message.dir/Replies/UnlinkReply.cpp.o.provides.build: CMakeFiles/mess
 
 CMakeFiles/message.dir/Replies/WriteReply.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Replies/WriteReply.cpp.o: ../Replies/WriteReply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/message.dir/Replies/WriteReply.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/WriteReply.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Replies/WriteReply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/message.dir/Replies/WriteReply.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Replies/WriteReply.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Replies/WriteReply.cpp
 
 CMakeFiles/message.dir/Replies/WriteReply.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Replies/WriteReply.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Replies/WriteReply.cpp > CMakeFiles/message.dir/Replies/WriteReply.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Replies/WriteReply.cpp > CMakeFiles/message.dir/Replies/WriteReply.cpp.i
 
 CMakeFiles/message.dir/Replies/WriteReply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Replies/WriteReply.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Replies/WriteReply.cpp -o CMakeFiles/message.dir/Replies/WriteReply.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Replies/WriteReply.cpp -o CMakeFiles/message.dir/Replies/WriteReply.cpp.s
 
 CMakeFiles/message.dir/Replies/WriteReply.cpp.o.requires:
 
@@ -467,16 +467,16 @@ CMakeFiles/message.dir/Replies/WriteReply.cpp.o.provides.build: CMakeFiles/messa
 
 CMakeFiles/message.dir/BytesConverter.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/BytesConverter.cpp.o: ../BytesConverter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/message.dir/BytesConverter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/BytesConverter.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/BytesConverter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/message.dir/BytesConverter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/BytesConverter.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/BytesConverter.cpp
 
 CMakeFiles/message.dir/BytesConverter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/BytesConverter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/BytesConverter.cpp > CMakeFiles/message.dir/BytesConverter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/BytesConverter.cpp > CMakeFiles/message.dir/BytesConverter.cpp.i
 
 CMakeFiles/message.dir/BytesConverter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/BytesConverter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/BytesConverter.cpp -o CMakeFiles/message.dir/BytesConverter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/BytesConverter.cpp -o CMakeFiles/message.dir/BytesConverter.cpp.s
 
 CMakeFiles/message.dir/BytesConverter.cpp.o.requires:
 
@@ -491,16 +491,16 @@ CMakeFiles/message.dir/BytesConverter.cpp.o.provides.build: CMakeFiles/message.d
 
 CMakeFiles/message.dir/Message.cpp.o: CMakeFiles/message.dir/flags.make
 CMakeFiles/message.dir/Message.cpp.o: ../Message.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/message.dir/Message.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Message.cpp.o -c /home/ig/Pulpit/NFS-File-Server/message/Message.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/message.dir/Message.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/message.dir/Message.cpp.o -c /home/jan/CLionProjects/NFS-File-Server/message/Message.cpp
 
 CMakeFiles/message.dir/Message.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/message.dir/Message.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ig/Pulpit/NFS-File-Server/message/Message.cpp > CMakeFiles/message.dir/Message.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jan/CLionProjects/NFS-File-Server/message/Message.cpp > CMakeFiles/message.dir/Message.cpp.i
 
 CMakeFiles/message.dir/Message.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/message.dir/Message.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ig/Pulpit/NFS-File-Server/message/Message.cpp -o CMakeFiles/message.dir/Message.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jan/CLionProjects/NFS-File-Server/message/Message.cpp -o CMakeFiles/message.dir/Message.cpp.s
 
 CMakeFiles/message.dir/Message.cpp.o.requires:
 
@@ -559,7 +559,7 @@ libmessage.so: CMakeFiles/message.dir/BytesConverter.cpp.o
 libmessage.so: CMakeFiles/message.dir/Message.cpp.o
 libmessage.so: CMakeFiles/message.dir/build.make
 libmessage.so: CMakeFiles/message.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX shared library libmessage.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX shared library libmessage.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/message.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -594,6 +594,6 @@ CMakeFiles/message.dir/clean:
 .PHONY : CMakeFiles/message.dir/clean
 
 CMakeFiles/message.dir/depend:
-	cd /home/ig/Pulpit/NFS-File-Server/message/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ig/Pulpit/NFS-File-Server/message /home/ig/Pulpit/NFS-File-Server/message /home/ig/Pulpit/NFS-File-Server/message/build /home/ig/Pulpit/NFS-File-Server/message/build /home/ig/Pulpit/NFS-File-Server/message/build/CMakeFiles/message.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jan/CLionProjects/NFS-File-Server/message/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jan/CLionProjects/NFS-File-Server/message /home/jan/CLionProjects/NFS-File-Server/message /home/jan/CLionProjects/NFS-File-Server/message/build /home/jan/CLionProjects/NFS-File-Server/message/build /home/jan/CLionProjects/NFS-File-Server/message/build/CMakeFiles/message.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/message.dir/depend
 

@@ -33,8 +33,8 @@ void handle_session(int socket_fd) {
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
             try {
-                requestSorter(buffer);
-                std::cout << "REC RQ: " << rReq.info.requestType << "|REC RQ SIZE: "<<rReq.info.dataSize <<"|REC RQ FD: "<<rReq.fileDescriptor <<"\n";
+                requestSorter.DeserializeMessage(buffer);
+                //std::cout << "REC RQ: " << rReq.info.requestType << "|REC RQ SIZE: "<<rReq.info.dataSize <<"|REC RQ FD: "<<rReq.fileDescriptor <<"\n";
                 //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
                 std::string reply = outgoing_reply->Serialize();
                 session_socket.write_data(reply.c_str(), reply.length() * sizeof (char));

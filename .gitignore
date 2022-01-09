@@ -2,9 +2,11 @@
 client/cmake-build-debug
 server/cmake-build-debug
 socket/cmake-build-debug
+message/cmake-build-debug
 client/build
 server/build
 socket/build
+message/build
 # Prerequisites
 *.d
 

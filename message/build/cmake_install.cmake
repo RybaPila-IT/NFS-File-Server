@@ -1,4 +1,4 @@
-# Install script for directory: /home/ig/Pulpit/NFS-File-Server/message
+# Install script for directory: /home/jan/CLionProjects/NFS-File-Server/message
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,7 +52,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/usr/lib" TYPE SHARED_LIBRARY FILES "/home/ig/Pulpit/NFS-File-Server/message/build/libmessage.so")
+file(INSTALL DESTINATION "/usr/lib" TYPE SHARED_LIBRARY FILES "/home/jan/CLionProjects/NFS-File-Server/message/build/libmessage.so")
   if(EXISTS "$ENV{DESTDIR}/usr/lib/libmessage.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/libmessage.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -63,28 +63,28 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
-    "/home/ig/Pulpit/NFS-File-Server/message/MessageTypes.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/CloseRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/ConnectRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/FstatRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/LseekRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/OpenRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/ReadRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/UnlinkRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Requests/WriteRequest.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/CloseReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ConnectReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ErrorReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/FstatReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/LseekReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/OpenReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/ReadReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/UnlinkReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Replies/WriteReply.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/BytesConverter.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/Message.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/ReplyInfo.h"
-    "/home/ig/Pulpit/NFS-File-Server/message/RequestInfo.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/MessageTypes.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/CloseRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/ConnectRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/FstatRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/LseekRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/OpenRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/ReadRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/UnlinkRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Requests/WriteRequest.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/CloseReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/ConnectReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/ErrorReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/FstatReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/LseekReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/OpenReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/ReadReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/UnlinkReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Replies/WriteReply.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/BytesConverter.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/Message.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/ReplyInfo.h"
+    "/home/jan/CLionProjects/NFS-File-Server/message/RequestInfo.h"
     )
 endif()
 
@@ -96,5 +96,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ig/Pulpit/NFS-File-Server/message/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jan/CLionProjects/NFS-File-Server/message/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
