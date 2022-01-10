@@ -3,6 +3,9 @@
 #include <thread>
 #include "socket.h"
 #include "RequestSorter.h"
+//Jeżeli korzystamy wersji z pojedynczej klasy message - usunąć linijkę poniżej
+#include "Reply.h"
+
 
 #define DEFAULT_PORT  6941
 #define BACKLOG_QUEUE 30
@@ -15,10 +18,10 @@ void handle_session(int socket_fd) {
     char buffer[buffer_size];
     std::string ack_token = "ACK";
     bool finished;
-    Message* outgoing_reply;
-    //Linijka poniżej to przykładowy wysyłany reply, aby wysłać inny: zadeklarować -> ustawić wskaźnik outgoing_reply;
+
+    //Przykładowy reply
     ReadReply rRep = ReadReply("AlaMaKota");
-    outgoing_reply = &rRep;
+
 
 
     std::cout << "Staring new session...\n";
@@ -33,11 +36,12 @@ void handle_session(int socket_fd) {
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
             try {
-                requestSorter.DeserializeMessage(buffer);
-                //std::cout << "REC RQ: " << rReq.info.requestType << "|REC RQ SIZE: "<<rReq.info.dataSize <<"|REC RQ FD: "<<rReq.fileDescriptor <<"\n";
                 //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
-                std::string reply = outgoing_reply->Serialize();
+
+                requestSorter.DeserializeMessage(buffer);
+                std::string reply = rRep.Serialize();
                 session_socket.write_data(reply.c_str(), reply.length() * sizeof (char));
+
             } catch (std::runtime_error &err) {
                 throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
             }

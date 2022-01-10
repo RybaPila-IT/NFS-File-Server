@@ -1,6 +1,9 @@
 #ifndef NFS_FILE_SERVER_REQUESTHANDLER_H
 #define NFS_FILE_SERVER_REQUESTHANDLER_H
-#include "MessageTypes.h"
+//Jeżeli korzystamy wersji z pojedynczej klasy message - usunąć linijkę poniżej
+#include "Request.h"
+//Jeżeli korzystamy wersji z pojedynczej klasy message - odkomentować linijkę poniżej
+//#include "Message.h"
 
 class RequestHandler {
 

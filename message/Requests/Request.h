@@ -1,70 +1,10 @@
-#ifndef NFS_FILE_SERVER_MESSAGE_H
-#define NFS_FILE_SERVER_MESSAGE_H
-#include "ReplyInfo.h"
+#ifndef NFS_FILE_SERVER_REQUEST_H
+#define NFS_FILE_SERVER_REQUEST_H
 #include "RequestInfo.h"
 #include "BytesConverter.h"
-/*WERSJA POJEDYNCZEJ KLASY DLA WSZYSTKICH WIADOMOŚCI (OBECNIE NIEUŻYWANA)
- * JEST POŁĄCZCZENIEM KLAS REPLY I REQUEST
+
+/*WERSJA OSOBNYCH KLAS DLA REPLY I REQUEST (OBECNIE UŻYWANA)
  * W PLIKACH MAIN I *****HANDLER ZNAJDUJĄ SIĘ KOMENTARZE CO DO WYKORZYSTYWANYCH WERSJI*/
-//W CELU UŻYCIA, ODKOMENTOWAĆ ZAWARTOŚĆ Message.h oraz Message.cpp
-
-/*
-
-//REPLIES------------------------------------------
-
-class CloseReply {
-public:
-    ReplyInfo info;
-    CloseReply() : info(ReplyInfo('Q', 0)) {}
-    void Deserialize(std::string);
-    std::string Serialize();
-};
-
-class ConnectReply {
-public:
-    ReplyInfo info;
-    unsigned short portNumber;
-    ConnectReply(unsigned short portNumber) :
-            info(ReplyInfo('C', 2)),
-            portNumber(portNumber) {};
-    void Deserialize(std::string val);
-    std::string Serialize();
-};
-
-class ErrorReply {
-public:
-    ReplyInfo info;
-    std::string errorMsg;
-    ErrorReply(const std::string &errorMsg) :
-            info(ReplyInfo('E', errorMsg.size())),
-            errorMsg(errorMsg) {}
-    void Deserialize(std::string val);
-    std::string Serialize ();
-};
-
-class FstatReply {
-public:
-    ReplyInfo info;
-    std::string fileStatus;
-    FstatReply(const std::string &fileStatus) :
-            info(ReplyInfo('F', fileStatus.size())),
-            fileStatus(fileStatus) {}
-    void Deserialize(std::string val);
-    std::string Serialize();
-};
-
-class LseekReply {
-public:
-    ReplyInfo info;
-    int currentPosition;
-    LseekReply(int currentPosition) :
-            info(ReplyInfo('L', 4)),
-            currentPosition(currentPosition) {};
-    void Deserialize(std::string val);
-    std::string Serialize();
-};
-
-//REQUESTS-----------------------------------------------------------------------------------
 
 class CloseRequest {
 public:
@@ -157,6 +97,4 @@ public:
     std::string Serialize();
 };
 
-*/
-
-#endif //NFS_FILE_SERVER_MESSAGE_H
+#endif //NFS_FILE_SERVER_REQUEST_H

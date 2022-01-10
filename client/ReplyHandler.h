@@ -1,6 +1,9 @@
 #ifndef NFS_FILE_SERVER_REPLYHANDLER_H
 #define NFS_FILE_SERVER_REPLYHANDLER_H
-#include "MessageTypes.h"
+//Jeżeli korzystamy wersji z pojedynczej klasy message - usunąć linijkę poniżej
+#include "Reply.h"
+//Jeżeli korzystamy wersji z pojedynczej klasy message - odkomentować linijkę poniżej
+//#include "Message.h"
 
 class ReplyHandler {
 
