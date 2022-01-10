@@ -3,7 +3,6 @@
 for dir in socket message server client
 do
    cd $dir
-   rm -fr build
    ./build.sh
    if [ $? -gt 0 ]
    then

@@ -1,6 +1,6 @@
 #ifndef MESSAGE_BYTESCONVERTER_H
 #define MESSAGE_BYTESCONVERTER_H
-#endif //MESSAGE_BYTESCONVERTER_H
+
 #include <string>
 
 
@@ -11,3 +11,5 @@ public:
     static int BytesToInt(std::string);
     
    };
+
+#endif //MESSAGE_BYTESCONVERTER_H

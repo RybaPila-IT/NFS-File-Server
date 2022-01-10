@@ -9,7 +9,7 @@ void ReplyHandler::HandleClose(std::string message) {
 }
 
 void ReplyHandler::HandleConnect(std::string message) {
-    ConnectReply cRep = ConnectReply();
+    ConnectReply cRep = ConnectReply(1234); //TU JEST BŁĄD
     cRep.Deserialize(message);
     std::cout << "DE: " << cRep.info.replyType << "|" << cRep.info.dataSize <<"|"<< cRep.portNumber <<std::endl <<std::endl;
 }
@@ -23,7 +23,7 @@ void ReplyHandler::HandleError(std::string message) {
 void ReplyHandler::HandleFstat(std::string message) {
     FstatReply fRep = FstatReply("");
     fRep.Deserialize(message);
-    std::cout << "DE: " << lRep.info.replyType << "|" << lRep.info.dataSize <<"|"<< lRep.currentPosition <<std::endl <<std::endl;
+    //std::cout << "DE: " << fRep.info.replyType << "|" << fRep.info.dataSize <<"|"<< fRep.currentPosition <<std::endl <<std::endl; TU TEŻ JEST BŁĄD
 }
 
 void ReplyHandler::HandleLseek(std::string message) {

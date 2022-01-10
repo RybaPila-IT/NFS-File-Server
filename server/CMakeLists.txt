@@ -4,8 +4,9 @@ project(server)
 set(CMAKE_CXX_STANDARD 14)
 
 find_package(Threads)
-find_library(socket_lib libsocket.so message_lib libmessage.so)
+find_library(socket_lib libsocket.so)
+find_library(message_lib libmessage.so)
 message(STATUS ${socket_lib} ${message_lib})
 
-add_executable(server RequestHandler.h RequestHandler.cpp RequestSorter.h  RequestSorter.cpp main.cpp)
-target_link_libraries(server PRIVATE ${socket_lib} ${CMAKE_THREAD_LIBS_INIT} ${message_lib})
+add_executable(server main.cpp RequestHandler.cpp RequestHandler.h RequestSorter.cpp RequestSorter.h)
+target_link_libraries(server PRIVATE ${socket_lib} ${message_lib} ${CMAKE_THREAD_LIBS_INIT})
