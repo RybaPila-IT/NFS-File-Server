@@ -36,7 +36,7 @@ public:
     void switch_to_listen_mode(int backlog);
     void connect_to(const std::string& socket_ip_address, int port_number);
 
-    bool read_data(char* buffer, unsigned long buffer_size);
+    int read_data(char* buffer, unsigned long buffer_size);
     void write_data(const char* buffer, unsigned long buffer_size);
 };
 
