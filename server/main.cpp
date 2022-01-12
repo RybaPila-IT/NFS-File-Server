@@ -32,9 +32,9 @@ void handle_session(int socket_fd) {
         }
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
-            //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
-            //!!! MUSI DOSTAĆ FULL DANE !!!
-            request_handler.handle_request(buffer);
+            session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
+            //TODO musi dostać full dane i konwersja do stringa bo to się wywala
+            //request_handler.handle_request(reinterpret_cast<std::string &>(buffer));
         }
     } while (!finished);
     std::cout << "Ending session...\n";

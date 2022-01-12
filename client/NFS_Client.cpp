@@ -25,7 +25,7 @@ void NFS_Client::handle_session(std::string& data) {
         socket.read_data(buffer, buffer_size);
         std::cout << "Server responded: " << buffer << "\n";
         //TODO - odczekanie na całą wiadomość i konwersja na strigna bo to się wywala
-        reply_handler.handle_reply(reinterpret_cast<std::string &>(buffer));
+        //reply_handler.handle_reply(reinterpret_cast<std::string &>(buffer));
 
     } catch (std::runtime_error& err) {
         throw std::runtime_error("handle_session: " + std::string(err.what()));
