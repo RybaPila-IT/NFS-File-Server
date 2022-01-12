@@ -1,7 +1,3 @@
-//
-// Created by ig on 12.01.2022.
-//
-
 #include "OpenFileHandler.h"
 
 OpenFileHandler::OpenFileHandler(AccessManager& man, int fd, OpenRequest& request):
