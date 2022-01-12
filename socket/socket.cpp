@@ -84,12 +84,12 @@ int TcpSocket::accept_connection() {
     return new_sock_fd;
 }
 
-bool TcpSocket::read_data(char *buffer, unsigned long buffer_size) {
+int TcpSocket::read_data(char *buffer, unsigned long buffer_size) {
     memset(buffer, 0, buffer_size * sizeof (char));
     auto r_val = read(sock_fd ,buffer, buffer_size);
     if (r_val == -1)
         throw std::runtime_error("read_data: read error; errno value: " + ERRNO);
-    return r_val == 0;
+    return r_val;
 }
 
 void TcpSocket::write_data(const char *buffer, unsigned long buffer_size) {
