@@ -1,10 +1,8 @@
 #ifndef NFS_FILE_SERVER_REPLY_H
 #define NFS_FILE_SERVER_REPLY_H
+
 #include "ReplyInfo.h"
 #include "BytesConverter.h"
-
-/*WERSJA OSOBNYCH KLAS DLA REPLY I REQUEST (OBECNIE UŻYWANA)
- * W PLIKACH MAIN I *****HANDLER ZNAJDUJĄ SIĘ KOMENTARZE CO DO WYKORZYSTYWANYCH WERSJI*/
 
 class CloseReply {
 public:

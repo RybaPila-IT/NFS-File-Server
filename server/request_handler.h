@@ -4,12 +4,11 @@
 #include <string>
 
 #include "Request.h"
-#include "AccessManager.h"
+#include "access_manager.h"
 
-class RequestHandler {
+class request_handler {
 private:
     int socket_fd;
-    AccessManager access_manager;
 
     void handle_close(std::string&);
     void handle_connect(std::string&);
@@ -22,7 +21,7 @@ private:
 
 public:
 
-    RequestHandler(int, AccessManager&);
+    explicit request_handler(int socket_fd);
 
     void handle_request(std::string&);
 };

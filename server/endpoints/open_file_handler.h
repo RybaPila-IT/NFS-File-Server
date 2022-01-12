@@ -2,17 +2,15 @@
 #define NFS_FILE_SERVER_OPENFILEHANDLER_H
 
 #include <string>
-#include "../AccessManager.h"
 #include "Request.h"
 
-class OpenFileHandler {
+class open_file_handler {
 private:
     int socket_fd;
     std::string path_to_file;
-    int open_mode;
-    AccessManager manager;
+    unsigned int open_mode;
 public:
-    OpenFileHandler(AccessManager&, int, OpenRequest& request);
+    open_file_handler(int socket_fd, OpenRequest &request);
     void open_file();
 };
 

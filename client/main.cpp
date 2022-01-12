@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstring>
+
 #include "socket.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
-
 
 void handle_session(TcpSocket& socket) {
     int buffer_size = 1024;
@@ -60,4 +60,3 @@ int main() {
     }
     return 0;
 }
-

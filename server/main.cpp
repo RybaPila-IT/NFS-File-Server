@@ -3,6 +3,7 @@
 #include <thread>
 
 #include "socket.h"
+#include "request_handler.h"
 
 
 #define DEFAULT_PORT  6941
@@ -90,6 +91,8 @@ void handle_session(int socket_fd) {
              * It contains bytes stored in std::string form, which has been sent from the client.
              */
             std::cout << "Received: " << message_bytes << "\n";
+            request_handler handler(socket_fd);
+            handler.handle_request(message_bytes);
             try {
                 session_socket.write_data(ack_token.data(), ack_token.length() * sizeof(char));
             } catch (std::runtime_error &err) {

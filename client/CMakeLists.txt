@@ -8,7 +8,6 @@ find_library(message_lib libmessage.so)
 message(STATUS ${socket_lib} ${message_lib})
 
 add_executable(client main.cpp
-        ReplyHandler.cpp ReplyHandler.h
-        NFS_Client.cpp NFS_Client.h
+        NFS_client.cpp NFS_client.h
         )
 target_link_libraries(client PRIVATE ${socket_lib} ${message_lib})
