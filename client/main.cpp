@@ -12,9 +12,9 @@ void handle_session(TcpSocket& socket) {
     std::string end_token = "END", command;
     do {
         std::cout << "What do you want to send to server?\n";
-        std::cin >> command;
+        std::getline(std::cin, command);
         try {
-            socket.write_data(command.c_str(), command.length() * sizeof (char));
+            socket.write_data(command.data(), command.length() * sizeof (char));
             socket.read_data(buffer, buffer_size);
             std::cout << "Server responded: " << buffer << "\n";
         } catch (std::runtime_error& err) {

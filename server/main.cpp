@@ -1,6 +1,9 @@
 #include <stdexcept>
 #include <iostream>
 #include <thread>
+#include <csignal>
+#include <vector>
+
 #include "socket.h"
 
 
@@ -24,7 +27,7 @@ void handle_session(int socket_fd) {
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
             try {
-                session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
+                session_socket.write_data(ack_token.data(), ack_token.length() * sizeof(char));
             } catch (std::runtime_error &err) {
                 throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
             }
