@@ -24,7 +24,7 @@ public:
 
     RequestHandler(int, AccessManager&);
 
-    void handle_request(std::string);
+    void handle_request(std::string&);
 };
 
 

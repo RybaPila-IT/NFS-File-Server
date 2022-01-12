@@ -55,7 +55,7 @@ void RequestHandler::handle_write(std::string& message) {
 RequestHandler::RequestHandler(int fd, AccessManager& acc):
     socket_fd(fd), access_manager(acc){}
 
-void RequestHandler::handle_request(std::string buffer) {
+void RequestHandler::handle_request(std::string& buffer) {
     switch (buffer[0]) {
         case 'Q':
             handle_close(buffer);
