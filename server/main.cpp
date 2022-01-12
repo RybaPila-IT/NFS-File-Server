@@ -35,14 +35,14 @@ std::string read_message(TcpSocket& socket, char* buffer, int buffer_size, int r
     int left_message_data_size;
 
     if (read_bytes < 4)
-        throw std::runtime_error("read_full_message: unable to determine size of the message; read bytes: " + std::to_string(read_bytes));
+        throw std::runtime_error("read_message: unable to determine size of the message; read bytes: " + std::to_string(read_bytes));
 
     left_message_data_size = (int) ((unsigned char)(buffer[0]) << 24 |
                                     (unsigned char)(buffer[1]) << 16 |
                                     (unsigned char)(buffer[2]) << 8 |
                                     (unsigned char)(buffer[3]));
     if (left_message_data_size == 0)
-        throw std::runtime_error("read_full_message: message is corrupted");
+        throw std::runtime_error("read_message: message is corrupted");
 
     // - and + 4 is caused due to offset of initial int making up the message length.
     message_bytes = std::string(buffer + 4, std::min(left_message_data_size, read_bytes - 4));
@@ -52,7 +52,7 @@ std::string read_message(TcpSocket& socket, char* buffer, int buffer_size, int r
         try {
             message_bytes += read_missing_message_part(socket, buffer, buffer_size, left_message_data_size);
         } catch (std::runtime_error& err) {
-            throw std::runtime_error("handle_session: " + std::string(err.what()));
+            throw std::runtime_error("read_message: " + std::string(err.what()));
         }
     }
 
