@@ -2,49 +2,39 @@
 #include <iostream>
 #include <thread>
 #include "socket.h"
-#include "RequestSorter.h"
 //Jeżeli korzystamy wersji z pojedynczej klasy message - usunąć linijkę poniżej
 #include "Reply.h"
+#include "RequestHandler.h"
 
 
 #define DEFAULT_PORT  6941
 #define BACKLOG_QUEUE 30
 #define LOOP_BACK     "127.0.0.1"
 
+
+AccessManager access_manager;
+
+
 void handle_session(int socket_fd) {
     TcpSocket session_socket(socket_fd);
-    RequestSorter requestSorter;
+    RequestHandler request_handler(socket_fd, access_manager);
     int buffer_size = 1024;
     char buffer[buffer_size];
     std::string ack_token = "ACK";
     bool finished;
 
-    //Przykładowy reply
-    ReadReply rRep = ReadReply("AlaMaKota");
-
-
-
     std::cout << "Staring new session...\n";
     do {
         try {
             finished = session_socket.read_data(buffer, buffer_size);
-
-
         } catch (std::runtime_error &err) {
             throw std::runtime_error("handle_session: reading from socket " + std::string(err.what()));
         }
         if (!finished) {
             std::cout << "Received: " << buffer << "\n";
-            try {
-                //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
-
-                requestSorter.DeserializeMessage(buffer);
-                std::string reply = rRep.Serialize();
-                session_socket.write_data(reply.c_str(), reply.length() * sizeof (char));
-
-            } catch (std::runtime_error &err) {
-                throw std::runtime_error("handle_session: write response error: " + std::string(err.what()));
-            }
+            //session_socket.write_data(ack_token.c_str(), ack_token.length() * sizeof(char));
+            //!!! MUSI DOSTAĆ FULL DANE !!!
+            request_handler.handle_request(buffer);
         }
     } while (!finished);
     std::cout << "Ending session...\n";
