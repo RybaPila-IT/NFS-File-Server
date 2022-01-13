@@ -6,10 +6,11 @@
 #include <unordered_map>
 
 class FileGuard {
+    std::atomic<bool> is_open_by_writer_lock;
 public:
-    std::atomic<bool> is_open_by_writer;
-    std::string path;
-    FileGuard(std::string &path);
+    bool is_open_by_writer();
+    void set_lock(bool);
+    FileGuard();
     FileGuard(FileGuard &&file);
 };
 
