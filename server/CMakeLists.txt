@@ -11,6 +11,6 @@ message(STATUS ${socket_lib} ${message_lib})
 add_executable(server main.cpp
         request_handler.cpp request_handler.h
         endpoints/open_file_handler.cpp endpoints/open_file_handler.h
-        access_manager.cpp access_manager.h
+        AccessManager.cpp AccessManager.h
         )
 target_link_libraries(server PRIVATE ${socket_lib} ${message_lib} ${CMAKE_THREAD_LIBS_INIT})

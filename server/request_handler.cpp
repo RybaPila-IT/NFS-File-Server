@@ -55,8 +55,7 @@ void request_handler::handle_write(std::string& message) {
 request_handler::request_handler(int fd): socket_fd(fd) {}
 
 void request_handler::handle_request(std::string& buffer) {
-    //TODO na jakim indexie będzie teraz ta zmienna???
-    switch (buffer[4]) {
+    switch (buffer[0]) {
         case 'Q':
             handle_close(buffer);
             break;
@@ -81,5 +80,7 @@ void request_handler::handle_request(std::string& buffer) {
         case 'W':
             handle_write(buffer);
             break;
+        default:
+            throw std::runtime_error("request handler: unrecognized type of the message");
     }
 }
