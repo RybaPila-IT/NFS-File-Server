@@ -4,7 +4,6 @@
 #include <string>
 
 #include "Request.h"
-#include "AccessManager.h"
 
 class request_handler {
 private:
