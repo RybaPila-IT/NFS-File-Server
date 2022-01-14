@@ -4,36 +4,20 @@
 
 void request_handler::handle_close(std::string& message) {
     std::cout << "HANDLING CLOSE | MSG LENGTH: " << message.length() <<std::endl;
-    CloseRequest qReq = CloseRequest(0);
-    qReq.Deserialize(message);
-    std::cout << "DE: "<< qReq.info.requestType << "|" << qReq.info.dataSize << std::endl<<std::endl;
-}
-
-void request_handler::handle_connect(std::string& message) {
-    std::cout << "HANDLING CONNECT | MSG LENGTH: " << message.length() <<std::endl;
-    ConnectRequest cReq = ConnectRequest();
-    cReq.Deserialize(message);
-    std::cout << "DE: "<< cReq.info.requestType << "|" << cReq.info.dataSize<< std::endl<<std::endl;
+    CloseRequest qReq;
+    qReq.deserialize(message);
 }
 
 void request_handler::handle_fstat(std::string& message) {
     std::cout << "HANDLING FSTAT | MSG LENGTH: " << message.length() <<std::endl;
-    FstatRequest fReq = FstatRequest(0);
-    fReq.Deserialize(message);
-    std::cout << "DE: "<< fReq.info.requestType << "|" << fReq.info.dataSize << "|" <<fReq.fileDescriptor << std::endl<<std::endl;
-}
-
-void request_handler::handle_lseek(std::string& message) {
-    std::cout << "HANDLING LSEEK | MSG LENGTH: " << message.length() <<std::endl;
-    LseekRequest lReq = LseekRequest(0, 0);
-    lReq.Deserialize(message);
-    std::cout << "DE: "<< lReq.info.requestType << "|" << lReq.info.dataSize <<"|"<< lReq.fileDescriptor << "|" <<lReq.seekLength<<std::endl<<std::endl;
+    FstatRequest fReq;
+    fReq.deserialize(message);
 }
 
 void request_handler::handle_open(std::string& message) {
     std::cout << "HANDLING OPEN | MSG LENGTH: " << message.length() <<std::endl;
-    OpenRequest open_request = OpenRequest(0,"");
-    open_request.Deserialize(message);
+    OpenRequest open_request;
+    open_request.deserialize(message);
     // Finally, request handling with further communication to client
     open_file_handler open_file_handler(socket_fd, open_request);
     open_file_handler.open_file();
@@ -41,23 +25,20 @@ void request_handler::handle_open(std::string& message) {
 
 void request_handler::handle_read(std::string& message) {
     std::cout << "HANDLING READ | MSG LENGTH: " << message.length() <<std::endl;
-    ReadRequest rReq = ReadRequest(0);
-    rReq.Deserialize(message);
-    std::cout << "DE: "<< rReq.info.requestType << "|" << rReq.info.dataSize <<"|"<< rReq.fileDescriptor <<std::endl<<std::endl;
+    ReadRequest rReq;
+    rReq.deserialize(message);
 }
 
 void request_handler::handle_unlink(std::string& message) {
     std::cout << "HANDLING UNLINK | MSG LENGTH: " << message.length() <<std::endl;
-    UnlinkRequest uReq = UnlinkRequest("");
-    uReq.Deserialize(message);
-    std::cout << "DE: "<< uReq.info.requestType << "|" << uReq.info.dataSize << "|"<< uReq.filePath <<std::endl<<std::endl;
+    UnlinkRequest uReq;
+    uReq.deserialize(message);
 }
 
 void request_handler::handle_write(std::string& message) {
     std::cout << "HANDLING WRITE | MSG LENGTH: " << message.length() <<std::endl;
-    WriteRequest wReq = WriteRequest(0, "");
-    wReq.Deserialize(message);
-    std::cout << "PE: "<< wReq.info.requestType << "|" << wReq.info.dataSize << "|"<< wReq.fileDescriptor<<"|"<< wReq.fileContent <<std::endl<<std::endl;
+    WriteRequest wReq;
+    wReq.deserialize(message);
 }
 
 request_handler::request_handler(int fd): socket_fd(fd) {}
@@ -67,14 +48,8 @@ void request_handler::handle_request(std::string& buffer) {
         case 'Q':
             handle_close(buffer);
             break;
-        case 'C':
-            handle_connect(buffer);
-            break;
         case 'F':
             handle_fstat(buffer);
-            break;
-        case 'L':
-            handle_lseek(buffer);
             break;
         case 'O':
             handle_open(buffer);

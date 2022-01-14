@@ -3,16 +3,14 @@
 
 #include <string>
 
-#include "Request.h"
+#include "request.h"
 
 class request_handler {
 private:
     int socket_fd;
 
     void handle_close(std::string&);
-    void handle_connect(std::string&);
     void handle_fstat(std::string&);
-    void handle_lseek(std::string&);
     void handle_open(std::string&);
     void handle_read(std::string&);
     void handle_unlink(std::string&);

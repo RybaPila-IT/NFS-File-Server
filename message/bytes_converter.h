@@ -3,7 +3,7 @@
 
 #include <string>
 
-class bytes_converter{
+class BytesConverter{
 public:
     static std::string IntToBytes(int);
     static int BytesToInt(std::string);

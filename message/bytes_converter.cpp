@@ -1,6 +1,6 @@
 #include "bytes_converter.h"
 
-std::string bytes_converter::IntToBytes(int val) {
+std::string BytesConverter::IntToBytes(int val) {
     std::string res;
     unsigned char bytes[4];
     bytes[0] = (val >> 24) & 0xFF;
@@ -16,7 +16,7 @@ std::string bytes_converter::IntToBytes(int val) {
     return res;
 }
 
- int bytes_converter::BytesToInt(std::string var) {
+ int BytesConverter::BytesToInt(std::string var) {
     unsigned char val[4];
     val[0] = var[0];
     val[1] = var[1];

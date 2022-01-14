@@ -7,18 +7,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(message SHARED
         bytes_converter.cpp
-        Requests/request.cpp
-        Replies/reply.cpp
+        requests/request.cpp
+        replies/reply.cpp
 )
 
 install(TARGETS message DESTINATION /usr/lib)
 install(FILES
         bytes_converter.h
-
-        Replies/reply.h
-    Replies/ReplyInfo.h
-
-        Requests/request.h
-        Requests/request_info.h
-
+        replies/reply.h
+        requests/request.h
     DESTINATION include)
