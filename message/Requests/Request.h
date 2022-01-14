@@ -11,7 +11,7 @@ public:
     RequestInfo info;
     unsigned int fileDescriptor;
     CloseRequest(unsigned int fileDescriptor) :
-            info(RequestInfo('Q', 4)),
+            info(RequestInfo('Q', 5)),
             fileDescriptor(fileDescriptor){}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -20,7 +20,7 @@ public:
 class ConnectRequest {
 public:
     RequestInfo info;
-    ConnectRequest(): info(RequestInfo('C', 0)){};
+    ConnectRequest(): info(RequestInfo('C', 1)){};
     void Deserialize(std::string val);
     std::string Serialize();
 };
@@ -30,7 +30,7 @@ public:
     RequestInfo info;
     unsigned int fileDescriptor;
     FstatRequest(unsigned int fileDescriptor) :
-            info(RequestInfo('F', 4)),
+            info(RequestInfo('F', 5)),
             fileDescriptor(fileDescriptor) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -42,7 +42,7 @@ public:
     unsigned int fileDescriptor;
     int seekLength;
     LseekRequest(unsigned int fileDescriptor, int seekLength) :
-            info(RequestInfo('L', 8)),
+            info(RequestInfo('L', 9)),
             fileDescriptor(fileDescriptor),
             seekLength(seekLength) {}
     void Deserialize(std::string val);
@@ -55,9 +55,9 @@ public:
     unsigned short openMode;
     std::string filePath;
     OpenRequest(unsigned short openMode, const std::string &filePath) :
-            info(RequestInfo('O', 2 + filePath.size())),
+            info(RequestInfo('O', 5 + filePath.size())),
             openMode(openMode),
-            filePath(filePath) {};
+            filePath(filePath) {}
     void Deserialize(std::string val);
     std::string Serialize();
 };
@@ -67,7 +67,7 @@ public:
     RequestInfo info;
     unsigned int fileDescriptor;
     ReadRequest(unsigned int fileDescriptor) :
-            info(RequestInfo('R', 4)),
+            info(RequestInfo('R', 5)),
             fileDescriptor(fileDescriptor) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -78,7 +78,7 @@ public:
     RequestInfo info;
     std::string filePath;
     UnlinkRequest(const std::string &filePath) :
-            info(RequestInfo('U', filePath.size() )),
+            info(RequestInfo('U', 1 + filePath.size() )),
             filePath(filePath) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -90,7 +90,7 @@ public:
     unsigned int fileDescriptor;
     std::string fileContent;
     WriteRequest(unsigned int fileDescriptor, const std::string &fileContent) :
-            info(RequestInfo('W', 4 + fileContent.size())),
+            info(RequestInfo('W', 5 + fileContent.size())),
             fileDescriptor(fileDescriptor),
             fileContent(fileContent) {}
     void Deserialize(std::string val);

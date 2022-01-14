@@ -7,7 +7,7 @@
 class CloseReply {
 public:
     ReplyInfo info;
-    CloseReply() : info(ReplyInfo('Q', 0)) {}
+    CloseReply() : info(ReplyInfo('Q', 1)) {}
     void Deserialize(std::string);
     std::string Serialize();
 };
@@ -17,7 +17,7 @@ public:
     ReplyInfo info;
     unsigned short portNumber;
     ConnectReply(unsigned short portNumber) :
-            info(ReplyInfo('C', 2)),
+            info(ReplyInfo('C', 5)),
             portNumber(portNumber) {};
     void Deserialize(std::string val);
     std::string Serialize();
@@ -28,7 +28,7 @@ public:
     ReplyInfo info;
     std::string errorMsg;
     ErrorReply(const std::string &errorMsg) :
-            info(ReplyInfo('E', errorMsg.size())),
+            info(ReplyInfo('E', 1 + errorMsg.size())),
             errorMsg(errorMsg) {}
     void Deserialize(std::string val);
     std::string Serialize ();
@@ -39,7 +39,7 @@ public:
     ReplyInfo info;
     std::string fileStatus;
     FstatReply(const std::string &fileStatus) :
-            info(ReplyInfo('F', fileStatus.size())),
+            info(ReplyInfo('F', 1 + fileStatus.size())),
             fileStatus(fileStatus) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -50,7 +50,7 @@ public:
     ReplyInfo info;
     int currentPosition;
     LseekReply(int currentPosition) :
-            info(ReplyInfo('L', 4)),
+            info(ReplyInfo('L', 5)),
             currentPosition(currentPosition) {};
     void Deserialize(std::string val);
     std::string Serialize();
@@ -61,7 +61,7 @@ public:
     ReplyInfo info;
     unsigned int fileDescriptor;
     OpenReply(unsigned int fileDescriptor) :
-            info(ReplyInfo('O', 4)),
+            info(ReplyInfo('O', 5)),
             fileDescriptor(fileDescriptor) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -72,7 +72,7 @@ public:
     ReplyInfo info;
     std::string fileContent;
     ReadReply(const std::string &fileContent) :
-            info(ReplyInfo('R', fileContent.size())),
+            info(ReplyInfo('R', 1 + fileContent.size())),
             fileContent(fileContent) {}
     void Deserialize(std::string val);
     std::string Serialize();
@@ -81,7 +81,7 @@ public:
 class UnlinkReply {
 public:
     ReplyInfo info;
-    UnlinkReply() : info(ReplyInfo('U', 0)) {}
+    UnlinkReply() : info(ReplyInfo('U', 1)) {}
     void Deserialize(std::string val);
     std::string Serialize();
 };
@@ -89,7 +89,7 @@ public:
 class WriteReply {
 public:
     ReplyInfo info;
-    WriteReply() : info(ReplyInfo('W', 0)) {};
+    WriteReply() : info(ReplyInfo('W', 1)) {};
     void Deserialize(std::string val);
     std::string Serialize();
 };

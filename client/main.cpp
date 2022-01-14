@@ -3,6 +3,10 @@
 
 #include "socket.h"
 
+//temp
+#include "NFS_client.h"
+#include "Request.h"
+
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
 
@@ -12,6 +16,17 @@ void handle_session(TcpSocket& socket) {
     char buffer[buffer_size];
     std::string end_token = "END", command;
     do {
+        //EXAMPLE REQUEST
+        OpenRequest oReq = OpenRequest(3, "path");
+        std::cout << "SIZE: "<< oReq.info.dataSize << "| TYPE: " <<oReq.info.requestType << "\n pth: "
+                << oReq.filePath << "OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
+        //DESERIALIZING A SUBSTRING TO SIMULATE MESSAGE AFTER SENDING (WITHOUT 4 BYTES OF SIZE AT THE FRONT)
+        oReq.Deserialize(oReq.Serialize().substr(4));
+        std::cout << "SIZE: "<< oReq.info.dataSize << "| TYPE: " <<oReq.info.requestType << "\n pth: "
+                  << oReq.filePath << "OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
+
+
+
         std::cout << "How many bytes will be sent to server?\n";
         std::cin >> bytes_amount;
         // This loop is used in order to ensure lack of the buffer overflow
@@ -38,8 +53,15 @@ void handle_session(TcpSocket& socket) {
         // Appending the command data after the bytes part.
         std::memcpy(buffer + 4, command.data(), command.length() * sizeof (char ));
 
+
+        //TEMP SWAPPING TYPED IN MSSG FOR CREATED REQUEST
+
+        std::memcpy(buffer, oReq.Serialize().data(), oReq.Serialize().length() * sizeof (char ));
+        std::cout << "MSG ASIGNED\n";
+
         try {
             socket.write_data(buffer, command.length() * sizeof (char) + 4);
+            //std::cout << "DATA WRITTEN\n";
             socket.read_data(buffer, buffer_size);
             std::cout << "Server responded: " << buffer << "\n";
         } catch (std::runtime_error& err) {

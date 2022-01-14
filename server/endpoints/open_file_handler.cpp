@@ -10,7 +10,7 @@ open_file_handler::open_file_handler(int fd, OpenRequest& request):
 
 void open_file_handler::open_file() {
     //TODO przykładowy kod aby pokazać jak korzystać z access manager
-    std::cout << path_to_file << std::endl;
+    std::cout << path_to_file << " | " << open_mode << std::endl;
     AccessManager::get_instance().is_file_blocked((std::string &) path_to_file);
     //Check if file exists
     //Check if file isn't taken by another file
