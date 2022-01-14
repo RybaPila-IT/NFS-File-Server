@@ -68,7 +68,7 @@ void NFS_client::open_file(unsigned short open_mode, std::string& path) {
         error.Deserialize(reply_data);
         throw std::runtime_error("NFS client - open file: error from server: " + error.errorMsg);
     } else {
-        OpenReply reply(1234); //TODO na razie wartość krzak dopóki nie będzie domyślnego konstruktora
+        OpenReply reply; //TODO na razie wartość krzak dopóki nie będzie domyślnego konstruktora
         reply.Deserialize(reply_data);
     }
     //TODO coś dalej...
