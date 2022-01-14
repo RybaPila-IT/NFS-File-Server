@@ -19,11 +19,11 @@ void handle_session(TcpSocket& socket) {
         //EXAMPLE REQUEST
         OpenRequest oReq = OpenRequest(3, "path");
         std::cout << "SIZE: "<< oReq.info.dataSize << "| TYPE: " <<oReq.info.requestType << "\n pth: "
-                << oReq.filePath << "OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
+                << oReq.filePath << " OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
         //DESERIALIZING A SUBSTRING TO SIMULATE MESSAGE AFTER SENDING (WITHOUT 4 BYTES OF SIZE AT THE FRONT)
         oReq.Deserialize(oReq.Serialize().substr(4));
         std::cout << "SIZE: "<< oReq.info.dataSize << "| TYPE: " <<oReq.info.requestType << "\n pth: "
-                  << oReq.filePath << "OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
+                  << oReq.filePath << " OM: " << oReq.openMode << "|SERLZ: " << oReq.Serialize() << std::endl;
 
 
 
