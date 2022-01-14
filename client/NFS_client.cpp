@@ -64,11 +64,11 @@ void NFS_client::open_file(unsigned short open_mode, std::string& path) {
     std::string reply_data = send_request(data);
 
     if(is_reply_error_message(reply_data)) {
-        ErrorReply error(""); //TODO wyrzucić wartość krzak jak będzie konstruktor domyślny
+        ErrorReply error;
         error.deserialize(reply_data);
         throw std::runtime_error("NFS client - open file: error from server: " + error.get_error_message());
     } else {
-        OpenReply reply; //TODO na razie wartość krzak dopóki nie będzie domyślnego konstruktora
+        OpenReply reply;
         reply.deserialize(reply_data);
     }
     //TODO coś dalej...
@@ -89,6 +89,8 @@ std::string NFS_client::send_request(std::string& request_data) {
 }
 
 bool NFS_client::is_reply_error_message(std::string &reply_data) {
-    //TODO jaki format będzie po otrzymaniu danych z metody send_request
-    return false;
+    if(reply_data[0] == 'E')
+        return true;
+    else
+        return false;
 }
