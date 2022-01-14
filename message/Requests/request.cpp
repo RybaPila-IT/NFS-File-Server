@@ -1,7 +1,7 @@
 #include <stdexcept>
 
 #include "request.h"
-#include "BytesConverter.h"
+#include "bytes_converter.h"
 
 #define DUMMY_FILE_DESCRIPTOR 1000
 
@@ -15,14 +15,14 @@ CloseRequest::CloseRequest(unsigned int fileDescriptor):
     fileDescriptor(fileDescriptor) {}
 
 void  CloseRequest::Deserialize(std::string& req) {
-    fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    fileDescriptor = bytes_converter::BytesToInt(req.substr(1, 4));
 }
 
 std::string CloseRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(fileDescriptor);
+    res += bytes_converter::IntToBytes(fileDescriptor);
     return res;
 }
 
@@ -36,7 +36,7 @@ void ConnectRequest::Deserialize(std::string &req) {
 
 std::string ConnectRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
     return res;
 }
@@ -51,14 +51,14 @@ FstatRequest::FstatRequest(unsigned int fileDescriptor):
         fileDescriptor(fileDescriptor) {}
 
 void FstatRequest::Deserialize(std::string &req) {
-    fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    fileDescriptor = bytes_converter::BytesToInt(req.substr(1, 4));
 }
 
 std::string FstatRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(fileDescriptor);
+    res += bytes_converter::IntToBytes(fileDescriptor);
     return res;
 }
 
@@ -74,16 +74,16 @@ LseekRequest::LseekRequest(unsigned int fileDescriptor, int seekLength):
     seekLength(seekLength) {}
 
 void LseekRequest::Deserialize(std::string& req) {
-    fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
-    seekLength = BytesConverter::BytesToInt(req.substr(5, 4));
+    fileDescriptor = bytes_converter::BytesToInt(req.substr(1, 4));
+    seekLength = bytes_converter::BytesToInt(req.substr(5, 4));
 }
 
 std::string LseekRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(fileDescriptor);
-    res += BytesConverter::IntToBytes(seekLength);
+    res += bytes_converter::IntToBytes(fileDescriptor);
+    res += bytes_converter::IntToBytes(seekLength);
     return res;
 }
 
@@ -98,15 +98,15 @@ OpenRequest::OpenRequest(unsigned short openMode, const std::string &filePath):
         filePath(filePath) {}
 
 void OpenRequest::Deserialize(std::string &req) {
-    openMode = BytesConverter::BytesToInt(req.substr(1, 4));
+    openMode = bytes_converter::BytesToInt(req.substr(1, 4));
     filePath = req.substr(5);
 }
 
 std::string OpenRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(openMode);
+    res += bytes_converter::IntToBytes(openMode);
     res += filePath;
     return res;
 }
@@ -121,14 +121,14 @@ ReadRequest::ReadRequest(unsigned int fileDescriptor) :
         fileDescriptor(fileDescriptor) {}
 
 void ReadRequest::Deserialize(std::string &req) {
-    fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    fileDescriptor = bytes_converter::BytesToInt(req.substr(1, 4));
 }
 
 std::string ReadRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(fileDescriptor);
+    res += bytes_converter::IntToBytes(fileDescriptor);
     return res;
 }
 
@@ -146,7 +146,7 @@ void UnlinkRequest::Deserialize(std::string &req) {
 
 std::string UnlinkRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
     res += filePath;
     return res;
@@ -163,15 +163,15 @@ WriteRequest::WriteRequest(unsigned int fileDescriptor, const std::string &fileC
         fileContent(fileContent) {}
 
 void WriteRequest::Deserialize(std::string &req) {
-    fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    fileDescriptor = bytes_converter::BytesToInt(req.substr(1, 4));
     fileContent =  req.substr(5);
 }
 
 std::string WriteRequest::Serialize() {
     std::string res;
-    res += BytesConverter::IntToBytes((int)info.dataSize);
+    res += bytes_converter::IntToBytes((int)info.dataSize);
     res += info.requestType;
-    res += BytesConverter::IntToBytes(fileDescriptor);
+    res += bytes_converter::IntToBytes(fileDescriptor);
     res += fileContent;
     return res;
 }

@@ -6,16 +6,16 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(message SHARED
-    BytesConverter.cpp
+        bytes_converter.cpp
         Requests/request.cpp
-    Replies/Reply.cpp
+        Replies/reply.cpp
 )
 
 install(TARGETS message DESTINATION /usr/lib)
 install(FILES
-    BytesConverter.h
+        bytes_converter.h
 
-    Replies/Reply.h
+        Replies/reply.h
     Replies/ReplyInfo.h
 
         Requests/request.h
