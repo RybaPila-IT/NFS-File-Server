@@ -6,13 +6,16 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <string>
+#include <vector>
 
 using address = struct sockaddr_in;
 
 class TcpSocket {
 private:
     static const int ERROR_CODE = -1;
+    static const int BUFFER_SIZE = 1024;
 
+    std::vector<char> buffer;
     int sock_fd;
     address socket_address;
 
@@ -20,9 +23,12 @@ private:
     void init_socket_address(const std::string& ip_address, int port_number);
     void bind_socket_to_address();
 
+    std::string obtain_message(int read_bytes);
+
 public:
     TcpSocket();
-    TcpSocket(const TcpSocket& socket);
+    TcpSocket(const TcpSocket& socket) = delete;
+    TcpSocket(TcpSocket&& socket);
     TcpSocket(int soc_fd);
     TcpSocket(const std::string& socket_ip_address, int port_number);
     ~TcpSocket();
@@ -36,8 +42,8 @@ public:
     void switch_to_listen_mode(int backlog);
     void connect_to(const std::string& socket_ip_address, int port_number);
 
-    int read_data(char* buffer, unsigned long buffer_size);
-    void write_data(const char* buffer, unsigned long buffer_size);
+    std::string read_message();
+    void write_message(std::string& message);
 };
 
 #endif //_SOCKET_H_
