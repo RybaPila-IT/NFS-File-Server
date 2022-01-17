@@ -60,8 +60,8 @@ public:
 
 class WriteRequest {
     const char request_type;
-    std::string path;
     unsigned int size_of_path;
+    std::string path;
     std::string file_content;
 public:
     WriteRequest();

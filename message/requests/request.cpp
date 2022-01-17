@@ -11,15 +11,13 @@ CloseRequest::CloseRequest(std::string &path):
         path(path) {}
 
 void  CloseRequest::deserialize(std::string& val) {
-    //TODO co tutaj
-    //file_descriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    path = val.substr(1);
 }
 
 std::string CloseRequest::serialize() {
     std::string res;
     res += request_type;
-    //TODO co tutaj
-    //res += BytesConverter::IntToBytes(file_descriptor);
+    res += path;
     return res;
 }
 
@@ -35,14 +33,13 @@ FstatRequest::FstatRequest(std::string &path):
         path(path) {}
 
 void FstatRequest::deserialize(std::string &val) {
-    //TODO
-    //fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    path = val.substr(1);
 }
 
 std::string FstatRequest::serialize() {
     std::string res;
     res += request_type;
-    //TODO
+    res += path;
     return res;
 }
 
@@ -88,15 +85,13 @@ ReadRequest::ReadRequest(std::string &path) :
         path(path) {}
 
 void ReadRequest::deserialize(std::string &val) {
-    //TODO
-    //fileDescriptor = BytesConverter::BytesToInt(req.substr(1, 4));
+    path = val.substr(1);
 }
 
 std::string ReadRequest::serialize() {
     std::string res;
     res += request_type;
-    //TODO
-    //res += BytesConverter::IntToBytes(fileDescriptor);
+    res += path;
     return res;
 }
 
@@ -138,14 +133,16 @@ WriteRequest::WriteRequest(std::string &path, const std::string &fileContent) :
         file_content(fileContent) {}
 
 void WriteRequest::deserialize(std::string &val) {
-    //TODO
-    file_content =  val.substr(5);
+    size_of_path = BytesConverter::BytesToInt(val.substr(1, 4));
+    path = val.substr(5, size_of_path);
+    file_content =  val.substr(5+size_of_path);
 }
 
 std::string WriteRequest::serialize() {
     std::string res;
     res += request_type;
-    //TODO
+    res += BytesConverter::IntToBytes(size_of_path);
+    res += path;
     res += file_content;
     return res;
 }

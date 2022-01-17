@@ -57,17 +57,15 @@ std::string FstatReply::get_file_status() {
 }
 
 /* Open Reply */
+//DELETED VARIABLES FROM TO DO, FILE DESCRIPTOR ISN'T A PART OF OPEN REPLY ANYMORE
 OpenReply::OpenReply(): reply_type('O') {}
 
 void OpenReply::deserialize(std::string &val) {
-    //TODO
 }
 
 std::string OpenReply::serialize() {
     std::string res;
     res += reply_type;
-    //TODO
-    //res += BytesConverter::IntToBytes(file_descriptor);
     return res;
 }
 
