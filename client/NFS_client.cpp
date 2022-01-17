@@ -3,8 +3,8 @@
 #include <cstring>
 
 #include "NFS_client.h"
-#include "Reply.h"
-#include "Request.h"
+#include "reply.h"
+#include "request.h"
 
 /* W celu testowania metod serwera - usunąc przed ostatnią wersją */
 void NFS_client::tmp_func_handle_session_interactive() {
@@ -32,17 +32,17 @@ NFS_client::NFS_client(const char *server_ip, const int port_number): socket() {
 
 void NFS_client::open_file(unsigned short open_mode, std::string& path) {
     OpenRequest request(open_mode, path);
-    std::string data = request.Serialize();
+    std::string data = request.serialize();
 
     std::string reply_data = send_request(data);
 
     if(is_reply_error_message(reply_data)) {
-        ErrorReply error(""); //TODO wyrzucić wartość krzak jak będzie konstruktor domyślny
-        error.Deserialize(reply_data);
-        throw std::runtime_error("NFS client - open file: error from server: " + error.errorMsg);
+        ErrorReply error;
+        error.deserialize(reply_data);
+        throw std::runtime_error("NFS client - open file: error from server: " + error.get_error_message());
     } else {
-        OpenReply reply(1234); //TODO na razie wartość krzak dopóki nie będzie domyślnego konstruktora
-        reply.Deserialize(reply_data);
+        OpenReply reply;
+        reply.deserialize(reply_data);
     }
     //TODO coś dalej...
 }
@@ -62,6 +62,8 @@ std::string NFS_client::send_request(std::string& request_data) {
 }
 
 bool NFS_client::is_reply_error_message(std::string &reply_data) {
-    //TODO jaki format będzie po otrzymaniu danych z metody send_request
-    return false;
+    if(reply_data[0] == 'E')
+        return true;
+    else
+        return false;
 }

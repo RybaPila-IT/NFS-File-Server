@@ -4,9 +4,9 @@
 #include "../AccessManager.h"
 
 open_file_handler::open_file_handler(int fd, OpenRequest& request):
-    socket_fd(fd), path_to_file(request.filePath), open_mode(request.openMode) {
-
-}
+    socket_fd(fd),
+    path_to_file(request.get_path()),
+    open_mode(request.get_open_mode()) {}
 
 void open_file_handler::open_file() {
     //TODO przykładowy kod aby pokazać jak korzystać z access manager
