@@ -5,7 +5,7 @@
 
 #include "request.h"
 
-class request_handler {
+class RequestHandler {
 private:
     int socket_fd;
 
@@ -18,7 +18,7 @@ private:
 
 public:
 
-    explicit request_handler(int socket_fd);
+    explicit RequestHandler(int socket_fd);
 
     void handle_request(std::string&);
 };
