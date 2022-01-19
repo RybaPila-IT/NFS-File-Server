@@ -1,5 +1,5 @@
-#ifndef SERVER_ACCESSMANAGER_H
-#define SERVER_ACCESSMANAGER_H
+#ifndef SERVER_ACCESS_MANAGER_H
+#define SERVER_ACCESS_MANAGER_H
 
 #include <atomic>
 #include <string>
@@ -43,4 +43,4 @@ public:
 
 };
 
-#endif //SERVER_ACCESSMANAGER_H
+#endif //SERVER_ACCESS_MANAGER_H

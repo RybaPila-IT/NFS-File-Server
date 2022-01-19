@@ -1,19 +1,77 @@
 #include <iostream>
+#include <sys/stat.h>
+#include <fstream>
 
 #include "open_file_handler.h"
-#include "../AccessManager.h"
+#include "reply.h"
+#include "../access_manager.h"
 
-open_file_handler::open_file_handler(int fd, OpenRequest& request):
-    socket_fd(fd),
-    path_to_file(request.get_path()),
-    open_mode(request.get_open_mode()) {}
+OpenFileHandler::OpenFileHandler(OpenRequest &request) :
+        path_to_file(request.get_path()),
+        open_mode(request.get_open_mode()) {}
 
-void open_file_handler::open_file() {
-    //TODO przykładowy kod aby pokazać jak korzystać z access manager
-    std::cout << path_to_file << " | " << open_mode << std::endl;
-    AccessManager::get_instance().is_file_blocked((std::string &) path_to_file);
-    //Check if file exists
-    //Check if file isn't taken by another file
-    //Reserve file in AccessManager
-    //Return info to the client
+void OpenFileHandler::open_file_in_create_mode() {
+    //Create if file doesn't exist
+    if (!does_file_exist(path_to_file)) {
+        std::ofstream new_file(path_to_file);
+        if (!new_file) {
+            throw std::runtime_error("Unable to create file: " + path_to_file);
+        }
+        //Open only for file creation - unused further
+        new_file.close();
+    }
+
+    //Check if file is blocked or add it if it doesn't exist (so it works in every case)
+    if (AccessManager::get_instance().is_file_blocked(path_to_file)) {
+        throw std::runtime_error("File: " + path_to_file + " is taken by writer");
+    }
+    std::cout << "Successfully opened file: " + path_to_file + " in create mode" << std::endl;
+}
+
+void OpenFileHandler::open_file_in_read_mode() {
+    check_file_availability();
+    std::cout << "Successfully opened file: " + path_to_file + " in read more" << std::endl;
+}
+
+void OpenFileHandler::open_file_in_write_mode() {
+    check_file_availability();
+    try {
+        AccessManager::get_instance().block_file_for_writer(path_to_file);
+    }
+    catch (std::runtime_error &err) {
+        throw std::runtime_error("Cannot open file: " + path_to_file + " in write mode: " + std::string(err.what()));
+    }
+    std::cout << "Successfully opened file: " + path_to_file + " in write mode" << std::endl;
+}
+
+bool OpenFileHandler::does_file_exist(const std::string &path) {
+    struct stat buffer;
+    return (stat(path.c_str(), &buffer) == 0);
+}
+
+void OpenFileHandler::open_file() {
+    std::string error_message = "Open file handler: wrong open mode - received: " + std::to_string(open_mode);
+    switch (open_mode) {
+        case 1:
+            open_file_in_create_mode();
+            break;
+        case 2:
+            open_file_in_read_mode();
+            break;
+        case 3:
+            open_file_in_write_mode();
+            break;
+        default:
+            std::cout << error_message << std::endl;
+            throw std::runtime_error(error_message);
+    }
+}
+
+void OpenFileHandler::check_file_availability() {
+    if (!does_file_exist(path_to_file)) {
+        throw std::runtime_error("File: " + path_to_file + " does not exist!");
+    }
+    if (AccessManager::get_instance().is_file_blocked((std::string &) path_to_file)) {
+        throw std::runtime_error("File: " + path_to_file + " is taken by writer!");
+    }
 }

@@ -44,6 +44,7 @@ public:
 
     std::string read_message();
     void write_message(std::string& message);
+
 };
 
 #endif //_SOCKET_H_

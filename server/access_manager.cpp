@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include "AccessManager.h"
+#include "access_manager.h"
 
 bool AccessManager::is_file_blocked(std::string &path) {
     add_file_if_it_does_not_exist(path);
@@ -14,13 +14,12 @@ bool AccessManager::is_file_blocked(std::string &path) {
 void AccessManager::block_file_for_writer(std::string &path) {
     auto file = files.find(path);
     if (file != files.end()) {
-        if(!file->second.is_open_by_writer())
+        if (!file->second.is_open_by_writer())
             file->second.set_lock(true);
         else
             //It should be checked earlier whether file is block
             throw std::runtime_error("AccessManager block_file_for_writer: file " + path + " is already taken");
-    }
-    else
+    } else
         throw std::runtime_error("AccessManager block_file_for_writer: file " + path + " does not exist");
 }
 
@@ -42,7 +41,7 @@ bool AccessManager::is_file_existing_in_files(std::string &path) {
 }
 
 void AccessManager::add_file_if_it_does_not_exist(std::string &path) {
-    if(!is_file_existing_in_files(path)){
+    if (!is_file_existing_in_files(path)) {
         files.emplace(std::make_pair(path, FileGuard()));
     }
 }
