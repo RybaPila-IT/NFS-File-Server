@@ -25,8 +25,7 @@ void request_handler::handle_open(std::string& message) {
 
 void request_handler::handle_read(std::string& message) {
     std::cout << "HANDLING READ | MSG LENGTH: " << message.length() <<std::endl;
-    ReadRequest rReq;
-    rReq.deserialize(message);
+    std::cout << ServerFileManager::read_file(message);
 }
 
 void request_handler::handle_unlink(std::string& message) {
@@ -37,8 +36,7 @@ void request_handler::handle_unlink(std::string& message) {
 
 void request_handler::handle_write(std::string& message) {
     std::cout << "HANDLING WRITE | MSG LENGTH: " << message.length() <<std::endl;
-    WriteRequest wReq;
-    wReq.deserialize(message);
+    std::cout << ServerFileManager::write_file(message);
 }
 
 request_handler::request_handler(int fd): socket_fd(fd) {}

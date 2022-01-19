@@ -2,7 +2,7 @@
 #define NFS_FILE_SERVER_REQUESTHANDLER_H
 
 #include <string>
-
+#include "server_file.h"
 #include "request.h"
 
 class request_handler {
