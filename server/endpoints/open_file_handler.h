@@ -5,7 +5,7 @@
 #include "request.h"
 #include "socket.h"
 
-class open_file_handler {
+class OpenFileHandler {
 private:
     TcpSocket socket;
     std::string path_to_file;
@@ -20,9 +20,8 @@ private:
     void send_error(std::string &error_info);
     void send_ok_status();
 public:
-    open_file_handler(int socket_fd, OpenRequest &request);
+    OpenFileHandler(int socket_fd, OpenRequest &request);
     void open_file();
 };
-
 
 #endif //NFS_FILE_SERVER_OPENFILEHANDLER_H

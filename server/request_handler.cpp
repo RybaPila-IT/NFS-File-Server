@@ -1,11 +1,13 @@
 #include "request_handler.h"
 #include "endpoints/open_file_handler.h"
+#include "endpoints/close_file_handler.h"
 #include <iostream>
 
 void RequestHandler::handle_close(std::string &message) {
-    std::cout << "HANDLING CLOSE | MSG LENGTH: " << message.length() << std::endl;
-    CloseRequest qReq;
-    qReq.deserialize(message);
+    CloseRequest close_request;
+    close_request.deserialize(message);
+    CloseFileHandler close_file_handler(socket_fd, close_request);
+    close_file_handler.close_file();
 }
 
 void RequestHandler::handle_fstat(std::string &message) {
@@ -17,8 +19,7 @@ void RequestHandler::handle_fstat(std::string &message) {
 void RequestHandler::handle_open(std::string &message) {
     OpenRequest open_request;
     open_request.deserialize(message);
-    // Finally, request handling with further communication to client
-    open_file_handler open_file_handler(socket_fd, open_request);
+    OpenFileHandler open_file_handler(socket_fd, open_request);
     open_file_handler.open_file();
 }
 
