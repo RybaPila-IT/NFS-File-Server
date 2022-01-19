@@ -71,7 +71,7 @@ void OpenFileHandler::check_file_availability() {
     if (!does_file_exist(path_to_file)) {
         throw std::runtime_error("File: " + path_to_file + " does not exist!");
     }
-    if (AccessManager::get_instance().is_file_blocked((std::string &) path_to_file)) {
+    if (AccessManager::get_instance().is_file_blocked(path_to_file)) {
         throw std::runtime_error("File: " + path_to_file + " is taken by writer!");
     }
 }

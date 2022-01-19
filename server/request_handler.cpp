@@ -1,6 +1,8 @@
 #include "request_handler.h"
 #include "endpoints/open_file_handler.h"
 #include "endpoints/close_file_handler.h"
+#include "endpoints/write_file_handler.h"
+#include "endpoints/read_file_handler.h"
 #include "reply.h"
 #include <iostream>
 
@@ -10,7 +12,7 @@ void RequestHandler::handle_close(std::string &message) {
     try {
         CloseFileHandler close_file_handler(close_request);
         close_file_handler.close_file();
-    } catch (std::runtime_error& err) {
+    } catch (std::runtime_error &err) {
         std::string error_mess = std::string(err.what());
         send_error(error_mess);
         return;
@@ -32,7 +34,7 @@ void RequestHandler::handle_open(std::string &message) {
     try {
         OpenFileHandler open_file_handler(open_request);
         open_file_handler.open_file();
-    } catch (std::runtime_error& err) {
+    } catch (std::runtime_error &err) {
         std::string error_mess = std::string(err.what());
         send_error(error_mess);
         return;
@@ -43,9 +45,20 @@ void RequestHandler::handle_open(std::string &message) {
 }
 
 void RequestHandler::handle_read(std::string &message) {
-    std::cout << "HANDLING READ | MSG LENGTH: " << message.length() << std::endl;
-    ReadRequest rReq;
-    rReq.deserialize(message);
+    ReadRequest read_request;
+    read_request.deserialize(message);
+    std::string content;
+    try {
+        ReadFileHandler read_file_handler(read_request);
+        content = read_file_handler.read_file();
+    } catch (std::runtime_error &err) {
+        std::string error_mess = std::string(err.what());
+        send_error(error_mess);
+        return;
+    }
+    ReadReply reply(content);
+    std::string reply_bytes = reply.serialize();
+    send_ok_reply(reply_bytes);
 }
 
 void RequestHandler::handle_unlink(std::string &message) {
@@ -55,9 +68,19 @@ void RequestHandler::handle_unlink(std::string &message) {
 }
 
 void RequestHandler::handle_write(std::string &message) {
-    std::cout << "HANDLING WRITE | MSG LENGTH: " << message.length() << std::endl;
-    WriteRequest wReq;
-    wReq.deserialize(message);
+    WriteRequest write_request;
+    write_request.deserialize(message);
+    try {
+        WriteFileHandler write_file_handler(write_request);
+        write_file_handler.write_file();
+    } catch (std::runtime_error &err) {
+        std::string error_mess = std::string(err.what());
+        send_error(error_mess);
+        return;
+    }
+    WriteReply reply;
+    std::string reply_bytes = reply.serialize();
+    send_ok_reply(reply_bytes);
 }
 
 RequestHandler::RequestHandler(int fd) : socket(fd), socket_fd(fd) {}
@@ -108,6 +131,6 @@ void RequestHandler::send_error(std::string &error_info) {
     socket.write_message(message);
 }
 
-void RequestHandler::send_ok_reply(std::string& reply) {
+void RequestHandler::send_ok_reply(std::string &reply) {
     socket.write_message(reply);
 }

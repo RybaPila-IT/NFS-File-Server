@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include "access_manager.h"
 
+#define TIME_LIMIT 100000
+
 bool AccessManager::is_file_blocked(std::string &path) {
     add_file_if_it_does_not_exist(path);
     auto file = files.find(path);
@@ -51,7 +53,7 @@ AccessManager &AccessManager::get_instance() {
     return instance;
 }
 
-//NEW SINCE WRITE AND READ
+
 bool AccessManager::is_file_operated_on(std::string &path) {
     add_file_if_it_does_not_exist(path);
     auto file = files.find(path);
@@ -62,6 +64,7 @@ bool AccessManager::is_file_operated_on(std::string &path) {
         throw std::runtime_error("AccessManager is_file_blocked: file " + path + " does not exist");
 }
 
+
 void AccessManager::set_operated_on(std::string &path, bool val) {
     auto file = files.find(path);
     if (file != files.end())
@@ -69,6 +72,15 @@ void AccessManager::set_operated_on(std::string &path, bool val) {
     else
         //File has to exist at this point - if it does not something went wrong
         throw std::runtime_error("AccessManager: file " + path + " does not exist");
+}
+
+void AccessManager::wait_to_operate(std::string &path) {
+    int time_limit = TIME_LIMIT;
+    while (is_file_operated_on(path)) {
+        time_limit--;
+        if (time_limit < 0)
+            throw std::runtime_error("ERROR IN: wait_to_operate - timeout");
+    }
 }
 
 
@@ -88,7 +100,7 @@ bool FileGuard::is_open_by_writer() {
 void FileGuard::set_lock(bool val) {
     is_open_by_writer_lock.store(val);
 }
-//NEW SINCE WRITE AND READ
+
 bool FileGuard::is_operated_on() {
     return is_operated_on_lock.load();
 }
