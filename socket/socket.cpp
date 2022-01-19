@@ -158,8 +158,3 @@ void TcpSocket::write_message(std::string& message) {
         buffer_offset = 0;
     }
 }
-
-void TcpSocket::close_socket() {
-    if (sock_fd > 0)
-        close(sock_fd);
-}
