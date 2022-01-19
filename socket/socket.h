@@ -45,7 +45,6 @@ public:
     std::string read_message();
     void write_message(std::string& message);
 
-    void close_socket();
 };
 
 #endif //_SOCKET_H_

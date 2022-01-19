@@ -10,21 +10,13 @@
 #define LOOP_BACK     "127.0.0.1"
 
 void handle_session(int socket_fd) {
-    TcpSocket session_socket(socket_fd);
-    RequestHandler request_manager(socket_fd);
-    std::string message;
     std::cout << "Staring new session...\n";
-    do {
-        try {
-            message = session_socket.read_message();
-            if (!message.empty()) {
-                request_manager.handle_request(message);
-            }
-        } catch (std::runtime_error &err) {
-            throw std::runtime_error("server main - handle_session: " + std::string(err.what()));
-        }
-    } while (!message.empty());
-    session_socket.close_socket();
+    RequestHandler request_manager(socket_fd);
+    try {
+        request_manager.handle_incoming_requests();
+    } catch (std::runtime_error& err) {
+        std::cerr << "Abnormal session termination due to an error: " << err.what() << "\n";
+    }
     std::cout << "Ending session...\n";
 }
 

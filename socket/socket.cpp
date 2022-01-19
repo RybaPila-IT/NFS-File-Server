@@ -45,8 +45,8 @@ TcpSocket::TcpSocket(TcpSocket&& socket): sock_fd(std::move(socket.sock_fd)), so
 }
 
 TcpSocket::~TcpSocket() {
-//    if (sock_fd > 0)
-//        close(sock_fd);
+    if (sock_fd > 0)
+        close(sock_fd);
 }
 
 TcpSocket &TcpSocket::operator=(TcpSocket &&socket) noexcept {
@@ -157,9 +157,4 @@ void TcpSocket::write_message(std::string& message) {
             throw std::runtime_error("write_message: write error; errno value: " + ERRNO);
         buffer_offset = 0;
     }
-}
-
-void TcpSocket::close_socket() {
-    if (sock_fd > 0)
-        close(sock_fd);
 }
