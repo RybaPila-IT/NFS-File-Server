@@ -45,8 +45,8 @@ TcpSocket::TcpSocket(TcpSocket&& socket): sock_fd(std::move(socket.sock_fd)), so
 }
 
 TcpSocket::~TcpSocket() {
-//    if (sock_fd > 0)
-//        close(sock_fd);
+    if (sock_fd > 0)
+        close(sock_fd);
 }
 
 TcpSocket &TcpSocket::operator=(TcpSocket &&socket) noexcept {

@@ -7,12 +7,10 @@
 #include "socket.h"
 
 class CloseFileHandler {
-    TcpSocket socket;
     std::string path_to_file;
-    void send_error(std::string &error_info);
-    void send_ok_status();
+
 public:
-    CloseFileHandler(int socket_fd, CloseRequest &request);
+    CloseFileHandler(CloseRequest &request);
     void close_file();
 };
 
