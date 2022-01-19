@@ -1,5 +1,6 @@
 #include "storage.h"
 
+int Storage::new_file_descriptor = 0;
 
 int Storage::get_file_descriptor(std::string& file_path) {
     auto result = files_meta.find(file_path);

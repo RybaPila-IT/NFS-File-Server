@@ -40,7 +40,7 @@ void OpenFileHandler::open_file_in_create_mode() {
         std::cout << error_message << std::endl;
         return;
     }
-    std::cout << "Successfully opened file: " + path_to_file + " in create more" << std::endl;
+    std::cout << "Successfully opened file: " + path_to_file + " in create mode" << std::endl;
     send_ok_status();
 }
 

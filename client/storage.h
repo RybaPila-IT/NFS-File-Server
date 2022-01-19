@@ -33,6 +33,4 @@ public:
 
 };
 
-int Storage::new_file_descriptor = 0;
-
 #endif //CLIENT_STORAGE_H

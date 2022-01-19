@@ -1,7 +1,13 @@
 #include "file_system_manager.h"
 
+#define LOOP_BACK    "127.0.0.1"
+#define DEFAULT_PORT 6941
 
-int FileSystemManager::open(std::string &file_path, unsigned short mode) {
+FileSystemManager::FileSystemManager(): client(LOOP_BACK, DEFAULT_PORT), storage() {}
+
+FileSystemManager::FileSystemManager(const char *server_ip, int port_number): client(server_ip, port_number), storage() {}
+
+int FileSystemManager::open(unsigned short mode, std::string& file_path) {
     if (storage.get_file_descriptor(file_path) != -1)
         throw std::runtime_error("open: can not re-open a file!");
     try {
@@ -17,12 +23,11 @@ void FileSystemManager::close(int desc) {
     auto file_path = storage.desc_to_file_path(desc);
     if (file_path.empty())
         throw std::runtime_error("close: file with descriptor " + std::to_string(desc) + " does not exist!");
-//    Waiting for client to support close functionality.
-//    try {
-//        client.close_file(file_path);
-//    } catch (std::runtime_error& err) {
-//        throw std::runtime_error("close: " + std::string(err.what()));
-//    }
+    try {
+        client.close_file(file_path);
+    } catch (std::runtime_error& err) {
+        throw std::runtime_error("close: " + std::string(err.what()));
+    }
     storage.erase_file(desc);
 }
 

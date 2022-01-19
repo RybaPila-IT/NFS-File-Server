@@ -25,10 +25,7 @@ std::string NFS_client::send_request(std::string &request_data) {
 }
 
 bool NFS_client::is_reply_error_message(char reply_type) {
-    if (reply_type == 'E')
-        return true;
-    else
-        return false;
+    return reply_type == 'E';
 }
 
 void NFS_client::handle_error(std::string &reply_data, std::string &func_name) {
@@ -40,7 +37,6 @@ void NFS_client::handle_error(std::string &reply_data, std::string &func_name) {
 void NFS_client::open_file(unsigned short open_mode, std::string &path) {
     OpenRequest request(open_mode, path);
     std::string data = request.serialize();
-
     std::string reply_data = send_request(data);
 
     if (is_reply_error_message(reply_data[0])) {
@@ -53,7 +49,6 @@ void NFS_client::open_file(unsigned short open_mode, std::string &path) {
 void NFS_client::close_file(std::string &path) {
     CloseRequest request(path);
     std::string data = request.serialize();
-
     std::string reply_data = send_request(data);
 
     if (is_reply_error_message(reply_data[0])) {
@@ -66,23 +61,20 @@ void NFS_client::close_file(std::string &path) {
 std::string NFS_client::read_from_file(std::string &path) {
     ReadRequest request(path);
     std::string data = request.serialize();
-
     std::string reply_data = send_request(data);
 
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("read from file");
         handle_error(reply_data, func_name);
-    } else {
-        std::cout << "NFS client - read from file: server successfully read file" << std::endl;
-        ReadReply reply(reply_data);
-        return reply.get_file_content();
     }
+    std::cout << "NFS client - read from file: server successfully read file" << std::endl;
+    ReadReply reply(reply_data);
+    return reply.get_file_content();
 }
 
 void NFS_client::write_to_file(std::string &path, std::string &content) {
     WriteRequest request(path, content);
     std::string data = request.serialize();
-
     std::string reply_data = send_request(data);
 
     if (is_reply_error_message(reply_data[0])) {
@@ -95,15 +87,13 @@ void NFS_client::write_to_file(std::string &path, std::string &content) {
 std::string NFS_client::get_fstat_info(std::string &path) {
     FstatRequest request(path);
     std::string data = request.serialize();
-
     std::string reply_data = send_request(data);
 
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("fstat");
         handle_error(reply_data, func_name);
-    } else {
-        std::cout << "NFS client - fstat: server successfully got fstat info" << std::endl;
-        FstatReply reply(reply_data);
-        return reply.get_file_status();
     }
+    std::cout << "NFS client - fstat: server successfully got fstat info" << std::endl;
+    FstatReply reply(reply_data);
+    return reply.get_file_status();
 }
