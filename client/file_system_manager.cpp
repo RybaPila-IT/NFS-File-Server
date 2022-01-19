@@ -7,7 +7,7 @@ FileSystemManager::FileSystemManager(): client(LOOP_BACK, DEFAULT_PORT), storage
 
 FileSystemManager::FileSystemManager(const char *server_ip, int port_number): client(server_ip, port_number), storage() {}
 
-int FileSystemManager::open(unsigned short mode, std::string& file_path) {
+int FileSystemManager::open(std::string& file_path, unsigned short mode) {
     if (storage.get_file_descriptor(file_path) != -1)
         throw std::runtime_error("open: can not re-open a file!");
     try {

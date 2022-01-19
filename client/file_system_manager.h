@@ -14,7 +14,7 @@ public:
     FileSystemManager(const char *server_ip, int port_number);
     FileSystemManager();
 
-    int  open(unsigned short mode, std::string& file_path);
+    int  open(std::string& file_path, unsigned short mode);
     int  read(int desc, char* buffer, int bytes_amount);
     void write(int desc, char* buffer, int bytes_amount);
     void lseek(int desc, int offset);

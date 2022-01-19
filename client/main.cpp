@@ -13,7 +13,7 @@ int main() {
     FileSystemManager manager;
     std::string path = "test.txt";
     try {
-        auto desc = manager.open(CREATE, path);
+        auto desc = manager.open(path, CREATE);
         std::cout << "File opened as expected! Descriptor is: " << desc << "\n";
         manager.close(desc);
         std::cout << "File closed successfully!\n";
