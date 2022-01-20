@@ -11,17 +11,12 @@ class Storage {
 private:
     static int new_file_descriptor;
 
-    struct file_meta {
-        int  desc;
-        bool fetched;
-    };
-
-    // Shorter version of file_name_to_meta.
-    using fn_to_meta = std::unordered_map<std::string, file_meta>;
+    // Shorter version of file_name_to_descriptor.
+    using fn_to_desc = std::unordered_map<std::string, int>;
     // Shorter version of descriptor_to_file.
     using desc_to_f = std::unordered_map<int, File>;
 
-    fn_to_meta files_meta;
+    fn_to_desc files_to_desc;
     desc_to_f  opened_files;
 
 public:

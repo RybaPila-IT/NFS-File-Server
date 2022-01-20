@@ -19,10 +19,6 @@ int main() {
         std::cout << "File closed successfully!\n";
         desc = manager.open(path, READ);
         std::cout << "File opened as expected! Descriptor is: " << desc << "\n";
-        int buffer_size = 20;
-        char buffer[buffer_size];
-        manager.read(desc, buffer, buffer_size);
-        std::cout << "Read message is: " << std::string(buffer, buffer_size) << "\n";
         manager.close(desc);
     } catch (std::runtime_error& err) {
         std::cout << "Unexpected error: " << err.what() << "\n";

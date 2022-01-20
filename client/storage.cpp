@@ -2,17 +2,17 @@
 
 int Storage::new_file_descriptor = 0;
 
-int Storage::get_file_descriptor(std::string& file_path) {
-    auto result = files_meta.find(file_path);
-    return result == files_meta.end() ? -1 : result->second.desc;
+int Storage::get_file_descriptor(std::string &file_path) {
+    auto result = files_to_desc.find(file_path);
+    return result == files_to_desc.end() ? -1 : result->second;
 }
 
 int Storage::add_file(std::string &file_path, File &file) {
     int file_descriptor = new_file_descriptor++;
-    files_meta.insert(
+    files_to_desc.insert(
             std::make_pair(
                     file_path,
-                    file_meta({file_descriptor, false})
+                    file_descriptor
             )
     );
     opened_files.insert(std::make_pair(file_descriptor, file));
@@ -21,7 +21,7 @@ int Storage::add_file(std::string &file_path, File &file) {
 
 void Storage::erase_file(int desc) {
     auto file_iter = opened_files.find(desc);
-    files_meta.erase(file_iter->second.get_path());
+    files_to_desc.erase(file_iter->second.get_path());
     opened_files.erase(desc);
 }
 
@@ -36,8 +36,6 @@ void Storage::set_file_content(int desc, std::string &content) {
         throw std::runtime_error("obtain_file: file with descriptor " + std::to_string(desc) + " does not exist!");
     file_iter->second.set_content(content);
 }
-
-
 
 File Storage::obtain_file(int desc) {
     auto file_iter = opened_files.find(desc);
