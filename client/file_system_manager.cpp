@@ -1,7 +1,14 @@
+#include <cstring>
 #include "file_system_manager.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
+
+#define CREATE 0
+#define READ   1
+#define WRITE  2
+#define READ_WRITE 3
+
 
 FileSystemManager::FileSystemManager(): client(LOOP_BACK, DEFAULT_PORT), storage() {}
 
@@ -30,6 +37,43 @@ void FileSystemManager::close(int desc) {
     }
     storage.erase_file(desc);
 }
+
+
+int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
+    std::string read_data;
+    try {
+        auto file = storage.obtain_file(desc);
+        if (file.get_mode()!= READ && file.get_mode() != READ_WRITE)
+            throw std::runtime_error("File with descriptor: " + std::to_string(desc) + " is opened in wrong mode!");
+        if (!file.is_fetched()) {
+            auto file_path = storage.desc_to_file_path(desc);
+            auto content = client.read_from_file(file_path);
+            storage.set_file_content(desc, content);
+            file.set_content(content);
+        }
+        read_data = file.read(bytes_amount);
+        memcpy(buffer, read_data.data(), read_data.size() * sizeof (char));
+    } catch (std::runtime_error& err) {
+        throw std::runtime_error("read: " + std::string(err.what()));
+    }
+    return read_data.size();
+}
+
+
+void FileSystemManager::write(int desc, char *buffer, int bytes_amount) {
+
+
+
+}
+
+void FileSystemManager::lseek(int desc, int offset) {
+
+
+
+}
+
+
+
 
 
 

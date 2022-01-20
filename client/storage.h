@@ -30,6 +30,9 @@ public:
     int  add_file(std::string& file_path, File& file);
     void erase_file(int desc);
     std::string desc_to_file_path(int desc);
+    void set_file_content(int desc, std::string& content);
+
+    File obtain_file(int desc);
 
 };
 

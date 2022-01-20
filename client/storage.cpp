@@ -30,3 +30,19 @@ std::string Storage::desc_to_file_path(int desc) {
     return file_iter == opened_files.end() ? "" : file_iter->second.get_path();
 }
 
+void Storage::set_file_content(int desc, std::string &content) {
+    auto file_iter = opened_files.find(desc);
+    if (file_iter == opened_files.end())
+        throw std::runtime_error("obtain_file: file with descriptor " + std::to_string(desc) + " does not exist!");
+    file_iter->second.set_content(content);
+}
+
+
+
+File Storage::obtain_file(int desc) {
+    auto file_iter = opened_files.find(desc);
+    if (file_iter == opened_files.end())
+        throw std::runtime_error("obtain_file: file with descriptor " + std::to_string(desc) + " does not exist!");
+    return file_iter->second;
+}
+
