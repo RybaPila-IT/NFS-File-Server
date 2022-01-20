@@ -38,7 +38,7 @@ public:
     }
 
     void inc_position(int offset) {
-        position = offset > 0 ? std::max(0, position + offset) : std::min((int)content.size(), position + offset);
+        position = (offset < 0 ? std::max(0, position + offset) : std::min((int)content.size(), position + offset));
     }
 
     bool is_fetched() {
@@ -46,7 +46,7 @@ public:
     }
 
     std::string read(int bytes_amount) {
-        return content.substr(position, std::min((int)content.size(), position + bytes_amount));
+        return content.substr(position, std::min(bytes_amount, std::max(0, (int)content.size()-position-bytes_amount)));
     }
 
 };

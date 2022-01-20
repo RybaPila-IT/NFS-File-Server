@@ -26,6 +26,7 @@ public:
     void erase_file(int desc);
     std::string desc_to_file_path(int desc);
     void set_file_content(int desc, std::string& content);
+    void inc_file_position(int desc, int offset);
 
     File obtain_file(int desc);
 

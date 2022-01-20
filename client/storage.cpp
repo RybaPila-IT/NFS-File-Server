@@ -37,6 +37,13 @@ void Storage::set_file_content(int desc, std::string &content) {
     file_iter->second.set_content(content);
 }
 
+void Storage::inc_file_position(int desc, int offset) {
+    auto file_iter = opened_files.find(desc);
+    if (file_iter == opened_files.end())
+        throw std::runtime_error("obtain_file: file with descriptor " + std::to_string(desc) + " does not exist!");
+    file_iter->second.inc_position(offset);
+}
+
 File Storage::obtain_file(int desc) {
     auto file_iter = opened_files.find(desc);
     if (file_iter == opened_files.end())

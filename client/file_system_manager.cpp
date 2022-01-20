@@ -70,14 +70,18 @@ void FileSystemManager::write(int desc, char *buffer, int bytes_amount) {
         auto file_path = storage.desc_to_file_path(desc);
         client.write_to_file(file_path, write_bytes);
         storage.set_file_content(desc, write_bytes);
+        storage.inc_file_position(desc, -INT32_MAX);
     } catch (std::runtime_error &err) {
         throw std::runtime_error("read: " + std::string(err.what()));
     }
 }
 
 void FileSystemManager::lseek(int desc, int offset) {
-
-
+    try {
+        storage.inc_file_position(desc, offset);
+    } catch (std::runtime_error& err) {
+        throw std::runtime_error("lseek: " + std::string(err.what()));
+    }
 }
 
 
