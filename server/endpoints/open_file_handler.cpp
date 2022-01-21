@@ -6,6 +6,11 @@
 #include "reply.h"
 #include "../access_manager.h"
 
+#define CREATE 0
+#define READ   1
+#define WRITE  2
+#define READ_WRITE 3
+
 OpenFileHandler::OpenFileHandler(OpenRequest &request) :
         path_to_file(request.get_path()),
         open_mode(request.get_open_mode()) {}
@@ -52,13 +57,16 @@ bool OpenFileHandler::does_file_exist(const std::string &path) {
 void OpenFileHandler::open_file() {
     std::string error_message = "Open file handler: wrong open mode - received: " + std::to_string(open_mode);
     switch (open_mode) {
-        case 1:
+        case CREATE:
             open_file_in_create_mode();
             break;
-        case 2:
+        case READ:
             open_file_in_read_mode();
             break;
-        case 3:
+        case WRITE:
+            open_file_in_write_mode();
+            break;
+        case READ_WRITE:
             open_file_in_write_mode();
             break;
         default:
