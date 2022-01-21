@@ -4,19 +4,20 @@
 #include <atomic>
 #include <string>
 #include <unordered_map>
+#include <mutex>
 
 class FileGuard {
     std::atomic<bool> is_open_by_writer_lock;
-    std::atomic<bool> is_operated_on_lock;
+    std::mutex file_mutex;
 
 public:
     bool is_open_by_writer();
 
     void set_lock(bool);
 
-    bool is_operated_on();
+    void lock_mutex();
 
-    void set_operated(bool);
+    void unlock_mutex();
 
     FileGuard();
 
@@ -27,13 +28,11 @@ class AccessManager {
 private:
     AccessManager() = default;
 
-    std::unordered_map<std::string, FileGuard> files;
+    std::unordered_map <std::string, FileGuard> files;
 
     bool is_file_existing_in_files(std::string &path);
 
     void add_file_if_it_does_not_exist(std::string &path);
-
-    bool is_file_operated_on(std::string &path);
 
 public:
 
@@ -49,9 +48,9 @@ public:
 
     void remove_block(std::string &path);
 
-    void wait_to_operate(std::string &path);
+    void lock_file_mutex(std::string &path);
 
-    void set_operated_on(std::string &path, bool);
+    void unlock_file_mutex(std::string &path);
 
 };
 

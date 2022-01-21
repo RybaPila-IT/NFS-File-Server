@@ -5,6 +5,7 @@
 
 bool AccessManager::is_file_blocked(std::string &path) {
     add_file_if_it_does_not_exist(path);
+
     auto file = files.find(path);
     if (file != files.end())
         return file->second.is_open_by_writer();
@@ -53,34 +54,24 @@ AccessManager &AccessManager::get_instance() {
     return instance;
 }
 
-
-bool AccessManager::is_file_operated_on(std::string &path) {
+void AccessManager::lock_file_mutex(std::string &path) {
     add_file_if_it_does_not_exist(path);
     auto file = files.find(path);
     if (file != files.end())
-        return file->second.is_operated_on();
+        file->second.lock_mutex();
     else
         //File doesn't exist in AccessManager, so something went wrong
         throw std::runtime_error("AccessManager is_file_blocked: file " + path + " does not exist");
 }
 
-
-void AccessManager::set_operated_on(std::string &path, bool val) {
+void AccessManager::unlock_file_mutex(std::string &path) {
+    add_file_if_it_does_not_exist(path);
     auto file = files.find(path);
     if (file != files.end())
-        file->second.set_operated(val);
+        file->second.unlock_mutex();
     else
-        //File has to exist at this point - if it does not something went wrong
-        throw std::runtime_error("AccessManager: file " + path + " does not exist");
-}
-
-void AccessManager::wait_to_operate(std::string &path) {
-    int time_limit = TIME_LIMIT;
-    while (is_file_operated_on(path)) {
-        time_limit--;
-        if (time_limit < 0)
-            throw std::runtime_error("ERROR IN: wait_to_operate - timeout");
-    }
+        //File doesn't exist in AccessManager, so something went wrong
+        throw std::runtime_error("AccessManager is_file_blocked: file " + path + " does not exist");
 }
 
 
@@ -101,10 +92,10 @@ void FileGuard::set_lock(bool val) {
     is_open_by_writer_lock.store(val);
 }
 
-bool FileGuard::is_operated_on() {
-    return is_operated_on_lock.load();
+void FileGuard::lock_mutex() {
+    file_mutex.lock();
 }
 
-void FileGuard::set_operated(bool val) {
-    is_operated_on_lock.store(val);
+void FileGuard::unlock_mutex() {
+    file_mutex.unlock();
 }
