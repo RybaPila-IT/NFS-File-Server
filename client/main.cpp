@@ -1,6 +1,6 @@
 #include <iostream>
 #include "file_system_manager.h"
-
+#include "NFS_client.h"
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
 

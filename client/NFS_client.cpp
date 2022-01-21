@@ -68,7 +68,8 @@ std::string NFS_client::read_from_file(std::string &path) {
         handle_error(reply_data, func_name);
     }
     std::cout << "NFS client - read from file: server successfully read file" << std::endl;
-    ReadReply reply(reply_data);
+    ReadReply reply;
+    reply.deserialize(reply_data);
     return reply.get_file_content();
 }
 

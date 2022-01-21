@@ -4,13 +4,14 @@
 
 #include <string>
 #include "request.h"
-#include "socket.h"
+
 
 class CloseFileHandler {
     std::string path_to_file;
 
 public:
     CloseFileHandler(CloseRequest &request);
+
     void close_file();
 };
 

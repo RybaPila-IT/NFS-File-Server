@@ -1,8 +1,11 @@
 #include <stdexcept>
 #include "access_manager.h"
 
+#define TIME_LIMIT 100000
+
 bool AccessManager::is_file_blocked(std::string &path) {
     add_file_if_it_does_not_exist(path);
+
     auto file = files.find(path);
     if (file != files.end())
         return file->second.is_open_by_writer();
@@ -51,6 +54,28 @@ AccessManager &AccessManager::get_instance() {
     return instance;
 }
 
+void AccessManager::lock_file_mutex(std::string &path) {
+    add_file_if_it_does_not_exist(path);
+    auto file = files.find(path);
+    if (file != files.end())
+        file->second.lock_mutex();
+    else
+        //File doesn't exist in AccessManager, so something went wrong
+        throw std::runtime_error("AccessManager is_file_blocked: file " + path + " does not exist");
+}
+
+void AccessManager::unlock_file_mutex(std::string &path) {
+    add_file_if_it_does_not_exist(path);
+    auto file = files.find(path);
+    if (file != files.end())
+        file->second.unlock_mutex();
+    else
+        //File doesn't exist in AccessManager, so something went wrong
+        throw std::runtime_error("AccessManager is_file_blocked: file " + path + " does not exist");
+}
+
+
+/* FileGuard */
 FileGuard::FileGuard() {
     this->is_open_by_writer_lock.store(false);
 }
@@ -65,4 +90,12 @@ bool FileGuard::is_open_by_writer() {
 
 void FileGuard::set_lock(bool val) {
     is_open_by_writer_lock.store(val);
+}
+
+void FileGuard::lock_mutex() {
+    file_mutex.lock();
+}
+
+void FileGuard::unlock_mutex() {
+    file_mutex.unlock();
 }
