@@ -30,7 +30,3 @@ void FileSystemManager::close(int desc) {
     }
     storage.erase_file(desc);
 }
-
-
-
-
