@@ -19,6 +19,7 @@ public:
     void write(int desc, char* buffer, int bytes_amount);
     void lseek(int desc, int offset);
     void close(int desc);
+    void unlink(std::string& file_path);
     int  fstat(int desc, char* buffer, int bytes_amount);
 };
 

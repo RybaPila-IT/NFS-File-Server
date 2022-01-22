@@ -83,3 +83,10 @@ void FileSystemManager::lseek(int desc, int offset) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
 }
+
+void FileSystemManager::unlink(std::string &file_path) {
+    auto file_desc = storage.get_file_descriptor(file_path);
+    if (file_desc == -1)
+        throw std::runtime_error("File specified with path " + file_path + " does not exist!");
+    close(file_desc);
+}
