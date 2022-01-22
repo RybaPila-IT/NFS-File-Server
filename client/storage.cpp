@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "storage.h"
 
 int Storage::new_file_descriptor = 0;

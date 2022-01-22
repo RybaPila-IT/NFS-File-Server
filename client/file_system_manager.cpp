@@ -1,4 +1,5 @@
 #include <cstring>
+#include <stdexcept>
 #include "file_system_manager.h"
 
 #define LOOP_BACK    "127.0.0.1"
@@ -82,4 +83,18 @@ void FileSystemManager::lseek(int desc, int offset) {
     } catch (std::runtime_error& err) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
+}
+
+int FileSystemManager::fstat(int desc, char *buffer, int bytes_amount) {
+    std::string file_stats;
+    auto file_path = storage.desc_to_file_path(desc);
+    if (file_path.empty())
+        throw std::runtime_error("fstat: file with descriptor " + std::to_string(desc) + " does not exist!");
+    try {
+        file_stats = client.get_fstat_info(file_path);
+        memcpy(buffer, file_stats.data(), file_stats.size() * sizeof(char));
+    }catch (std::runtime_error &err) {
+        throw std::runtime_error("fstat: " + std::string(err.what()));
+    }
+    return 0;
 }
