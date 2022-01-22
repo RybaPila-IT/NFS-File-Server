@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>
 #include "file_system_manager.h"
 
 #define LOOP_BACK    "127.0.0.1"
