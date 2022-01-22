@@ -24,7 +24,6 @@ void RequestHandler::handle_close(std::string &message) {
 }
 
 void RequestHandler::handle_fstat(std::string &message) {
-   // std::cout << "HANDLING FSTAT | MSG LENGTH: " << message.length() << std::endl;
     FstatRequest fReq;
     fReq.deserialize(message);
     std::string file_status;

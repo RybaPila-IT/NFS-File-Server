@@ -5,7 +5,7 @@ FstatHandler::FstatHandler(FstatRequest fReq):
     path(fReq.get_path()){}
 
 std::string FstatHandler::get_fstat() {
-    std::string data;
+    std::string stats;
     try {
         AccessManager::get_instance().lock_file_mutex(path);
     } catch (std::runtime_error &error) {
@@ -19,8 +19,22 @@ std::string FstatHandler::get_fstat() {
     int fd = fileno(file_to_fstat);
     struct stat *buffer;
     fstat(fd, buffer);
-    //add valuers from buffer to data
+
+    stats+= "FSTAT INFO:";
+    stats+= "\nID OF DEVICE (st_dev): ";
+    stats += std::to_string(buffer->st_dev);
+    stats+= "\nINODE NUMBER (st_ino): ";
+    stats += std::to_string(buffer->st_ino);
+    stats+= "\nPROTECTION (st_mode): ";
+    stats += std::to_string(buffer->st_mode);
+    stats+= "\nTOTAL SIZE IN BYTES (st_size): ";
+    stats += std::to_string(buffer->st_size);
+    stats+= "\nTIME OF LAST ACCESS (st_atime): ";
+    stats += std::to_string(buffer->st_atime);
+    stats+= "\nTIME OF LAST MODIFICATION (st_mtime): ";
+    stats += std::to_string(buffer->st_mtime);
+
     fclose(file_to_fstat);
     AccessManager::get_instance().unlock_file_mutex(path);
-    return data;
+    return stats;
 }
