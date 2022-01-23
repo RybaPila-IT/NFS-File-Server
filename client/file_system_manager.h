@@ -7,11 +7,18 @@
 class FileSystemManager {
 
 private:
-    NFS_client client;
-    Storage    storage;
+
+    struct FileSystem {
+        NFS_client client;
+        Storage storage;
+    };
+
+    std::unordered_map<std::string, FileSystem> mounted_systems;
+    std::unordered_map<std::string, FileSystem>::iterator current_file_system;
+
+    void check_mounted();
 
 public:
-    FileSystemManager(const char *server_ip, int port_number);
     FileSystemManager();
 
     int  open(std::string& file_path, unsigned short mode);
@@ -19,6 +26,8 @@ public:
     void write(int desc, char* buffer, int bytes_amount);
     void lseek(int desc, int offset);
     void close(int desc);
+    void unlink(std::string& file_path);
+    void mount(const char *server_ip, int port_number);
     int  fstat(int desc, char* buffer, int bytes_amount);
 };
 
