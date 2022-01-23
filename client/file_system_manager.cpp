@@ -93,16 +93,16 @@ void FileSystemManager::lseek(int desc, int offset) {
 
 std::string FileSystemManager::fstat(int desc) {
     std::string file_stats;
-    auto file_path = storage.desc_to_file_path(desc);
+    auto file_path = current_file_system->second.storage.desc_to_file_path(desc);
     if (file_path.empty())
         throw std::runtime_error("fstat: file with descriptor " + std::to_string(desc) + " does not exist!");
     try {
-        file_stats = client.get_fstat_info(file_path);
+        file_stats = current_file_system->second.client.get_fstat_info(file_path);
     } catch (std::runtime_error &err) {
         throw std::runtime_error("fstat: " + std::string(err.what()));
     }
     return file_stats;
-
+}
 void FileSystemManager::unlink(std::string &file_path) {
     auto file_desc = current_file_system->second.storage.get_file_descriptor(file_path);
     if (file_desc == -1)
