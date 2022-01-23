@@ -9,7 +9,7 @@ NFS_client::NFS_client(const char *server_ip, const int port_number) : socket() 
     try {
         socket.connect_to(server_ip, port_number);
     } catch (std::runtime_error &err) {
-        std::cerr << "NFS client - constructor: " << err.what() << "\n";
+        throw std::runtime_error("NFS_client constructor: " + std::string(err.what()));
     }
 }
 
@@ -38,7 +38,6 @@ void NFS_client::open_file(unsigned short open_mode, std::string &path) {
     OpenRequest request(open_mode, path);
     std::string data = request.serialize();
     std::string reply_data = send_request(data);
-
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("close file");
         handle_error(reply_data, func_name);
@@ -50,7 +49,6 @@ void NFS_client::close_file(std::string &path) {
     CloseRequest request(path);
     std::string data = request.serialize();
     std::string reply_data = send_request(data);
-
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("close file");
         handle_error(reply_data, func_name);
@@ -62,7 +60,6 @@ std::string NFS_client::read_from_file(std::string &path) {
     ReadRequest request(path);
     std::string data = request.serialize();
     std::string reply_data = send_request(data);
-
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("read from file");
         handle_error(reply_data, func_name);
@@ -77,7 +74,6 @@ void NFS_client::write_to_file(std::string &path, std::string &content) {
     WriteRequest request(path, content);
     std::string data = request.serialize();
     std::string reply_data = send_request(data);
-
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("write to file");
         handle_error(reply_data, func_name);
@@ -89,7 +85,6 @@ std::string NFS_client::get_fstat_info(std::string &path) {
     FstatRequest request(path);
     std::string data = request.serialize();
     std::string reply_data = send_request(data);
-
     if (is_reply_error_message(reply_data[0])) {
         std::string func_name("fstat");
         handle_error(reply_data, func_name);
