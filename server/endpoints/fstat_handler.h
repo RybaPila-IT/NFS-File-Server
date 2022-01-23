@@ -11,7 +11,7 @@ private:
     std::string path;
     std::string load_fstats(std::string &stats, FILE *file_to_fstat);
 public:
-    FstatHandler(FstatRequest fstat_request);
+    FstatHandler(FstatRequest &fstat_request);
     std::string get_fstat();
 };
 

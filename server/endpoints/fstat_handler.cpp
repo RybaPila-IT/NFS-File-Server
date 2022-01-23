@@ -2,7 +2,7 @@
 #include "fstat_handler.h"
 #include "../access_manager.h"
 
-FstatHandler::FstatHandler(FstatRequest fstat_request) :
+FstatHandler::FstatHandler(FstatRequest &fstat_request) :
         path(fstat_request.get_path()) {}
 
 std::string FstatHandler::get_fstat() {
