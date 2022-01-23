@@ -24,13 +24,13 @@ void RequestHandler::handle_close(std::string &message) {
 }
 
 void RequestHandler::handle_fstat(std::string &message) {
-    FstatRequest fReq;
-    fReq.deserialize(message);
+    FstatRequest fstat_request;
+    fstat_request.deserialize(message);
     std::string file_status;
     try {
-        FstatHandler fstatHandler(fReq);
+        FstatHandler fstatHandler(fstat_request);
         file_status = fstatHandler.get_fstat();
-    }catch (std::runtime_error &err) {
+    } catch (std::runtime_error &err) {
         std::string error_mess = std::string(err.what());
         send_error(error_mess);
         return;

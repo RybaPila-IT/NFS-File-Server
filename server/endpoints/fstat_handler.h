@@ -7,7 +7,9 @@
 
 
 class FstatHandler {
+private:
     std::string path;
+    std::string load_fstats(std::string &stats, FILE *file_to_fstat);
 public:
     FstatHandler(FstatRequest fReq);
     std::string get_fstat();

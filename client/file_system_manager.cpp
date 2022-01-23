@@ -80,7 +80,7 @@ void FileSystemManager::write(int desc, char *buffer, int bytes_amount) {
 void FileSystemManager::lseek(int desc, int offset) {
     try {
         storage.inc_file_position(desc, offset);
-    } catch (std::runtime_error& err) {
+    } catch (std::runtime_error &err) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
 }
@@ -93,8 +93,8 @@ int FileSystemManager::fstat(int desc, char *buffer, int bytes_amount) {
     try {
         file_stats = client.get_fstat_info(file_path);
         memcpy(buffer, file_stats.data(), file_stats.size() * sizeof(char));
-    }catch (std::runtime_error &err) {
+    } catch (std::runtime_error &err) {
         throw std::runtime_error("fstat: " + std::string(err.what()));
     }
-    return 0;
+    return file_stats.size();
 }

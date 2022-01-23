@@ -12,6 +12,8 @@
 int main() {
     FileSystemManager manager;
     std::string path = "test.txt";
+    const char* buffer;
+
     try {
         auto desc = manager.open(path, READ);
         std::cout << "File opened as expected! Descriptor is: " << desc << "\n";
