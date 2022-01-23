@@ -1,6 +1,6 @@
 #! /bin/bash
 
-for dir in socket message server client
+for dir in socket message server client client_test_program
 do
    cd $dir
    ./build.sh
