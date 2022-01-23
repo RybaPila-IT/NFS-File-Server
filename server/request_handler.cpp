@@ -3,6 +3,7 @@
 #include "endpoints/close_file_handler.h"
 #include "endpoints/write_file_handler.h"
 #include "endpoints/read_file_handler.h"
+#include "endpoints/fstat_handler.h"
 #include "reply.h"
 #include <iostream>
 
@@ -23,9 +24,21 @@ void RequestHandler::handle_close(std::string &message) {
 }
 
 void RequestHandler::handle_fstat(std::string &message) {
-    std::cout << "HANDLING FSTAT | MSG LENGTH: " << message.length() << std::endl;
-    FstatRequest fReq;
-    fReq.deserialize(message);
+    FstatRequest fstat_request;
+    fstat_request.deserialize(message);
+    std::string file_status;
+    try {
+        FstatHandler fstatHandler(fstat_request);
+        file_status = fstatHandler.get_fstat();
+    } catch (std::runtime_error &err) {
+        std::string error_mess = std::string(err.what());
+        send_error(error_mess);
+        return;
+    }
+    FstatReply reply(file_status);
+    std::string reply_bytes = reply.serialize();
+    send_ok_reply(reply_bytes);
+
 }
 
 void RequestHandler::handle_open(std::string &message) {
