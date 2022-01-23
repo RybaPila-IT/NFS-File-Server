@@ -1,3 +1,4 @@
+#include <iostream>
 #include "fstat_handler.h"
 #include "../access_manager.h"
 
@@ -16,7 +17,12 @@ std::string FstatHandler::get_fstat() {
         AccessManager::get_instance().unlock_file_mutex(path);
         throw std::runtime_error("ERROR IN: file_to_fstat - file couldn't be opened");
     }
-    load_fstats(stats, file_to_fstat);
+    try {
+        load_fstats(stats, file_to_fstat);
+    }
+    catch (std::runtime_error &error) {
+        throw std::runtime_error("ERROR IN: load_fstats: " + std::string(error.what()));
+    }
     fclose(file_to_fstat);
     AccessManager::get_instance().unlock_file_mutex(path);
     return stats;
@@ -24,21 +30,22 @@ std::string FstatHandler::get_fstat() {
 
 std::string FstatHandler::load_fstats(std::string &stats, FILE *file_to_fstat) {
     int fd = fileno(file_to_fstat);
-    struct stat *buffer;
-    fstat(fd, buffer);
-
+    struct stat buffer;
+    if(fstat(fd, &buffer) != 0)
+        throw std::runtime_error("ERROR IN: system fstat - couldn't load fstat to buffer");
     stats += "FSTAT INFO:";
     stats += "\nID OF DEVICE (st_dev): ";
-    stats += std::to_string(buffer->st_dev);
+    stats += std::to_string(buffer.st_dev);
     stats += "\nINODE NUMBER (st_ino): ";
-    stats += std::to_string(buffer->st_ino);
+    stats += std::to_string(buffer.st_ino);
     stats += "\nPROTECTION (st_mode): ";
-    stats += std::to_string(buffer->st_mode);
+    stats += std::to_string(buffer.st_mode);
     stats += "\nTOTAL SIZE IN BYTES (st_size): ";
-    stats += std::to_string(buffer->st_size);
+    stats += std::to_string(buffer.st_size);
     stats += "\nTIME OF LAST ACCESS (st_atime): ";
-    stats += std::to_string(buffer->st_atime);
+    stats += std::to_string(buffer.st_atime);
     stats += "\nTIME OF LAST MODIFICATION (st_mtime): ";
-    stats += std::to_string(buffer->st_mtime);
+    stats += std::to_string(buffer.st_mtime);
+    std::cout << "Successfully loaded statistics of " + path + " file." << std::endl;
     return stats;
 }

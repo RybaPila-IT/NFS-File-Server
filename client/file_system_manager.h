@@ -19,7 +19,7 @@ public:
     void write(int desc, char* buffer, int bytes_amount);
     void lseek(int desc, int offset);
     void close(int desc);
-    int  fstat(int desc, char* buffer, int bytes_amount);
+    std::string fstat(int desc);
 };
 
 #endif //CLIENT_FILE_SYSTEM_MANAGER_H
