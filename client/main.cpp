@@ -1,5 +1,6 @@
 #include <iostream>
 #include "file_system_manager.h"
+#include "tests/tests.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
@@ -24,9 +25,12 @@ int main() {
         std::cout << "Fstat info collected correctly!" << std::endl;
 
         manager.close(desc);
-        std::cout << "File closed successfully!\n";
+        std::cout << "File closed successfully!\n\n\n";
     } catch (std::runtime_error& err) {
         std::cout << "Unexpected error: " << err.what() << "\n";
     }
+
+    test_lseek();
+
     return 0;
 }
