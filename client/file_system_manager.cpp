@@ -47,6 +47,7 @@ void FileSystemManager::close(int desc) {
 
 
 int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
+    check_mounted();
     std::string read_data;
     try {
         auto file = current_file_system->second.storage.obtain_file(desc);
@@ -68,21 +69,23 @@ int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
 
 
 void FileSystemManager::write(int desc, const char *buffer, int bytes_amount) {
+    check_mounted();
     std::string write_bytes(buffer, bytes_amount);
     try {
         auto file = current_file_system->second.storage.obtain_file(desc);
         if (file.get_mode() != WRITE && file.get_mode() != READ_WRITE)
             throw std::runtime_error("File with descriptor " + std::to_string(desc) + " is opened in wrong mode!");
+        auto new_file_content = file.write_result(write_bytes);
         auto file_path = current_file_system->second.storage.desc_to_file_path(desc);
-        current_file_system->second.client.write_to_file(file_path, write_bytes);
-        current_file_system->second.storage.set_file_content(desc, write_bytes);
-        current_file_system->second.storage.inc_file_position(desc, -INT32_MAX);
+        current_file_system->second.client.write_to_file(file_path, new_file_content);
+        current_file_system->second.storage.set_file_content(desc, new_file_content);
     } catch (std::runtime_error &err) {
         throw std::runtime_error("read: " + std::string(err.what()));
     }
 }
 
 void FileSystemManager::lseek(int desc, int offset) {
+    check_mounted();
     try {
       current_file_system->second.storage.inc_file_position(desc, offset);
     } catch (std::runtime_error& err) {
@@ -92,6 +95,7 @@ void FileSystemManager::lseek(int desc, int offset) {
 
 
 std::string FileSystemManager::fstat(int desc) {
+    check_mounted();
     std::string file_stats;
     auto file_path = current_file_system->second.storage.desc_to_file_path(desc);
     if (file_path.empty())
@@ -104,6 +108,7 @@ std::string FileSystemManager::fstat(int desc) {
     return file_stats;
 }
 void FileSystemManager::unlink(std::string &file_path) {
+    check_mounted();
     auto file_desc = current_file_system->second.storage.get_file_descriptor(file_path);
     if (file_desc == -1)
         throw std::runtime_error("File specified with path " + file_path + " does not exist!");
