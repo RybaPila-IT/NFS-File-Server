@@ -11,7 +11,8 @@ message(STATUS ${socket_lib})
 message(STATUS ${message_lib})
 message(STATUS ${file_system_manager_lib})
 
-add_executable(client_test_program main.cpp
+add_executable(client_test_program
+        main.cpp
         tests.cpp tests.h)
 
 target_link_libraries(client_test_program PRIVATE
