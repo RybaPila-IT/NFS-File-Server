@@ -15,6 +15,7 @@ add_executable(server main.cpp
         endpoints/write_file_handler.cpp endpoints/write_file_handler.h
         endpoints/read_file_handler.cpp endpoints/read_file_handler.h
         endpoints/fstat_handler.cpp endpoints/fstat_handler.h
-        access_manager.cpp access_manager.h)
+        access_manager.cpp access_manager.h
+        logger.cpp logger.h)
 
 target_link_libraries(server PRIVATE ${socket_lib} ${message_lib} ${CMAKE_THREAD_LIBS_INIT})

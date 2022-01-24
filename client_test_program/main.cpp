@@ -1,33 +1,36 @@
 #include "test_lseek.h"
 #include "test_open_close.h"
 #include "test_read_and_write.h"
+#include "test_fstat.h"
 
-#define LOOP_BACK "127.0.0.1"
-#define DEFAULT_PORT 6941
+#define SERVER_IP "127.0.0.1"
+#define PORT 6941
 
-void test_lseek(const char* ip_address, int port_number) {
-    TestLseek test_lseek(ip_address, port_number);
+void test_lseek() {
+    TestLseek test_lseek(SERVER_IP, PORT);
     test_lseek.run_all_tests();
 }
 
-void test_open_close(const char* ip_address, int port_number) {
-    TestOpenClose test_open_close(ip_address, port_number);
+void test_open_close() {
+    TestOpenClose test_open_close(SERVER_IP, PORT);
     test_open_close.run_all_tests();
 }
 
-void test_write_read(const char* ip_address, int port_number) {
-    TestWriteRead test_write_read(ip_address, port_number);
+void test_write_read() {
+    TestWriteRead test_write_read(SERVER_IP, PORT);
     test_write_read.run_all_tests();
 }
 
+void test_fstat() {
+    TestFstat test_fstat(SERVER_IP, PORT);
+    test_fstat.run_all_tests();
+}
 
-int main(int argc, char* argv[]) {
-    const char* ip_address = (argc == 3 ? argv[1] : LOOP_BACK);
-    int port_number = (argc == 3 ? std::stoi(argv[2]) : DEFAULT_PORT);
-    /* Start of test section. */
-    test_lseek(ip_address, port_number);
-    test_open_close(ip_address, port_number);
-    test_write_read(ip_address, port_number);
-    /* End of test section. */
+
+int main() {
+    test_lseek();
+    test_open_close();
+    test_write_read();
+    test_fstat();
     return 0;
 }
