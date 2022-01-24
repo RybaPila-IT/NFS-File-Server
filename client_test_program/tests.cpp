@@ -5,17 +5,14 @@
 #include "file_system_manager.h"
 #include "tests.h"
 
-#define LOOP_BACK    "127.0.0.1"
-#define DEFAULT_PORT 6941
-
 #define CREATE 0
 #define READ   1
 #define WRITE  2
 #define READ_WRITE 3
 
-void test_lseek() {
+void test_lseek(const char* server_ip, int port_number) {
     FileSystemManager manager;
-    std::string path = "test.txt";
+    std::string path = "test.test_file";
     std::string content = "This is sample content which will be saved to test file...";
     std::string expected, got;
     int buffer_size = 10;
@@ -28,7 +25,7 @@ void test_lseek() {
 
     try {
         /** Preparation for tests. */
-        manager.mount(LOOP_BACK, DEFAULT_PORT);
+        manager.mount(server_ip, port_number);
         desc = manager.open(path, CREATE);
         manager.close(desc);
         desc = manager.open(path, WRITE);
