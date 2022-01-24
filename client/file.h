@@ -46,7 +46,7 @@ public:
     }
 
     std::string read(int bytes_amount) {
-        return content.substr(position, std::min(bytes_amount, std::max(0, (int)content.size()-position-bytes_amount)));
+        return content.substr(position, std::min(bytes_amount, (int)content.size()-position));
     }
 
 };

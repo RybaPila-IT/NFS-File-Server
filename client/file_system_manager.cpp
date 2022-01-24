@@ -67,7 +67,7 @@ int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
 }
 
 
-void FileSystemManager::write(int desc, char *buffer, int bytes_amount) {
+void FileSystemManager::write(int desc, const char *buffer, int bytes_amount) {
     std::string write_bytes(buffer, bytes_amount);
     try {
         auto file = current_file_system->second.storage.obtain_file(desc);
@@ -111,7 +111,7 @@ void FileSystemManager::unlink(std::string &file_path) {
 }
 
 void FileSystemManager::mount(const char *server_ip, int port_number) {
-    std::string ip_key = std::string(server_ip) + std::to_string(port_number);
+    std::string ip_key = std::string(server_ip) + ":" + std::to_string(port_number);
     if (mounted_systems.find(ip_key) == mounted_systems.end()) {
         try {
             mounted_systems.insert(std::make_pair(ip_key, FileSystem({NFS_client(server_ip, port_number), Storage()})));

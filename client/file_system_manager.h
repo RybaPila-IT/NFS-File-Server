@@ -23,7 +23,7 @@ public:
 
     int  open(std::string& file_path, unsigned short mode);
     int  read(int desc, char* buffer, int bytes_amount);
-    void write(int desc, char* buffer, int bytes_amount);
+    void write(int desc, const char* buffer, int bytes_amount);
     void lseek(int desc, int offset);
     void close(int desc);
     std::string fstat(int desc);
