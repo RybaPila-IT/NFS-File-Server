@@ -91,4 +91,22 @@ void test_lseek() {
     std::cout << "**************************************************\n";
     std::cout << "************ Lseek test suit finished ************\n";
     std::cout << "**************************************************\n";
+
+    //////logger functioning check
+    std::string f_stats;
+
+    try {
+        manager.mount(LOOP_BACK, DEFAULT_PORT);
+        desc = manager.open(path, READ);
+        std::cout << "File opened as expected! Descriptor is: " << desc << "\n";
+
+        f_stats = manager.fstat(desc);
+        std::cout << f_stats << std::endl;
+        std::cout << "Fstat info collected correctly!" << std::endl;
+
+        manager.close(desc);
+        std::cout << "File closed successfully!\n";
+    } catch (std::runtime_error& err) {
+        std::cout << "Unexpected error: " << err.what() << "\n";
+    }
 }

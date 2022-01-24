@@ -1,6 +1,7 @@
 #include <iostream>
 #include "fstat_handler.h"
 #include "../access_manager.h"
+#include "../logger.h"
 
 FstatHandler::FstatHandler(FstatRequest &fstat_request) :
         path(fstat_request.get_path()) {}
@@ -25,6 +26,7 @@ std::string FstatHandler::get_fstat() {
     }
     fclose(file_to_fstat);
     AccessManager::get_instance().unlock_file_mutex(path);
+    Logger::get_instance().create_new_log("get_fstat operation complete", std::this_thread::get_id());
     return styled_fstat_info;
 }
 
