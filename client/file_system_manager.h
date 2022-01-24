@@ -26,9 +26,9 @@ public:
     void write(int desc, const char* buffer, int bytes_amount);
     void lseek(int desc, int offset);
     void close(int desc);
+    std::string fstat(int desc);
     void unlink(std::string& file_path);
     void mount(const char *server_ip, int port_number);
-    int  fstat(int desc, char* buffer, int bytes_amount);
 };
 
 #endif //CLIENT_FILE_SYSTEM_MANAGER_H

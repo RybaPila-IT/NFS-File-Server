@@ -1,4 +1,6 @@
 #include <cstring>
+#include <stdexcept>
+#include <iostream>
 #include "file_system_manager.h"
 
 #define LOOP_BACK    "127.0.0.1"
@@ -82,12 +84,25 @@ void FileSystemManager::write(int desc, const char *buffer, int bytes_amount) {
 
 void FileSystemManager::lseek(int desc, int offset) {
     try {
-        current_file_system->second.storage.inc_file_position(desc, offset);
+      current_file_system->second.storage.inc_file_position(desc, offset);
     } catch (std::runtime_error& err) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
 }
 
+
+std::string FileSystemManager::fstat(int desc) {
+    std::string file_stats;
+    auto file_path = current_file_system->second.storage.desc_to_file_path(desc);
+    if (file_path.empty())
+        throw std::runtime_error("fstat: file with descriptor " + std::to_string(desc) + " does not exist!");
+    try {
+        file_stats = current_file_system->second.client.get_fstat_info(file_path);
+    } catch (std::runtime_error &err) {
+        throw std::runtime_error("fstat: " + std::string(err.what()));
+    }
+    return file_stats;
+}
 void FileSystemManager::unlink(std::string &file_path) {
     auto file_desc = current_file_system->second.storage.get_file_descriptor(file_path);
     if (file_desc == -1)
@@ -105,4 +120,5 @@ void FileSystemManager::mount(const char *server_ip, int port_number) {
         }
     }
     current_file_system = mounted_systems.find(ip_key);
+
 }
