@@ -10,7 +10,7 @@
 #define WRITE  2
 #define READ_WRITE 3
 
-void test_lseek(const char* server_ip, int port_number) {
+void test_lseek(const char *server_ip, int port_number) {
     FileSystemManager manager;
     std::string path = "test.test_file";
     std::string content = "This is sample content which will be saved to test file...";
@@ -75,12 +75,12 @@ void test_lseek(const char* server_ip, int port_number) {
 
         /** Clean-up. */
         manager.close(desc);
-    } catch (std::runtime_error& err) {
+    } catch (std::runtime_error &err) {
         std::cerr << err.what() << "\n";
         // Attempt to close the file if the test crashes.
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
