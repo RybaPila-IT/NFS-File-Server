@@ -74,12 +74,6 @@ void RequestHandler::handle_read(std::string &message) {
     send_ok_reply(reply_bytes);
 }
 
-void RequestHandler::handle_unlink(std::string &message) {
-    std::cout << "HANDLING UNLINK | MSG LENGTH: " << message.length() << std::endl;
-    UnlinkRequest uReq;
-    uReq.deserialize(message);
-}
-
 void RequestHandler::handle_write(std::string &message) {
     WriteRequest write_request;
     write_request.deserialize(message);
@@ -111,9 +105,6 @@ void RequestHandler::handle_request(std::string &buffer) {
             break;
         case 'R':
             handle_read(buffer);
-            break;
-        case 'U':
-            handle_unlink(buffer);
             break;
         case 'W':
             handle_write(buffer);

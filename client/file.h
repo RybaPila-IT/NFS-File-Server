@@ -49,6 +49,15 @@ public:
         return content.substr(position, std::min(bytes_amount, (int)content.size()-position));
     }
 
+    std::string write_result(std::string& data) {
+        std::string result = content;
+        if (position + data.size() > result.size()) {
+            result.resize(position + data.size());
+        }
+        result.replace(position, data.size(), data);
+        return result;
+    }
+
 };
 
 

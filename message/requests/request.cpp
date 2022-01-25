@@ -4,13 +4,13 @@
 #include "bytes_converter.h"
 
 /* Close Request */
-CloseRequest::CloseRequest(): request_type('Q') {}
+CloseRequest::CloseRequest() : request_type('Q') {}
 
-CloseRequest::CloseRequest(std::string &path):
+CloseRequest::CloseRequest(std::string &path) :
         request_type('Q'),
         path(path) {}
 
-void  CloseRequest::deserialize(std::string& val) {
+void CloseRequest::deserialize(std::string &val) {
     path = val.substr(1);
 }
 
@@ -26,9 +26,9 @@ std::string CloseRequest::get_path() {
 }
 
 /* Fstat Request */
-FstatRequest::FstatRequest(): request_type('F') {}
+FstatRequest::FstatRequest() : request_type('F') {}
 
-FstatRequest::FstatRequest(std::string &path):
+FstatRequest::FstatRequest(std::string &path) :
         request_type('F'),
         path(path) {}
 
@@ -48,10 +48,10 @@ std::string FstatRequest::get_path() {
 }
 
 /* Open Request */
-OpenRequest::OpenRequest():
+OpenRequest::OpenRequest() :
         request_type('O'), open_mode(0) {}
 
-OpenRequest::OpenRequest(unsigned short open_mode, const std::string &file_path):
+OpenRequest::OpenRequest(unsigned short open_mode, const std::string &file_path) :
         request_type('O'),
         open_mode(open_mode),
         path(file_path) {}
@@ -78,7 +78,7 @@ unsigned short OpenRequest::get_open_mode() {
 }
 
 /* Read Request */
-ReadRequest::ReadRequest(): request_type('R') {}
+ReadRequest::ReadRequest() : request_type('R') {}
 
 ReadRequest::ReadRequest(std::string &path) :
         request_type('R'),
@@ -99,30 +99,8 @@ std::string ReadRequest::get_path() {
     return path;
 }
 
-/*Unlink Request */
-UnlinkRequest::UnlinkRequest(): request_type('U') {}
-
-UnlinkRequest::UnlinkRequest(std::string &path):
-        request_type('U'),
-        path(path) {}
-
-void UnlinkRequest::deserialize(std::string &val) {
-    path = val.substr(1);
-}
-
-std::string UnlinkRequest::serialize() {
-    std::string res;
-    res += request_type;
-    res += path;
-    return res;
-}
-
-std::string UnlinkRequest::get_path() {
-    return path;
-}
-
 /* Write Request */
-WriteRequest::WriteRequest():
+WriteRequest::WriteRequest() :
         request_type('W'),
         size_of_path(0) {}
 
@@ -135,7 +113,7 @@ WriteRequest::WriteRequest(std::string &path, const std::string &fileContent) :
 void WriteRequest::deserialize(std::string &val) {
     size_of_path = BytesConverter::BytesToInt(val.substr(1, 4));
     path = val.substr(5, size_of_path);
-    file_content =  val.substr(5+size_of_path);
+    file_content = val.substr(5 + size_of_path);
 }
 
 std::string WriteRequest::serialize() {

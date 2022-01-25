@@ -47,17 +47,6 @@ public:
     std::string get_path();
 };
 
-class UnlinkRequest {
-    const char request_type;
-    std::string path;
-public:
-    UnlinkRequest();
-    UnlinkRequest(std::string &path);
-    void deserialize(std::string &val);
-    std::string serialize();
-    std::string get_path();
-};
-
 class WriteRequest {
     const char request_type;
     unsigned int size_of_path;

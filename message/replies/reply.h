@@ -52,14 +52,6 @@ public:
     std::string get_file_content();
 };
 
-class UnlinkReply {
-    const char reply_type;
-public:
-    UnlinkReply();
-    void deserialize(std::string &val);
-    std::string serialize();
-};
-
 class WriteReply {
     const char reply_type;
 public:
