@@ -13,7 +13,8 @@ message(STATUS ${file_system_manager_lib})
 
 add_executable(client_test_program
         main.cpp
-        tests.cpp tests.h)
+        tests.cpp tests.h
+        read_and_write_test.cpp read_and_write_test.h)
 
 target_link_libraries(client_test_program PRIVATE
         ${file_system_manager_lib}
