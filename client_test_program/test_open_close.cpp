@@ -17,7 +17,7 @@ TestOpenClose::TestOpenClose(const char *server_address, int port_number) {
         manager.close(desc);
     } catch (std::runtime_error &err) {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        exit(2);
+        exit(-1);
     }
 }
 

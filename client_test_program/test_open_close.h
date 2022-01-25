@@ -14,6 +14,7 @@ class TestOpenClose {
     std::string path_to_existing_file = "test_open_close.test_file";
     std::string path_to_non_existing_file = "this_file_can_never_exist.test_file";
     std::string path_to_file_for_creation = "test_create_this_file.test_file";
+
     int wrong_open_mode = 100;
     int non_existing_desc = 100;
 

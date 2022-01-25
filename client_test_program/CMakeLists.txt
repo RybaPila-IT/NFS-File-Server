@@ -13,7 +13,7 @@ message(STATUS ${file_system_manager_lib})
 
 add_executable(client_test_program
         main.cpp
-        tests.cpp tests.h
+        test_lseek.cpp test_lseek.h
         test_open_close.cpp test_open_close.h)
 
 target_link_libraries(client_test_program PRIVATE
