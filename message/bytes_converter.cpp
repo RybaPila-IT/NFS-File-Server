@@ -1,35 +1,17 @@
 #include "bytes_converter.h"
 
 std::string BytesConverter::IntToBytes(int val) {
-    std::string res;
-    unsigned char bytes[4];
-    bytes[0] = (val >> 24) & 0xFF;
-    bytes[1] = (val >> 16) & 0xFF;
-    bytes[2] = (val >> 8) & 0xFF;
-    bytes[3] = val & 0xFF;
-
-    res += bytes[0];
-    res += bytes[1];
-    res += bytes[2];
-    res += bytes[3];
-
-    return res;
+    char bytes[4];
+    bytes[3] =  val & 0x000000ff;
+    bytes[2] = (val & 0x0000ff00) >> 8;
+    bytes[1] = (val & 0x00ff0000) >> 16;
+    bytes[0] = (val & 0xff000000) >> 24;
+    return std::string(bytes, 4);
 }
 
  int BytesConverter::BytesToInt(std::string var) {
-    unsigned char val[4];
-    val[0] = var[0];
-    val[1] = var[1];
-    val[2] = var[2];
-    val[3] = var[3];
-
-    int i = val[0];
-    i = i << 8;
-    i += val[1];
-    i  = i << 8;
-    i += val[2];
-    i  = i << 8;
-    i += val[3];
-
-    return i;
+    return (int) ((unsigned char)(var[0]) << 24 |
+                  (unsigned char)(var[1]) << 16 |
+                  (unsigned char)(var[2]) << 8 |
+                  (unsigned char)(var[3]));
 }

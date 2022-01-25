@@ -8,7 +8,7 @@ class TestOpenClose {
     FileSystemManager manager_second;
 
     // For better visuals logging purpose
-    int offset = 65;
+    int offset = 64;
 
     // test data
     std::string path_to_existing_file = "test_open_close.test_file";

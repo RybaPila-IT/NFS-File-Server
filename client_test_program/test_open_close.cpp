@@ -23,9 +23,9 @@ TestOpenClose::TestOpenClose(const char *server_address, int port_number) {
 
 void TestOpenClose::run_all_tests() {
     std::cout << "\n\n";
-    std::cout << "**************************************************\n";
-    std::cout << "******* Starting open and close test suit ********\n";
-    std::cout << "**************************************************\n\n";
+    std::cout << "**********************************************************************\n";
+    std::cout << "***************** Starting open and close test suit ******************\n";
+    std::cout << "**********************************************************************\n\n";
 
     test_open_close_in_every_mode();
     test_open_close_with_writer_lock();
@@ -36,21 +36,22 @@ void TestOpenClose::run_all_tests() {
     test_close_with_non_existing_desc();
     test_close_with_already_closed_desc();
     test_open_one_file_two_times_create_mode();
-    //test_open_one_file_two_times_read_mode();
+    test_open_one_file_two_times_read_mode();
     test_open_one_file_two_times_write_mode();
     test_open_one_file_two_times_readwrite_mode();
-    //test_open_one_file_first_read_then_write_mode();
+    test_open_one_file_first_read_then_write_mode();
     test_open_one_file_first_write_then_read_mode();
     test_close_not_your_descriptor();
 
-    std::cout << "**************************************************\n";
-    std::cout << "******* Open and close test suit finished ********\n";
-    std::cout << "**************************************************\n";
+    std::cout << "\n**********************************************************************\n";
+    std::cout << "***************** Open and close test suit finished ******************\n";
+    std::cout << "**********************************************************************\n";
 }
 
 void TestOpenClose::test_open_close_in_every_mode() {
+    int desc;
     try {
-        int desc = manager.open(path_to_existing_file, CREATE);
+        desc = manager.open(path_to_existing_file, CREATE);
         manager.close(desc);
         desc = manager.open(path_to_existing_file, READ);
         manager.close(desc);
@@ -66,8 +67,9 @@ void TestOpenClose::test_open_close_in_every_mode() {
 }
 
 void TestOpenClose::test_open_close_with_writer_lock() {
+    int desc;
     try {
-        int desc = manager.open(path_to_existing_file, WRITE);
+        desc = manager.open(path_to_existing_file, WRITE);
         manager.close(desc);
         desc = manager.open(path_to_existing_file, READ);
         manager.close(desc);
@@ -85,8 +87,9 @@ void TestOpenClose::test_open_close_with_writer_lock() {
 }
 
 void TestOpenClose::test_create_file() {
+    int desc;
     try {
-        int desc = manager.open(path_to_file_for_creation, CREATE);
+        desc = manager.open(path_to_file_for_creation, CREATE);
         manager.close(desc);
         desc = manager.open(path_to_file_for_creation, CREATE);
         manager.close(desc);
@@ -100,28 +103,22 @@ void TestOpenClose::test_create_file() {
 void TestOpenClose::test_open_with_wrong_mode() {
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, wrong_open_mode);
-        manager.close(desc);
+        manager.open(path_to_existing_file, wrong_open_mode);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with bad open mode...");
-    }
+    assert(was_exception_thrown && "Open should have thrown an exception in open with bad open mode...");
     std::cout << std::left << std::setw(offset) << "Test open with wrong open mode" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_with_wrong_path() {
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_non_existing_file, READ);
-        manager.close(desc);
+        manager.open(path_to_non_existing_file, READ);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with bad path...");
-    }
+    assert(was_exception_thrown && "Open should have thrown an exception in open with bad path...");
     std::cout << std::left << std::setw(offset) << "Test open with bad path" << "PASSED\n";
 }
 
@@ -132,63 +129,62 @@ void TestOpenClose::test_close_with_non_existing_desc() {
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Close should have thrown an exception in close with bad descriptor...");
-    }
+    assert(was_exception_thrown && "Close should have thrown an exception in close with bad descriptor...");
     std::cout << std::left << std::setw(offset) << "Test close with bad descriptor" << "PASSED\n";
 }
 
 void TestOpenClose::test_close_with_already_closed_desc() {
+    int desc;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, READ);
+        desc = manager.open(path_to_existing_file, READ);
         manager.close(desc);
         manager.close(desc);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Close should have thrown an exception in close with already closed descriptor...");
-    }
+    assert(was_exception_thrown && "Close should have thrown an exception in close with already closed descriptor...");
     std::cout << std::left << std::setw(offset) << "Test close with already closed descriptor" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_already_opened_file() {
+    int desc;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, READ);
         desc = manager.open(path_to_existing_file, READ);
-        manager.close(desc);
+        manager.open(path_to_existing_file, READ);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with already opened file...");
+    assert(was_exception_thrown && "Open should have thrown an exception since file is already opened...");
+    try {
+        manager.close(desc);
+    } catch (std::runtime_error& err) {
+        assert(false && "Error while closing a file...");
     }
     std::cout << std::left << std::setw(offset) << "Test open with already opened file" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_one_file_two_times_create_mode() {
-    bool was_exception_thrown = false;
+    int desc_1, desc_2;
     try {
-        int desc = manager.open(path_to_existing_file, CREATE);
-        int desc_2 = manager_second.open(path_to_existing_file, CREATE);
-        manager.close(desc);
+        desc_1 = manager.open(path_to_existing_file, CREATE);
+        desc_2 = manager_second.open(path_to_existing_file, CREATE);
+        manager.close(desc_1);
         manager_second.close(desc_2);
     } catch (std::runtime_error &err) {
-        was_exception_thrown = true;
-    }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with file opened in create mode...");
+        std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
+        assert(false && "An error occurred when creating same file in two FileSystemManagers...");
     }
     std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in create mode" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_one_file_two_times_read_mode() {
+    int desc_1, desc_2;
     try {
-        int desc = manager.open(path_to_existing_file, READ);
-        int desc_2 = manager_second.open(path_to_existing_file, READ);
-        manager.close(desc);
+        desc_1 = manager.open(path_to_existing_file, READ);
+        desc_2 = manager_second.open(path_to_existing_file, READ);
+        manager.close(desc_1);
         manager_second.close(desc_2);
     } catch (std::runtime_error &err) {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
@@ -198,82 +194,107 @@ void TestOpenClose::test_open_one_file_two_times_read_mode() {
 }
 
 void TestOpenClose::test_open_one_file_two_times_write_mode() {
+    int desc_1 = -1, desc_2 = -1;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, WRITE);
-        int desc_2 = manager_second.open(path_to_existing_file, WRITE);
-        manager.close(desc);
-        manager_second.close(desc_2);
+        desc_1 = manager.open(path_to_existing_file, WRITE);
+        desc_2 = manager_second.open(path_to_existing_file, WRITE);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with file opened in write mode...");
+    assert(was_exception_thrown && "Open should have thrown an exception in open with file opened in write mode...");
+    try {
+        if (desc_1 != -1)
+            manager.close(desc_1);
+        if (desc_2 != -1)
+            manager_second.close(desc_2);
+    } catch (std::runtime_error& err) {
+        std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
+        assert(false && "An error occurred when closing file in two FileSystemManagers...");
     }
     std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in write mode" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_one_file_two_times_readwrite_mode() {
+    int desc_1 = -1, desc_2 = -1;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, READ_WRITE);
-        int desc_2 = manager_second.open(path_to_existing_file, READ_WRITE);
-        manager.close(desc);
-        manager_second.close(desc_2);
+        desc_1 = manager.open(path_to_existing_file, READ_WRITE);
+        desc_2 = manager_second.open(path_to_existing_file, READ_WRITE);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Open should have thrown an exception in open with file opened in read/write mode...");
+    assert(was_exception_thrown && "Open should have thrown an exception in open with file opened in read/write mode...");
+    try {
+        if (desc_1 != -1)
+            manager.close(desc_1);
+        if (desc_2 != -1)
+            manager_second.close(desc_2);
+    } catch (std::runtime_error& err) {
+        std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
+        assert(false && "An error occurred when closing file in two FileSystemManagers...");
     }
     std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in read/write mode" << "PASSED\n";
 }
 
 void TestOpenClose::test_open_one_file_first_read_then_write_mode() {
+    int desc_1, desc_2;
     try {
-        int desc = manager.open(path_to_existing_file, READ);
-        int desc_2 = manager_second.open(path_to_existing_file, WRITE);
-        manager.close(desc);
+        desc_1 = manager.open(path_to_existing_file, READ);
+        desc_2 = manager_second.open(path_to_existing_file, WRITE);
+        manager.close(desc_1);
         manager_second.close(desc_2);
     } catch (std::runtime_error &err) {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         assert(false &&
-               "An error occurred when opening same file in two FileSystemManagers in write mode after read mode...");
+               "An error occurred when opening same file in two FileSystemManagers in write and then read mode...");
     }
-    std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in read mode and then write mode"
+    std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in read and then write mode"
               << "PASSED\n";
 }
 
 void TestOpenClose::test_open_one_file_first_write_then_read_mode() {
+    int desc_1 = -1, desc_2 = -1;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, WRITE);
-        int desc_2 = manager_second.open(path_to_existing_file, READ);
-        manager.close(desc);
-        manager_second.close(desc_2);
+        desc_1 = manager.open(path_to_existing_file, WRITE);
+        desc_2 = manager_second.open(path_to_existing_file, READ);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false &&
-               "Open should have thrown an exception in open with file opened in read mode after write mode...");
+    assert(was_exception_thrown && "Open should have thrown an exception with file opened in read mode after write mode...");
+    try {
+        if (desc_1 != -1)
+            manager.close(desc_1);
+        if (desc_2 != -1)
+            manager_second.close(desc_2);
+    } catch (std::runtime_error& err) {
+        std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
+        assert(false && "An error occurred when closing file in two FileSystemManagers...");
     }
     std::cout << std::left << std::setw(offset) << "Test open one file on two FSMs in write mode then read mode"
               << "PASSED\n";
 }
 
 void TestOpenClose::test_close_not_your_descriptor() {
+    int desc_1 = -1, desc_2 = -1;
     bool was_exception_thrown = false;
     try {
-        int desc = manager.open(path_to_existing_file, READ);
-        int desc_2 = manager_second.open(path_to_existing_file, READ);
+        desc_1 = manager.open(path_to_existing_file, READ);
+        desc_2 = manager_second.open(path_to_existing_file, READ);
         manager.close(desc_2);
-        manager_second.close(desc);
     } catch (std::runtime_error &err) {
         was_exception_thrown = true;
     }
-    if (!was_exception_thrown) {
-        assert(false && "Close should have thrown an exception in close with file descriptor not opened by him...");
+    assert(was_exception_thrown && "Close should have thrown an exception in close with file descriptor not opened by him...");
+    try {
+        if (desc_1 != -1)
+            manager.close(desc_1);
+        if (desc_2 != -1)
+            manager_second.close(desc_2);
+    } catch (std::runtime_error& err) {
+        std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
+        assert(false && "An error occurred when closing file in two FileSystemManagers...");
     }
     std::cout << std::left << std::setw(offset) << "Test close not your descriptor" << "PASSED\n";
 }
