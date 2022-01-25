@@ -16,7 +16,6 @@ private:
     void handle_fstat(std::string&);
     void handle_open(std::string&);
     void handle_read(std::string&);
-    void handle_unlink(std::string&);
     void handle_write(std::string&);
 
     void send_error(std::string&);

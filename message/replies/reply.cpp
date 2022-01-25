@@ -1,9 +1,9 @@
 #include "reply.h"
 
 /* Error reply */
-ErrorReply::ErrorReply(): reply_type('E') {}
+ErrorReply::ErrorReply() : reply_type('E') {}
 
-ErrorReply::ErrorReply(const std::string &errorMsg):
+ErrorReply::ErrorReply(const std::string &errorMsg) :
         reply_type('E'),
         error_message(errorMsg) {}
 
@@ -23,7 +23,7 @@ std::string ErrorReply::get_error_message() {
 }
 
 /* Close Reply */
-CloseReply::CloseReply(): reply_type('Q') {}
+CloseReply::CloseReply() : reply_type('Q') {}
 
 void CloseReply::deserialize(std::string &val) {}
 
@@ -34,10 +34,10 @@ std::string CloseReply::serialize() {
 }
 
 /* Fstat Reply */
-FstatReply::FstatReply():
+FstatReply::FstatReply() :
         reply_type('F') {}
 
-FstatReply::FstatReply(const std::string &fileStatus):
+FstatReply::FstatReply(const std::string &fileStatus) :
         reply_type('F'),
         file_status(fileStatus) {}
 
@@ -58,7 +58,7 @@ std::string FstatReply::get_file_status() {
 
 /* Open Reply */
 //DELETED VARIABLES FROM TO DO, FILE DESCRIPTOR ISN'T A PART OF OPEN REPLY ANYMORE
-OpenReply::OpenReply(): reply_type('O') {}
+OpenReply::OpenReply() : reply_type('O') {}
 
 void OpenReply::deserialize(std::string &val) {
 }
@@ -70,9 +70,9 @@ std::string OpenReply::serialize() {
 }
 
 /* Read Reply */
-ReadReply::ReadReply(): reply_type('R') {}
+ReadReply::ReadReply() : reply_type('R') {}
 
-ReadReply::ReadReply(const std::string &file_content):
+ReadReply::ReadReply(const std::string &file_content) :
         reply_type('R'),
         file_content(file_content) {}
 
@@ -89,17 +89,6 @@ std::string ReadReply::serialize() {
 
 std::string ReadReply::get_file_content() {
     return file_content;
-}
-
-/*Unlink Reply */
-UnlinkReply::UnlinkReply(): reply_type('U') {}
-
-void UnlinkReply::deserialize(std::string &val) {}
-
-std::string UnlinkReply::serialize() {
-    std::string res;
-    res += reply_type;
-    return res;
 }
 
 /* Write Reply */
