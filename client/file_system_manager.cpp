@@ -38,7 +38,9 @@ void FileSystemManager::close(int desc) {
     if (file_path.empty())
         throw std::runtime_error("close: file with descriptor " + std::to_string(desc) + " does not exist!");
     try {
-        current_file_system->second.client.close_file(file_path);
+        int mode = current_file_system->second.storage.obtain_file(desc).get_mode();
+        if (mode == WRITE || mode == READ_WRITE)
+            current_file_system->second.client.close_file(file_path);
     } catch (std::runtime_error &err) {
         throw std::runtime_error("close: " + std::string(err.what()));
     }
@@ -85,8 +87,8 @@ void FileSystemManager::write(int desc, const char *buffer, int bytes_amount) {
 void FileSystemManager::lseek(int desc, int offset) {
     check_mounted();
     try {
-      current_file_system->second.storage.inc_file_position(desc, offset);
-    } catch (std::runtime_error& err) {
+        current_file_system->second.storage.inc_file_position(desc, offset);
+    } catch (std::runtime_error &err) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
 }
@@ -104,6 +106,7 @@ std::string FileSystemManager::fstat(int desc) {
     }
     return file_stats;
 }
+
 void FileSystemManager::unlink(std::string &file_path) {
     check_mounted();
     auto file_desc = current_file_system->second.storage.get_file_descriptor(file_path);
@@ -117,7 +120,7 @@ void FileSystemManager::mount(const char *server_ip, int port_number) {
     if (mounted_systems.find(ip_key) == mounted_systems.end()) {
         try {
             mounted_systems.insert(std::make_pair(ip_key, FileSystem({NFS_client(server_ip, port_number), Storage()})));
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             throw std::runtime_error("mount: " + std::string(err.what()));
         }
     }
