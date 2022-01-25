@@ -45,7 +45,6 @@ void FileSystemManager::close(int desc) {
     current_file_system->second.storage.erase_file(desc);
 }
 
-
 int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
     check_mounted();
     std::string read_data;
@@ -66,7 +65,6 @@ int FileSystemManager::read(int desc, char *buffer, int bytes_amount) {
     }
     return read_data.size();
 }
-
 
 void FileSystemManager::write(int desc, const char *buffer, int bytes_amount) {
     check_mounted();
@@ -92,7 +90,6 @@ void FileSystemManager::lseek(int desc, int offset) {
         throw std::runtime_error("lseek: " + std::string(err.what()));
     }
 }
-
 
 std::string FileSystemManager::fstat(int desc) {
     check_mounted();
