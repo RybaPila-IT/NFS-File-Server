@@ -14,7 +14,8 @@ message(STATUS ${file_system_manager_lib})
 add_executable(client_test_program
         main.cpp
         test_lseek.cpp test_lseek.h
-        test_open_close.cpp test_open_close.h)
+        test_open_close.cpp test_open_close.h
+        test_read_and_write.cpp test_read_and_write.h)
 
 target_link_libraries(client_test_program PRIVATE
         ${file_system_manager_lib}

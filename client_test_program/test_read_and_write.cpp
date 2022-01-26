@@ -1,4 +1,4 @@
-#include "read_and_write_test.h"
+#include "test_read_and_write.h"
 #include <iostream>
 #include <cassert>
 #include <iomanip>
@@ -30,6 +30,7 @@ void TestWriteRead::run_all_tests() {
 
     reset_test_file();
 
+    // Test cases testing basic simple correct behaviour
     test_write_empty_file();
     test_normal_write();
     test_normal_read();
@@ -121,7 +122,7 @@ void TestWriteRead::test_write_empty_file() {
         std::cerr << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -148,7 +149,7 @@ void TestWriteRead::test_normal_write() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -171,7 +172,7 @@ void TestWriteRead::test_normal_read() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -200,7 +201,7 @@ void TestWriteRead::test_normal_read_write() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -232,7 +233,7 @@ void TestWriteRead::test_write_with_lseek() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -261,7 +262,7 @@ void TestWriteRead::test_read_with_lseek() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -276,7 +277,7 @@ void TestWriteRead::test_read_write_with_lseek() {
         read_bytes = manager.read(desc, buffer, buffer_size);
         manager.lseek(desc, 8);
         read_bytes = manager.read(desc, buffer, buffer_size);
-        got = std::string (buffer, read_bytes);
+        got = std::string(buffer, read_bytes);
         expected = "test data";
         assert(expected == got && "Messages mismatch with read_write with lseek, first read...");
 
@@ -291,7 +292,7 @@ void TestWriteRead::test_read_write_with_lseek() {
         manager.lseek(desc, -8);
         read_bytes = manager.read(desc, buffer, buffer_size);
         expected = "default New content longer for testing";
-        got = std::string (buffer, read_bytes);
+        got = std::string(buffer, read_bytes);
 
         assert(expected == got && "Messages mismatch with read_write with lseek, third read...");
 
@@ -328,13 +329,11 @@ void TestWriteRead::test_write_while_different_file_opened() {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
     }
-
-
 
 
 }
@@ -358,7 +357,7 @@ void TestWriteRead::test_read_while_different_file_opened() {
         try {
             manager.close(desc);
             manager.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
@@ -408,7 +407,7 @@ void TestWriteRead::test_write_with_wrong_open_mode() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -429,7 +428,7 @@ void TestWriteRead::test_read_from_not_existing_desc() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -450,7 +449,7 @@ void TestWriteRead::test_read_from_closed_desc() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -471,7 +470,7 @@ void TestWriteRead::test_read_with_wrong_open_mode() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -510,14 +509,14 @@ void TestWriteRead::test_write_to_file_taken_by_reader() {
         try {
             manager.close(desc);
             manager.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
     }
 }
 
-void TestWriteRead::test_read_from_file_taken_by_reader(){
+void TestWriteRead::test_read_from_file_taken_by_reader() {
     reset_test_file();
     try {
         char buffer[buffer_size];
@@ -536,13 +535,14 @@ void TestWriteRead::test_read_from_file_taken_by_reader(){
         try {
             manager.close(desc);
             manager.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
     }
 }
-void TestWriteRead::test_read_write_with_file_taken_by_reader(){
+
+void TestWriteRead::test_read_write_with_file_taken_by_reader() {
     reset_test_file();
     try {
         char buffer[buffer_size];
@@ -565,14 +565,14 @@ void TestWriteRead::test_read_write_with_file_taken_by_reader(){
         try {
             manager.close(desc);
             manager.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         assert(false && "An error should not occur!");
     }
 }
 
-void TestWriteRead::test_write_to_file_taken_by_writer(){
+void TestWriteRead::test_write_to_file_taken_by_writer() {
     reset_test_file();
     bool was_exception_thrown = false;
     try {
@@ -586,7 +586,7 @@ void TestWriteRead::test_write_to_file_taken_by_writer(){
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -597,7 +597,7 @@ void TestWriteRead::test_write_to_file_taken_by_writer(){
     std::cout << std::left << std::setw(offset) << "Test write to file taken by writer" << "PASSED\n";
 }
 
-void TestWriteRead::test_read_from_file_taken_by_writer(){
+void TestWriteRead::test_read_from_file_taken_by_writer() {
     reset_test_file();
     bool was_exception_thrown = false;
     try {
@@ -611,7 +611,7 @@ void TestWriteRead::test_read_from_file_taken_by_writer(){
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -621,7 +621,8 @@ void TestWriteRead::test_read_from_file_taken_by_writer(){
     }
     std::cout << std::left << std::setw(offset) << "Test read from file taken by writer" << "PASSED\n";
 }
-void TestWriteRead::test_read_write_with_file_taken_by_writer(){
+
+void TestWriteRead::test_read_write_with_file_taken_by_writer() {
     reset_test_file();
     bool was_exception_thrown = false;
     try {
@@ -637,7 +638,7 @@ void TestWriteRead::test_read_write_with_file_taken_by_writer(){
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -648,7 +649,7 @@ void TestWriteRead::test_read_write_with_file_taken_by_writer(){
     std::cout << std::left << std::setw(offset) << "Test read_write to file taken by writer" << "PASSED\n";
 }
 
-void TestWriteRead::test_write_with_file_taken_by_write_reader(){
+void TestWriteRead::test_write_with_file_taken_by_write_reader() {
     reset_test_file();
     bool was_exception_thrown = false;
     try {
@@ -662,7 +663,7 @@ void TestWriteRead::test_write_with_file_taken_by_write_reader(){
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -672,7 +673,8 @@ void TestWriteRead::test_write_with_file_taken_by_write_reader(){
     }
     std::cout << std::left << std::setw(offset) << "Test write to file taken by read_writer" << "PASSED\n";
 }
-void TestWriteRead::test_read_with_file_taken_by_write_reader(){
+
+void TestWriteRead::test_read_with_file_taken_by_write_reader() {
     reset_test_file();
     bool was_exception_thrown = false;
     try {
@@ -686,7 +688,7 @@ void TestWriteRead::test_read_with_file_taken_by_write_reader(){
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         was_exception_thrown = true;
@@ -722,7 +724,7 @@ void TestWriteRead::test_mixed_order_read_then_write() {
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
@@ -752,7 +754,7 @@ void TestWriteRead::test_mixed_order_write_then_read() {
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
@@ -797,7 +799,7 @@ void TestWriteRead::test_mixed_order_read_then_write_reader() {
         try {
             manager.close(desc);
             manager_second.close(desc_2);
-        } catch (std::runtime_error& err) {
+        } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
