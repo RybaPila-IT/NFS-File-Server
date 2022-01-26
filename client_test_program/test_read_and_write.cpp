@@ -24,9 +24,9 @@ TestWriteRead::TestWriteRead(const char *server_address, int port_number) {
 
 void TestWriteRead::run_all_tests() {
     std::cout << "\n\n";
-    std::cout << "**************************************************\n";
-    std::cout << "******* Starting write and read test suit ********\n";
-    std::cout << "**************************************************\n\n";
+    std::cout << "***********************************************************************\n";
+    std::cout << "**************** Starting write and read test suit ********************\n";
+    std::cout << "***********************************************************************\n\n";
 
     reset_test_file();
 
@@ -73,9 +73,9 @@ void TestWriteRead::run_all_tests() {
     test_mixed_order_write_then_read();
     test_mixed_order_read_then_write_reader();
 
-    std::cout << "\n**************************************************\n";
-    std::cout << "******* Write and read test suit finished ********\n";
-    std::cout << "**************************************************\n";
+    std::cout << "\n***********************************************************************\n";
+    std::cout << "**************** Write and read test suit finished ********************\n";
+    std::cout << "***********************************************************************\n";
 }
 
 void TestWriteRead::reset_test_file() {
@@ -423,11 +423,6 @@ void TestWriteRead::test_read_from_not_existing_desc() {
         read_bytes = manager.read(desc, buffer, buffer_size);
         manager.close(desc);
     } catch (std::runtime_error &err) {
-        try {
-            manager.close(desc);
-        } catch (std::runtime_error &err) {
-            std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        }
         was_exception_thrown = true;
     }
     if (!was_exception_thrown) {
@@ -444,11 +439,6 @@ void TestWriteRead::test_read_from_closed_desc() {
         manager.close(desc);
         read_bytes = manager.read(desc, buffer, buffer_size);
     } catch (std::runtime_error &err) {
-        try {
-            manager.close(desc);
-        } catch (std::runtime_error &err) {
-            std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        }
         was_exception_thrown = true;
     }
     if (!was_exception_thrown) {
@@ -582,7 +572,6 @@ void TestWriteRead::test_write_to_file_taken_by_writer() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-            manager_second.close(desc_2);
         } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
@@ -607,7 +596,6 @@ void TestWriteRead::test_read_from_file_taken_by_writer() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-            manager_second.close(desc_2);
         } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
@@ -634,7 +622,6 @@ void TestWriteRead::test_read_write_with_file_taken_by_writer() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-            manager_second.close(desc_2);
         } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
@@ -659,7 +646,6 @@ void TestWriteRead::test_write_with_file_taken_by_write_reader() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-            manager_second.close(desc_2);
         } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
@@ -684,7 +670,6 @@ void TestWriteRead::test_read_with_file_taken_by_write_reader() {
     } catch (std::runtime_error &err) {
         try {
             manager.close(desc);
-            manager_second.close(desc_2);
         } catch (std::runtime_error &err) {
             std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
         }
