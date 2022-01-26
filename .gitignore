@@ -3,7 +3,7 @@
 *.txt
 cmake-build-debug
 build
-
+tmp/
 # Prerequisites
 *.d
 
