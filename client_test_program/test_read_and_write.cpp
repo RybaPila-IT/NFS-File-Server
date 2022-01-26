@@ -334,8 +334,6 @@ void TestWriteRead::test_write_while_different_file_opened() {
         }
         assert(false && "An error should not occur!");
     }
-
-
 }
 
 void TestWriteRead::test_read_while_different_file_opened() {

@@ -18,7 +18,6 @@ void test_open_close() {
 void test_write_read() {
     TestWriteRead test_write_read(SERVER_IP, PORT);
     test_write_read.run_all_tests();
-
 }
 
 
