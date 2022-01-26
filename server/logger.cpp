@@ -1,12 +1,14 @@
 #include <sstream>
+#include <iostream>
 #include "logger.h"
 
 Logger &Logger::get_instance() {
-    static Logger logger;
+    std::string path = "logs.txt";
+    static Logger logger(path);
     return logger;
 }
 
-Logger::Logger() : file_path("logs.txt") {
+Logger::Logger(std::string& file_path): file_path(file_path) {
     try {
         logs_file.open(file_path, std::fstream::out | std::fstream::trunc);
     } catch (std::runtime_error &error) {
@@ -39,4 +41,14 @@ void Logger::lock_logs_mutex() {
 
 Logger::~Logger() {
     logs_file.close();
+}
+
+void Logger::show_logs_in_console() {
+    std::ifstream logs (file_path);
+    std::string logs_output;
+    if(logs.is_open())
+        logs >> logs_output;
+    std::cout << logs_output << std::endl;
+    logs.close();
+
 }
