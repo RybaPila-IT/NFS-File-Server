@@ -39,7 +39,7 @@ std::string FstatHandler::load_fstats(std::string &stats, FILE *file_to_fstat) {
     struct stat buffer;
     if(fstat(fd, &buffer) != 0)
         throw std::runtime_error("ERROR IN: system fstat - couldn't load fstat to buffer");
-    stats += "FSTAT INFO:";
+    stats = "FSTAT INFO:";
     stats += "\nID OF DEVICE (st_dev): ";
     stats += std::to_string(buffer.st_dev);
     stats += "\nINODE NUMBER (st_ino): ";
@@ -52,6 +52,7 @@ std::string FstatHandler::load_fstats(std::string &stats, FILE *file_to_fstat) {
     stats += std::to_string(buffer.st_atime);
     stats += "\nTIME OF LAST MODIFICATION (st_mtime): ";
     stats += std::to_string(buffer.st_mtime);
+    stats += "\nEND OF FSTAT INFO.";
     std::cout << "Successfully loaded statistics of " + path + " file." << std::endl;
     return stats;
 }

@@ -84,6 +84,7 @@ std::string NFS_client::get_fstat_info(std::string &path) {
         std::string func_name("fstat");
         handle_error(reply_data, func_name);
     }
-    FstatReply reply(reply_data);
+    FstatReply reply;
+    reply.deserialize(reply_data);
     return reply.get_file_status();
 }
