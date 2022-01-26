@@ -11,22 +11,26 @@ std::string FstatHandler::get_fstat() {
     try {
         AccessManager::get_instance().lock_file_mutex(path);
     } catch (std::runtime_error &error) {
+        Logger::get_instance().create_new_log("[FstatHandler::get_fstat()] Error while locking mutex: " + std::string (error.what()), std::this_thread::get_id());
         throw std::runtime_error("ERROR IN: get_fstat: " + std::string(error.what()));
     }
     FILE *file_to_fstat = fopen(path.c_str(), "r");
     if (!file_to_fstat) {
         AccessManager::get_instance().unlock_file_mutex(path);
+        Logger::get_instance().create_new_log("[FstatHandler::get_fstat()] File: " + path + "couldn't be opened", std::this_thread::get_id());
         throw std::runtime_error("ERROR IN: file_to_fstat - file couldn't be opened");
     }
     try {
         load_fstats(styled_fstat_info, file_to_fstat);
     }
     catch (std::runtime_error &error) {
+        Logger::get_instance().create_new_log("[FstatHandler::get_fstat()] Error while loading fstats to string", std::this_thread::get_id());
         throw std::runtime_error("ERROR IN: load_fstats: " + std::string(error.what()));
     }
     fclose(file_to_fstat);
+    Logger::get_instance().create_new_log("[FstatHandler::get_fstat()] Successfully collected fstat info", std::this_thread::get_id());
+    std::cout << "Successfully collected fstat info" << std::endl;
     AccessManager::get_instance().unlock_file_mutex(path);
-    Logger::get_instance().create_new_log("get_fstat operation complete", std::this_thread::get_id());
     return styled_fstat_info;
 }
 
