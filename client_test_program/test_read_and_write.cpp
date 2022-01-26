@@ -98,7 +98,6 @@ void TestWriteRead::reset_test_file() {
     }
     desc = -1;
     desc_2 = -1;
-    //std::cout << "test file reset\n";
 }
 
 // Test cases testing basic simple correct behaviour
@@ -804,5 +803,3 @@ void TestWriteRead::test_mixed_order_read_then_write_reader() {
         assert(false && "An error should not occur!");
     }
 }
-
-
