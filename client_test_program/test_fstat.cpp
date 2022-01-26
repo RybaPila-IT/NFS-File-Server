@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iomanip>
+
 #include "test_fstat.h"
 #include "iostream"
 
@@ -7,7 +8,6 @@
 #define READ   1
 #define WRITE  2
 #define READ_WRITE 3
-
 
 TestFstat::TestFstat(const char *server_address, int port_number) {
     try {
@@ -17,9 +17,8 @@ TestFstat::TestFstat(const char *server_address, int port_number) {
         manager.close(desc);
     } catch (std::runtime_error &err) {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        exit(2);
+        exit(-1);
     }
-
 }
 
 void TestFstat::run_all_tests() {
@@ -32,11 +31,9 @@ void TestFstat::run_all_tests() {
     test_fstat_non_existent_descriptor();
     test_fstat_with_two_clients();
 
-
     std::cout << "\n**********************************************************************\n";
-    std::cout << "********************** Lseek fstat suit finished **********************\n";
+    std::cout << "********************* Lseek fstat suit finished **********************\n";
     std::cout << "**********************************************************************\n";
-
 }
 
 void TestFstat::test_fstat_existing_file() {
@@ -57,21 +54,18 @@ void TestFstat::test_fstat_existing_file() {
     std::cout << std::left << std::setw(offset) << "Test existing file fstat" << "PASSED\n";
 }
 
-
 void TestFstat::test_fstat_non_existent_descriptor() {
     bool was_exception_thrown = false;
     try {
         desc = manager.open(path_to_existing_file, READ);
         manager.fstat(non_existing_desc);
-        manager.close(desc);
     } catch (std::runtime_error &err) {
         manager.close(desc);
         was_exception_thrown = true;
-        assert(was_exception_thrown && "Fstat should have thrown an exception in non existent descriptor test...");
     }
+    assert(was_exception_thrown && "Fstat should have thrown an exception in non existent descriptor test...");
     std::cout << std::left << std::setw(offset) << "Test non existent descriptor fstat" << "PASSED\n";
 }
-
 
 void TestFstat::test_fstat_with_two_clients() {
     std::string expected, got, got_second;
@@ -92,14 +86,7 @@ void TestFstat::test_fstat_with_two_clients() {
         manager_second.close(desc_second);
     } catch (std::runtime_error &err) {
         std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        try {
-            manager.close(desc);
-            manager.close(desc_second);
-        } catch (std::runtime_error &err) {
-            std::cerr << "CRITICAL ERROR: " << err.what() << "\n";
-        }
         assert(false && "An error should not occur!");
     }
     std::cout << std::left << std::setw(offset) << "Test performing fstat by two clients" << "PASSED\n";
-
 }

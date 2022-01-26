@@ -1,7 +1,7 @@
 #ifndef SERVER_TEST_FSTAT_H
 #define SERVER_TEST_FSTAT_H
-#include "file_system_manager.h"
 
+#include "file_system_manager.h"
 
 class TestFstat {
     FileSystemManager manager;
@@ -12,8 +12,7 @@ class TestFstat {
 
     // test data
     std::string path_to_existing_file = "test_fstat.test_file";
-    int desc = -1, desc_second = -1;
-    int non_existing_desc = 100;
+    int desc = -1, desc_second = -1, non_existing_desc = 100;
 
     void test_fstat_existing_file();
     void test_fstat_non_existent_descriptor();
