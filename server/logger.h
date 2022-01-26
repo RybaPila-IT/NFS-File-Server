@@ -2,11 +2,9 @@
 #define SERVER_LOGGER_H
 
 
-#include <vector>
 #include <thread>
 #include <fstream>
 #include <mutex>
-#include <memory>
 
 class Logger {
 private:
@@ -15,20 +13,13 @@ private:
     std::mutex logs_mutex;
 
     Logger();
-
     ~Logger();
-
     void unlock_logs_mutex();
-
     void lock_logs_mutex();
-
 public:
     static Logger &get_instance();
-
     Logger(Logger const &) = delete;
-
     void operator=(Logger const &) = delete;
-
     void create_new_log(const std::string &log_info, std::thread::id thread_id);
 };
 
