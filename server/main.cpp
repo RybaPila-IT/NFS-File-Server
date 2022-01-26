@@ -31,16 +31,18 @@ void handle_incoming_connections(TcpSocket &socket) {
     } while (true);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    std::string ip_address = (argc == 3 ? argv[1] : LOOP_BACK);;
+    int port_number = (argc == 3 ? std::stoi(argv[2]) : DEFAULT_PORT);
     TcpSocket tcp_socket;
     try {
-        tcp_socket = TcpSocket(LOOP_BACK, DEFAULT_PORT);
+        tcp_socket = TcpSocket(ip_address, port_number);
         tcp_socket.switch_to_listen_mode(BACKLOG_QUEUE);
     } catch (std::runtime_error &err) {
         std::cerr << "main: " << err.what() << "\n";
         return -1;
     }
-    std::cout << "Address: " << LOOP_BACK << "; Port: " << DEFAULT_PORT << ";\n";
+    std::cout << "Address: " << ip_address << "; Port: " << port_number << ";\n";
     std::cout << "Server begins listening...\n";
 
     try {
