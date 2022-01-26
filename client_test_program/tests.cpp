@@ -4,6 +4,7 @@
 
 #include "file_system_manager.h"
 #include "tests.h"
+#include "read_and_write_test.h"
 
 #define LOOP_BACK    "127.0.0.1"
 #define DEFAULT_PORT 6941
@@ -12,6 +13,11 @@
 #define READ   1
 #define WRITE  2
 #define READ_WRITE 3
+
+void test_write_read(){
+    TestWriteRead tester(LOOP_BACK, DEFAULT_PORT);
+    tester.run_all_tests();
+}
 
 void test_lseek() {
     FileSystemManager manager;
@@ -39,7 +45,8 @@ void test_lseek() {
         /** Test 0 length lseek. */
         manager.lseek(desc, 0);
         read_bytes = manager.read(desc, buffer, buffer_size);
-        expected = "This is sa";
+        //expected = "This is sa";
+        expected = content.substr(0, 10);
         got = std::string(buffer, read_bytes);
         assert(expected == got && "Messages mismatch with 0 lseek length...");
         std::cout << std::left << std::setw(44) << "Test 0 length lseek" << "PASSED\n";
@@ -47,7 +54,8 @@ void test_lseek() {
         /** Test regular lseek. */
         manager.lseek(desc, 10);
         read_bytes = manager.read(desc, buffer, buffer_size);
-        expected = "mple conte";
+        //expected = "mple conte";
+        expected = content.substr(10, 10);
         got = std::string(buffer, read_bytes);
         assert(expected == got && "Messages mismatch with regular lseek length...");
         std::cout << std::left << std::setw(44) << "Test regular length lseek" << "PASSED\n";

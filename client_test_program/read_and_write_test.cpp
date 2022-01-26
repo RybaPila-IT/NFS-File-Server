@@ -36,9 +36,9 @@ void TestWriteRead::run_all_tests() {
     test_normal_read_write();
 
     // Test cases testing lseek interactions
-    //test_write_with_lseek();
-    //test_read_with_lseek();
-    //test_read_write_with_lseek();
+    test_write_with_lseek();
+    test_read_with_lseek();
+    test_read_write_with_lseek();
 
     // Test cases testing multiple descriptors on one FileSystemManager
     test_write_while_different_file_opened();
@@ -220,10 +220,9 @@ void TestWriteRead::test_write_with_lseek() {
 
         desc = manager.open(path_to_existing_file, READ);
         read_bytes = manager.read(desc, buffer, buffer_size);
-        expected = "default New content longer for testing";
+        expected = "New content longer for testing";
         got = std::string(buffer, read_bytes);
 
-        std::cout << "ex = " << expected << " | got = " << got <<std::endl;
         assert(expected == got && "Messages mismatch with write with lseek...");
 
         manager.close(desc);
@@ -247,13 +246,12 @@ void TestWriteRead::test_read_with_lseek() {
         int temp_buffer_size = 10;
         char buffer[temp_buffer_size];
         desc = manager.open(path_to_existing_file, READ);
-
+        read_bytes = manager.read(desc, buffer, temp_buffer_size);
         manager.lseek(desc, lseek_length);
         read_bytes = manager.read(desc, buffer, temp_buffer_size);
         expected = default_file_data.substr(lseek_length, temp_buffer_size);
         got = std::string(buffer, read_bytes);
 
-        std::cout << "ex = " << expected << " | got = " << got <<std::endl;
         assert(expected == got && "Messages mismatch with read with lseek...");
 
         manager.close(desc);
@@ -275,6 +273,7 @@ void TestWriteRead::test_read_write_with_lseek() {
     try {
         char buffer[buffer_size];
         desc = manager.open(path_to_existing_file, READ_WRITE);
+        read_bytes = manager.read(desc, buffer, buffer_size);
         manager.lseek(desc, 8);
         read_bytes = manager.read(desc, buffer, buffer_size);
         got = std::string (buffer, read_bytes);
@@ -292,6 +291,8 @@ void TestWriteRead::test_read_write_with_lseek() {
         manager.lseek(desc, -8);
         read_bytes = manager.read(desc, buffer, buffer_size);
         expected = "default New content longer for testing";
+        got = std::string (buffer, read_bytes);
+
         assert(expected == got && "Messages mismatch with read_write with lseek, third read...");
 
         manager.close(desc);
