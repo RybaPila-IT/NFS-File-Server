@@ -1,6 +1,6 @@
 .idea
 # Rozszerzenia plików testowych
-*.txt
+.test_file
 cmake-build-debug
 build
 tmp/
